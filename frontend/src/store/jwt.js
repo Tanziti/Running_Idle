@@ -30,6 +30,8 @@ async function jwtFetch(url, options = {}) {
   return res;
 }
 
+
+// store/jwt.js
 function getCookie(cookieName) {
   const cookies = document.cookie.split(';');
   for (let cookie of cookies) {
@@ -38,5 +40,7 @@ function getCookie(cookieName) {
   }
   return null;
 }
+
+
 
 export default jwtFetch;
