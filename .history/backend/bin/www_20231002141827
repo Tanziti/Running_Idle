@@ -37,7 +37,7 @@ mongoose
   })
   // Use `debug` instead of `serverLogger` if you did not split the debug 
   // console into `dbLogger` and `serverLogger` above.
-  .catch(err => debug(err));
+  .catch(err => serverLogger(err));
 
 server.on('error', onError);
 server.on('listening', onListening);

@@ -32,12 +32,12 @@ mongoose
   .then(() => {
     // Use `debug` instead of `dbLogger` if you did not split the debug 
     // console into `dbLogger` and `serverLogger` above. 
-    debug("Connected to MongoDB successfully");
+    dbLogger("Connected to MongoDB successfully");
     server.listen(port);
   })
   // Use `debug` instead of `serverLogger` if you did not split the debug 
   // console into `dbLogger` and `serverLogger` above.
-  .catch(err => debug(err));
+  .catch(err => serverLogger(err));
 
 server.on('error', onError);
 server.on('listening', onListening);
