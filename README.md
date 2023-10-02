@@ -1,6 +1,4 @@
-# Running_Idle
-test 1
-
+# Running Idle
 
 
 ### Background and Overview
