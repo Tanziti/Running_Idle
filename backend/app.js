@@ -1,13 +1,12 @@
+require('./models/User');
 const express = require("express");
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const debug = require('debug');
 const cors = require('cors');
 const csurf = require('csurf');
 const { isProduction } = require('./config/keys');
-
 const usersRouter = require('./routes/api/users');
-const debug = require('debug');
 const csrfRouter = require('./routes/api/csrf');
 
 const app = express();
@@ -24,6 +23,23 @@ if (!isProduction) {
   // will be served statically on the Express server.)
   app.use(cors());
 }
+
+// Set the _csrf token and create req.csrfToken method to generate a hashed
+// CSRF token
+app.use(
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true
+    }
+  })
+);
+
+// Attach Express routers
+app.use('/api/users', usersRouter);
+app.use('/api/csrf', csrfRouter);
+
 app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.statusCode = 404;
@@ -44,21 +60,5 @@ app.use((req, res, next) => {
       errors: err.errors
     })
   });
-// Set the _csrf token and create req.csrfToken method to generate a hashed
-// CSRF token
-app.use(
-  csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "Lax",
-      httpOnly: true
-    }
-  })
-);
-
-// Attach Express routers
-app.use('/api/users', usersRouter);
-
-app.use('/api/csrf', csrfRouter);
-
-module.exports = app;
+  
+  module.exports = app;
