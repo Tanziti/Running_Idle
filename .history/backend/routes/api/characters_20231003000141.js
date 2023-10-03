@@ -9,6 +9,8 @@ const { requireUser } = require('../../config/passport');
 
 
 
+
+// "POST '/' route" to create a new character
 //include validateCharacterInput for router.post
 router.post('/', requireUser, async (req, res, next) => {
     try {
@@ -76,11 +78,11 @@ router.post('/', requireUser, async (req, res, next) => {
       }
   
       character.name = req.body.name;
-      character.heart = req.body.heart;
-      character.legs = req.body.legs;
-      character.arms = req.body.arms;
-      character.outfit = req.body.outfit;
-      character.shoes = req.body.shoes;
+      // character.heart = req.body.heart;
+      // character.legs = req.body.legs;
+      // character.arms = req.body.arms;
+      // character.outfit = req.body.outfit;
+      // character.shoes = req.body.shoes;
 
       const updatedCharacter = await character.save();
       return res.json(updatedCharacter);
