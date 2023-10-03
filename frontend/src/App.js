@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { AuthRoute } from "./components/Routes/Routes";
 import MainPage from "./components/MainPage/MainPage";
-// import NavBar from "./components/NavBar/NavBar.js"
+import Profile from "./components/Profile/Profile.js"
 
 import { getCurrentUser } from "./store/session";
 
@@ -20,6 +20,7 @@ function App() {
       {/* <NavBar /> */}
         <Switch>
           <AuthRoute exact path="/" component={MainPage} />
+          <Route exact path='/user/characters' component={Profile} />
         </Switch>
       </>
     )
