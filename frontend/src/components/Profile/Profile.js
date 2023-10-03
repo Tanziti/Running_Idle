@@ -9,32 +9,32 @@ function Profile () {
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
     const userCharacters = useSelector(state => Object.values(state.characters.user))
-    console.log("hey*************", currentUser)
+
     useEffect(() => {
-        // dispatch(fetchUserCharacter(currentUser._id));
-    //     return () => dispatch(clearCharacterErrors());
+        dispatch(fetchUserCharacter(currentUser._id));
+        return () => dispatch(clearCharacterErrors());
     }, [currentUser, dispatch]);
 
+// console.log('cool***********', userCharacters)
 
 
 
-
-    return <div id='test123'>HEY THIS IS THE INDEX FOR CHARACTERS!!!!!!!!!!</div>
-    // if (userCharacters.length === 0) {
-    //     return <button>New Game</button>;
-    // } else {
-    //     return (
-    //     <>
-    //         <h2>All of {currentUser.username}'s Characters</h2>
-    //         {userCharacters.map(character => (
-    //         <CharacterItem
-    //             key={character._id}
-    //             character={character}
-    //         />
-    //         ))}
-    //     </>
-    //     );
-    // }
+    if (userCharacters.length === 0) {
+        return <button>New Game</button>
+    } else {
+        return (
+        <>
+            <h2>All of {currentUser.username}'s Characters</h2>
+            <button>New Game</button>
+            {userCharacters.map(character => (
+            <CharacterItem
+                key={character._id}
+                character={character}
+            />
+            ))}
+        </>
+        );
+    }
 }
 
 export default Profile;
