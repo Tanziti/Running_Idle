@@ -1,0 +1,56 @@
+.img-cont{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    filter: brightness(0.95);
+}
+
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    align-items: center;
+}
+
+.cont{
+    display: flex;
+    margin-right: 5vw;
+    position: absolute;
+    top: 85vh;
+    left: 20vw;
+}
+
+#title{
+    font-family: Helvetica, sans-serif;
+    font-size: 5vh;
+    font-weight: bold;
+    margin-bottom: .4rem;
+    margin-right: 3vw;
+}
+
+button {
+    margin: 0 .2rem; /* Adjust the 1rem value to control the spacing */
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #007bff9c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+  
+  
+button:hover {
+    background-color: #0056b3;
+}
+ 
+  
+  
+  
+  
+  
+  
