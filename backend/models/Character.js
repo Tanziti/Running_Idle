@@ -23,16 +23,25 @@ const validateColor = (value) => {
     },
     legs: {
       type: Number,
+      required: true,
       min: 0,
       max: 1000
     },
     arms: {
       type: Number,
+      required: true,
       min: 0,
       max: 1000
     },
+    points: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 9999 
+    },
     outfit: {
       type: String,
+      required: true,
       validate: {
         validator: validateColor,
         message: 'Invalid color in outfit.'
@@ -40,6 +49,7 @@ const validateColor = (value) => {
     },
     shoes: {
       type: String,
+      required: true,
       validate: {
         validator: validateColor,
         message: 'Invalid color in shoes.'

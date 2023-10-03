@@ -9,24 +9,16 @@ const validateCharacterInput = [
     .exists({ checkFalsy: true })
     .isLength({ min: 2, max: 15 })
     .withMessage('Character must have a name with at least 2 letters'),
-  check('heart')
-    .exists({ checkFalsy: true })
-    .withMessage('number must be between 0-1000')
-    .withMessage('Limit exceeded'),
-  check('arms')
-    .exists({ checkFalsy: true })
-    .withMessage('number must be between 0-1000')
-    .withMessage('Limit exceeded'),
-  check('legs')
-    .exists({ checkFalsy: true })
-    .withMessage('number must be between 0-1000')
-    .withMessage('Limit exceeded'),
+ 
   check('outfit')
    .exists({ checkFalsy: true })
    .withMessage('must pick a color'),
   check('shoes')
    .exists({ checkFalsy: true })
    .withMessage('must pick a color'),
+  check('points')
+    .exists({checkFalsy: true})
+    .withMessage('must distribute points'),
 
   handleValidationErrors
     

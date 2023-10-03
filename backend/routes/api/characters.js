@@ -19,7 +19,8 @@ router.post('/', requireUser, validateCharacterInput, async (req, res, next) => 
         arms: req.body.arms,
         outfit: req.body.outfit,
         shoes: req.body.shoes,
-        user: req.user._id
+        user: req.user._id,
+        points: req.body.points
       });
   
       let character = await newCharacter.save();
@@ -81,6 +82,7 @@ router.post('/', requireUser, validateCharacterInput, async (req, res, next) => 
       character.arms = req.body.arms;
       character.outfit = req.body.outfit;
       character.shoes = req.body.shoes;
+      character.points = req.body.points;
 
       const updatedCharacter = await character.save();
       return res.json(updatedCharacter);
