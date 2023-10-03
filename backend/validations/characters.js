@@ -16,10 +16,6 @@ const validateCharacterInput = [
   check('shoes')
    .exists({ checkFalsy: true })
    .withMessage('must pick a color'),
-  check('points')
-    .exists({checkFalsy: true})
-    .withMessage('must distribute points'),
-
   handleValidationErrors
     
   
