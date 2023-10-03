@@ -30,6 +30,7 @@ users.push(
         hashedPassword: bcrypt.hashSync('password', 10)
     })
     )
+    
 users.push(
     new User ({
         username: 'Alex-Brown',

@@ -4,9 +4,11 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import errors from './errors'
 import session from './session';
+import characters from './characters'
 
 const rootReducer = combineReducers({
   session,
+  characters,
   errors
 });
 
