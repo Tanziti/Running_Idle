@@ -4,13 +4,13 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Character = mongoose.model('Character');
 const { requireUser } = require('../../config/passport');
-// const validateCharacterInput = require('../../validations/characters');
+const validateCharacterInput = require('../../validations/characters');
 
 
 
 
 //include validateCharacterInput for router.post
-router.post('/', requireUser, async (req, res, next) => {
+router.post('/', requireUser, validateCharacterInput, async (req, res, next) => {
     try {
       const newCharacter = new Character({
         name: req.body.name,
@@ -64,7 +64,7 @@ router.post('/', requireUser, async (req, res, next) => {
     }
   });
 
-  router.put('/:id', requireUser, async (req, res, next) => {
+  router.put('/:id', requireUser, validateCharacterInput, async (req, res, next) => {
     try {
       const character = await Character.findById(req.params.id);
   
