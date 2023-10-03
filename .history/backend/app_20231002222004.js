@@ -1,5 +1,5 @@
 require('./models/User');
-require('./models/Character');
+require('./models/Charater');
 require('./config/passport');
 const passport = require('passport'); 
 const express = require("express");
@@ -11,7 +11,6 @@ const csurf = require('csurf');
 const { isProduction } = require('./config/keys');
 const usersRouter = require('./routes/api/users');
 const csrfRouter = require('./routes/api/csrf');
-const charactersRouter = require('./routes/api/characters');
 
 const app = express();
 
@@ -44,7 +43,6 @@ app.use(
 // Attach Express routers
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
-app.use('/api/characters', charactersRouter);
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');

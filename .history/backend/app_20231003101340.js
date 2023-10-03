@@ -44,7 +44,7 @@ app.use(
 // Attach Express routers
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
-app.use('/api/characters', charactersRouter);
+app.use('/api/characters')
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');

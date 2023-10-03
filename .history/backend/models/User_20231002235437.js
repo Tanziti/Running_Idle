@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const validateColor = (value) => {
+  const allowedColors = ['red', 'yellow', 'green'];
+  return allowedColors.includes(value);
+};
+
 
 const userSchema = new Schema({
     username: {
@@ -14,7 +19,7 @@ const userSchema = new Schema({
     hashedPassword: {
       type: String,
       required: true
-    },
+    }
   }, {
     timestamps: true
   });
