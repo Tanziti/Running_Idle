@@ -31,32 +31,33 @@ function LoginForm() {
 
   return (
     <>
-      <form className="session-form" onSubmit={handleSubmit}>
-        <h2>Log In Form</h2>
-        <div className="errors">{errors?.email}</div>
-        <label>
-          <span>Email</span>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2 id="log-title">Log In Form</h2>
+
+        <div className="input-container">
           <input
             type="text"
             value={email}
             onChange={update("email")}
             placeholder="Email"
+            className="input-field"
           />
-        </label>
-        <div className="errors">{errors?.password}</div>
-        <label>
-          <span>Password</span>
+        </div>
+        <div className="input-container">
           <input
             type="password"
             value={password}
             onChange={update("password")}
             placeholder="Password"
+            className="input-field"
           />
-        </label>
-        <Link to="/characters">
-          <input type="submit" value="Log In" disabled={!email || !password} />
-        </Link>
+        </div>
+        <input id="lg-bt" type="submit" value="Submit" disabled={!email || !password} />
       </form>
+      <div>
+        <div className="errors">{errors?.email}</div>
+        <div className="errors">{errors?.password}</div>
+      </div>
     </>
   );
 }
