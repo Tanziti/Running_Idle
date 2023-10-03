@@ -1,8 +1,9 @@
 // src/components/SessionForms/SignupForm.js
 
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { signup, clearSessionErrors } from "../../store/session";
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { signup, clearSessionErrors } from '../../store/session';
+import { Link, useHistory } from "react-router-dom";
 
 function SignupForm() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ function SignupForm() {
   const [password2, setPassword2] = useState("");
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     return () => {
@@ -41,7 +43,7 @@ function SignupForm() {
     return (e) => setState(e.currentTarget.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const user = {
       email,
@@ -49,8 +51,14 @@ function SignupForm() {
       password,
     };
 
-    dispatch(signup(user));
-  };
+    const success = await dispatch(signup(user)); 
+
+    if (success) {
+      // Redirect to the desired URL after successful login
+      history.push("/user/characters");
+    }
+
+  }
 
   return (
     <form className="custom-signup-form" onSubmit={handleSubmit}>

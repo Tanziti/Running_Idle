@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import NavBar from "../NavBar/NavBar";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom";
 
 import { login, clearSessionErrors } from "../../store/session";
 
@@ -12,6 +12,7 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     return () => {
@@ -24,9 +25,14 @@ function LoginForm() {
     return (e) => setState(e.currentTarget.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    const success = await dispatch(login({ email, password }));
+
+    if (success) {
+      // Redirect to the desired URL after successful login
+      history.push("/user/characters");
+    }
   };
 
   return (
@@ -51,8 +57,10 @@ function LoginForm() {
             placeholder="Password"
             className="input-field"
           />
-        </div>
-        <input id="lg-bt" type="submit" value="Submit" disabled={!email || !password} />
+        </div>{/*changed from label*/}
+        {/* <Link to="/user/characters"> */}
+          <input id="lg-bt" type="submit" value="Submit" disabled={!email || !password} />
+        {/* </Link> */}
       </form>
       <div>
         <div className="errors">{errors?.email}</div>
