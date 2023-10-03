@@ -4,39 +4,31 @@ const Schema = mongoose.Schema;
 const runSchema = new Schema({
     character: {
         type: Schema.Types.ObjectId,
-        ref: 'Character'
+        ref: 'Character',
+        required: true
     },
     startTime: {
-        type: Date,
+        type: Number,
         required: true
     },
     endTime: {
-        type: Date
+        type: Number
     },
     startPosition: {
         type: [Number],
         required: true,
-        validate: {
-          validator: function (value) {
-            return Array.isArray(value) && value.length === 2;
-          },
-          message: 'Invalid coordinates format for startPosition.'
-        }
       },
     endPosition: {
-        type: [Number],
-        validate: {
-          validator: function (value) {
-            return Array.isArray(value) && value.length === 2;
-          },
-          message: 'Invalid coordinates format for endPosition.'
-        }
+        type: [Number]
       },
     duration: {
         type: Number
     },
     distance: {
         type: Number 
+    },
+    caption: {
+        type: String
     }
  });
 
