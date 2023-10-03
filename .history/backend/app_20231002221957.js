@@ -1,5 +1,5 @@
 require('./models/User');
-require('./models/Character');
+require('./models/User');
 require('./config/passport');
 const passport = require('passport'); 
 const express = require("express");
