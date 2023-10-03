@@ -20,7 +20,8 @@ router.post('/', requireUser, async (req, res, next) => {
         legs: req.body.legs,
         arms: req.body.arms,
         outfit: req.body.outfit,
-        shoes: req.body.shoes
+        shoes: req.body.shoes,
+        // user: req.user._id
       });
   
       let character = await newCharacter.save();
