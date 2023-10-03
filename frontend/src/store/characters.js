@@ -4,6 +4,7 @@ import { RECEIVE_USER_LOGOUT } from './session';
 
 const RECEIVE_USER_CHARACTERS = "characters/RECEIVE_USER_CHARACTERS";
 const RECEIVE_NEW_CHARACTER = "characters/RECEIVE_NEW_CHARACTER";
+// const RECEIVE_UPDATED_CHARACTER = "characters/RECEIVE_UPDATED_CHARACTER";
 const RECEIVE_CHARACTER_ERRORS = "characters/RECEIVE_CHARACTER_ERRORS";
 const CLEAR_CHARACTER_ERRORS = "characters/CLEAR_CHARACTER_ERRORS";
 
@@ -18,6 +19,11 @@ const receiveNewCharacter = character => ({
   type: RECEIVE_NEW_CHARACTER,
   character
 });
+
+// const receiveUpdatedCharacter = character => ({
+//   type: RECEIVE_NEW_CHARACTER,
+//   character
+// });
 
 
 const receiveErrors = errors => ({
