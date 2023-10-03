@@ -1,0 +1,42 @@
+/* Updated styles for input containers */
+.input-container {
+    margin: 5px 0; /* Increase the margin to space out the fields */
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.465);
+    padding: 0.2vh;
+    width: 80%; /* Reduce the width to make the boxes smaller */
+}
+  
+  /* Updated styles for input fields */
+.input-field {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0.5rem; /* Increase padding for better spacing */
+    border-radius: 5px;
+    color: rgb(164, 125, 132);
+    margin: 2px 0; /* Adjust the margin as needed */
+}
+  
+  /* Styles for the login form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    width: 20vw; 
+}
+  
+#log-title{
+    font-size: 20px;
+    font-family: Helvetica, sans-serif;
+    color: rgb(135, 102, 107);
+}
+
+#lg-bt{
+    width: 40%;
+    border-radius: 2px;
+    color: rgba(135, 102, 107, 0.729);
+    padding: 6px;
+    font-weight: bold;
+}

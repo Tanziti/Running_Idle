@@ -19,8 +19,9 @@
     display: flex;
     margin-right: 5vw;
     position: absolute;
-    top: 85vh;
-    left: 20vw;
+    top: 85%;
+    left: 20%;
+    color: pink;
 }
 
 #title{
@@ -31,12 +32,12 @@
     margin-right: 3vw;
 }
 
-button {
+.special-button {
     margin: 0 .2rem; /* Adjust the 1rem value to control the spacing */
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    font-size: 2vh;
     background-color: #007bff9c;
-    color: #fff;
+    color: pink;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -48,9 +49,11 @@ button:hover {
     background-color: #0056b3;
 }
  
-  
-  
-  
-  
-  
-  
+
+#forms{
+    /* display: flex; */
+    position: absolute;
+    top: 30vh;
+    left: 70vw;
+
+}

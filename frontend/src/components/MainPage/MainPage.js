@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import LoginForm from "../SessionForms/LoginForm";
 import SignupForm from "../SessionForms/SignupForm";
 import "./MainPage.css";
+import "../SessionForms/LoginForm.css";
+import "../SessionForms/SignupForm.css";
 
 function MainPage() {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -32,18 +34,22 @@ function MainPage() {
         <div className="cont">
           <p id="title">Running Idle</p>
           <div id="btns">
-            <button onClick={toggleDemoLogin}>Demo Login</button>
-            <button onClick={toggleLoginForm}>Login</button>
-            <button onClick={toggleSignupForm}>Sign Up</button>
+            <button onClick={toggleDemoLogin} className="special-button">
+              Demo Login
+            </button>
+            <button onClick={toggleLoginForm} className="special-button">Login</button>
+            <button onClick={toggleSignupForm} className="special-button">
+              Sign Up
+            </button>
           </div>
         </div>
-        <div id="forms">
-          {/* Show login form if showLoginForm is true */}
-          {showLoginForm && <LoginForm />}
+      </div>
+      <div id="forms">
+        {/* Show login form if showLoginForm is true */}
+        {showLoginForm && <LoginForm />}
 
-          {/* Show signup form if showSignupForm is true */}
-          {showSignupForm && <SignupForm />}
-        </div>
+        {/* Show signup form if showSignupForm is true */}
+        {showSignupForm && <SignupForm />}
       </div>
     </div>
   );

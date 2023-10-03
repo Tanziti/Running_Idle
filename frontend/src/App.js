@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Switch } from "react-router-dom";
 import { AuthRoute } from "./components/Routes/Routes";
 import MainPage from "./components/MainPage/MainPage";
+// import NavBar from "./components/NavBar/NavBar.js"
 
 import { getCurrentUser } from "./store/session";
 
@@ -16,6 +17,7 @@ function App() {
   return (
     loaded && (
       <>
+      {/* <NavBar /> */}
         <Switch>
           <AuthRoute exact path="/" component={MainPage} />
         </Switch>
