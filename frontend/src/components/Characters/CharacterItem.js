@@ -1,9 +1,19 @@
-function CharacterItem () { //{ character: { text, author }}
+import './CharacterItem.css';
+
+
+function CharacterItem ({character}) { //{ character: { text, author }}
   // const { username } = author;
+  console.log("HEY***********", character)
   return (
     <div className="character">
-      <h3>username</h3> {/*{username}*/}
-      <p>text</p> {/*{text}*/}
+      <ul id='charStuff'>
+        name<li>{character.name}</li>
+        arms<li>{character.arms}</li>
+        heart<li>{character.heart}</li>
+        legs<li>{character.legs}</li>
+        outfit<li>{character.outfit}</li>
+        points<li>{character.points}</li>
+      </ul>
     </div>
   );
 }
