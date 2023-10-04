@@ -4,10 +4,16 @@ import SignupForm from "../SessionForms/SignupForm";
 import "./MainPage.css";
 import "../SessionForms/LoginForm.css";
 import "../SessionForms/SignupForm.css";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/session";
+import { useHistory } from "react-router-dom";
 
 function MainPage() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  
 
   const toggleLoginForm = () => {
     setShowLoginForm(!showLoginForm);
@@ -21,6 +27,8 @@ function MainPage() {
 
   const toggleDemoLogin = () => {
     // Implement logic for demo login here if needed
+    dispatch(login({email: 'demo-user@appacademy.io', password: 'password' }))
+    history.push("/user/characters");
   };
 
   return (
