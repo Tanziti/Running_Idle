@@ -1,5 +1,5 @@
 import './CharacterShow.css';
-import  { useHistory, useParams } from React
+import  { useHistory, useParams } from 'react'
 import React from 'react';
 
 const CharacterShow = () => {
