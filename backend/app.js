@@ -34,7 +34,7 @@ if (!isProduction) {
 app.use(
   session({
     name: '_Running_Idle_session', // Cookie name
-    secret: 'AIzaSyD2GkzAfzUY-yjdhS9jXuOJZWCr1m-IgRM', // Use a strong and unique secret key
+    secret: 'D3vilMayCry', // Use a strong and unique secret key
     resave: false,
     saveUninitialized: true,
     cookie: {
