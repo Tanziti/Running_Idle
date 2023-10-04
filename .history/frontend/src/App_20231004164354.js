@@ -6,7 +6,6 @@ import MainPage from "./components/MainPage/MainPage";
 import Profile from "./components/Profile/Profile.js"
 import Map from "./components/Map/Map";
 import { getCurrentUser } from "./store/session";
-import CharacterShow from "./components/Characters/CharacterShow";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,7 +22,7 @@ function App() {
         <Switch>
           <AuthRoute exact path="/" component={MainPage} />
           <Route exact path='/user/characters' component={Profile} />
-          <Route exact path='/runs/character/:characterId' component={CharacterShow} />
+          <Route exact path='/runs/char' component={Profile} />
         </Switch>
       </>
     )

@@ -23,7 +23,7 @@ function App() {
         <Switch>
           <AuthRoute exact path="/" component={MainPage} />
           <Route exact path='/user/characters' component={Profile} />
-          <Route exact path='/runs/character/:characterId' component={CharacterShow} />
+          <Route exact path='/runs/show' component={CharacterShow} />
         </Switch>
       </>
     )
