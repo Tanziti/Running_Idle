@@ -7,13 +7,13 @@ import "../SessionForms/SignupForm.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import { useHistory } from "react-router-dom";
+import sakura from "./sakuraGif.gif";
 
 function MainPage() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-  
 
   const toggleLoginForm = () => {
     setShowLoginForm(!showLoginForm);
@@ -27,7 +27,7 @@ function MainPage() {
 
   const toggleDemoLogin = () => {
     // Implement logic for demo login here if needed
-    dispatch(login({email: 'demo-user@appacademy.io', password: 'password' }))
+    dispatch(login({ email: "demo-user@appacademy.io", password: "password" }));
     history.push("/user/characters");
   };
 
@@ -38,14 +38,18 @@ function MainPage() {
         src="https://wallpapers.com/images/hd/cute-aesthetic-tree-8-bit-aqw5erehju889dx6.jpg"
         alt="Blue Mountains"
       />
+      <img className="sakura-gif" src={sakura} alt="Sakura GIF" />
       <div className="flex-container">
         <div className="cont">
+          {/* Add the animated "Running Idle" text */}
           <p id="title">Running Idle</p>
           <div id="btns">
             <button onClick={toggleDemoLogin} className="special-button">
               Demo Login
             </button>
-            <button onClick={toggleLoginForm} className="special-button">Login</button>
+            <button onClick={toggleLoginForm} className="special-button">
+              Login
+            </button>
             <button onClick={toggleSignupForm} className="special-button">
               Sign Up
             </button>
