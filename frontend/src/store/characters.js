@@ -43,6 +43,7 @@ export const clearCharacterErrors = errors => ({
 })
 
 
+
 export const fetchUserCharacter = id => async dispatch => {
   try {
     const res = await jwtFetch(`/api/characters/user/${id}`);
@@ -113,10 +114,11 @@ const characterReducer = (state = { all: {}, user: {}, new: undefined }, action)
     case RECEIVE_NEW_CHARACTER:
       return { ...state, new: action.character};
     case RECEIVE_DELETE_CHARACTER:
-      const newState = { ...state };
-      console.log('*************',newState);
-      delete newState.user[action.characterId];
-      return newState;
+      // const newState = { ...state };
+      // console.log("***********",state)
+      delete state.user[action.characterId];
+      // console.log("***********",state)
+      return state;
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined }
     default:

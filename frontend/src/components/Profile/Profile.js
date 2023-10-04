@@ -13,6 +13,7 @@ function Profile () {
     const userCharacters = useSelector(state => Object.values(state.characters.user))
     const history = useHistory();
     const [isFormOpen, setIsFormOpen] = useState(false);
+    
 
     useEffect(() => {
         if (currentUser) {
@@ -28,11 +29,11 @@ function Profile () {
     }
 
     const toggleForm = () => {
-        setIsFormOpen(!isFormOpen); // Toggle the form's visibility
+        setIsFormOpen(!isFormOpen);
     };
+    // console.log(userCharacters)
 
-
-
+    console.log(userCharacters)
     if (userCharacters.length === 0) {
         return (
             <div>
@@ -47,7 +48,7 @@ function Profile () {
             <button onClick={logoutUser} >Logout</button>
             <h2>All of {currentUser.username}'s Characters</h2>
             <button onClick={toggleForm} >New Game</button>
-            {userCharacters.map(character => (
+            {userCharacters.map((character, index) => (
             <CharacterItem
                 key={character._id}
                 character={character}
