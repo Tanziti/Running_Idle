@@ -1,0 +1,7 @@
+
+
+const CharacterShow = () => {
+
+}
+
+export default 

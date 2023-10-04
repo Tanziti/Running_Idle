@@ -2,21 +2,24 @@ import './CharacterItem.css';
 import { Link } from 'react-router-dom';
 import { deleteCharacter } from '../../store/characters'
 import { useDispatch } from 'react-redux';
-
+// import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 
 
 function CharacterItem ({character}) { 
-
-
-  const dispatch = useDispatch(); // Get the dispatch function from Redux
+  
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleDeleteCharacter = (e) => {
     e.preventDefault();
-    // Dispatch the thunk action when the button is clicked
     dispatch(deleteCharacter(character._id));
+    // history.push('/user/characters');
+    window.location.reload()//needs to be fixed ....
   };
-  // console.log(character._id)
+
+  
 
 
   return (
