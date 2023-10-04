@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const runSchema = new Schema({
     character: {
         type: Schema.Types.ObjectId,
-        ref: 'Character',
-        required: true
+        ref: 'Character'
     },
     startTime: {
         type: Number,
@@ -16,7 +15,7 @@ const runSchema = new Schema({
     },
     startPosition: {
         type: [Number],
-        required: true,
+        required: true
       },
     endPosition: {
         type: [Number]
@@ -26,9 +25,6 @@ const runSchema = new Schema({
     },
     distance: {
         type: Number 
-    },
-    caption: {
-        type: String
     }
  });
 

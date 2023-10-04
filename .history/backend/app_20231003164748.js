@@ -1,6 +1,5 @@
 require('./models/User');
 require('./models/Character');
-require('./models/Run');
 require('./config/passport');
 const passport = require('passport'); 
 const express = require("express");
@@ -47,7 +46,6 @@ app.use(
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/characters', charactersRouter);
-app.use('/api/runs', runsRouter);
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');

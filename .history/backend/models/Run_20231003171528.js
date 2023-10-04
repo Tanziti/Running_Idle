@@ -5,7 +5,7 @@ const runSchema = new Schema({
     character: {
         type: Schema.Types.ObjectId,
         ref: 'Character',
-        required: true
+        req
     },
     startTime: {
         type: Number,
@@ -26,9 +26,6 @@ const runSchema = new Schema({
     },
     distance: {
         type: Number 
-    },
-    caption: {
-        type: String
     }
  });
 

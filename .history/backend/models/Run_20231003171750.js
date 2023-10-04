@@ -28,7 +28,7 @@ const runSchema = new Schema({
         type: Number 
     },
     caption: {
-        type: String
+        
     }
  });
 

@@ -26,9 +26,6 @@ const runSchema = new Schema({
     },
     distance: {
         type: Number 
-    },
-    caption: {
-        type: String
     }
  });
 

@@ -2,14 +2,15 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Character = mongoose.model('Character');
-const Run = mongoose.model('Run');
+const Run = require('Run');
 const { requireUser } = require('../../config/passport');
-const validateRunInput = require('../../validations/runs');
 
-router.post('/', requireUser, validateRunInput, async (req, res, next) => {
+// const validateCharacterInput = require('../../validations/characters');
+
+router.post('/', requireUser, async (req, res, next) => {
     try{
         const newRun = new Run({
-            character: req.body.character,
+            character: req.character._id,
             startTime: req.body.startTime,
             startPosition: req.body.startPosition,
         })
@@ -71,7 +72,6 @@ router.put('/:id', requireUser, async (req, res, next) => {
       run.endPosition = req.body.endPosition;
       run.duration = req.body.duration;
       run.distance = req.body.distance;
-      run.caption = req.body.caption;
 
 
       const updatedRun = await run.save();

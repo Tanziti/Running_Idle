@@ -27,9 +27,7 @@ const runSchema = new Schema({
     distance: {
         type: Number 
     },
-    caption: {
-        type: String
-    }
+    caption
  });
 
  module.exports = mongoose.model('Run', runSchema);

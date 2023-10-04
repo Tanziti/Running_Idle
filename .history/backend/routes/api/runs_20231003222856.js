@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 const Character = mongoose.model('Character');
 const Run = mongoose.model('Run');
 const { requireUser } = require('../../config/passport');
-const validateRunInput = require('../../validations/runs');
 
-router.post('/', requireUser, validateRunInput, async (req, res, next) => {
+
+
+router.post('/', requireUser, async (req, res, next) => {
     try{
         const newRun = new Run({
             character: req.body.character,
