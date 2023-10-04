@@ -4,6 +4,7 @@ require('./models/Run');
 require('./config/passport');
 const passport = require('passport'); 
 const express = require("express");
+const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const debug = require('debug');
@@ -30,6 +31,18 @@ if (!isProduction) {
   // will be served statically on the Express server.)
   app.use(cors());
 }
+app.use(
+  session({
+    name: '_Running_Idle_session', // Cookie name
+    secret: 'AIzaSyD2GkzAfzUY-yjdhS9jXuOJZWCr1m-IgRM', // Use a strong and unique secret key
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      sameSite: 'lax', // Set the sameSite attribute
+      secure: process.env.NODE_ENV === 'production', // Set secure attribute based on environment
+    },
+  })
+);
 
 // Set the _csrf token and create req.csrfToken method to generate a hashed
 // CSRF token
