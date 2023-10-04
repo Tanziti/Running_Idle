@@ -1,0 +1,14 @@
+
+
+
+const RunsPage = ({chacrac}) => {
+
+    return (
+        <>
+            
+        
+        
+        </>
+    )
+
+}
