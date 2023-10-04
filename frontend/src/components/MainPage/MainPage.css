@@ -2,11 +2,18 @@
     height: 100vh;
     width: 100vw;
     position: absolute;
-    z-index: -1;
+    z-index: -2;
     display: flex;
     filter: brightness(0.95);
 }
-
+.sakura-gif {
+    position: absolute; /* Position the GIF relative to its containing element */
+    top: 50vh; /* Position it at the top of the container */
+    left: 0; /* Position it at the left of the container */
+    width: 45vw; /* Make it cover the entire width of the container */
+    height: 50vh; /* Make it cover the entire height of the container */
+    z-index: -2; /* Ensure the GIF is on top */
+  }
 
 .flex-container {
     display: flex;
@@ -57,3 +64,23 @@ button:hover {
     left: 70vw;
 
 }
+
+
+
+/* Add an animation to the "Running Idle" text */
+@keyframes slideIn {
+    0% {
+      transform: translateX(-100%); /* Start off the screen to the left */
+      opacity: 0; /* Hidden at the beginning */
+    }
+    100% {
+      transform: translateX(0%); /* Fully visible at the end */
+      opacity: 1;
+    }
+  }
+  
+  /* Apply the animation to the title element */
+  #title {
+    animation: slideIn 2s ease forwards; /* Apply the animation */
+  }
+  

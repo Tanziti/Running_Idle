@@ -61,10 +61,10 @@ function LoginForm() {
         {/* <Link to="/user/characters"> */}
           <input id="lg-bt" type="submit" value="Submit" disabled={!email || !password} />
         {/* </Link> */}
-      </form>
-      <div>
         <div className="errors">{errors?.email}</div>
         <div className="errors">{errors?.password}</div>
+      </form>
+      <div>
       </div>
     </>
   );
