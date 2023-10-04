@@ -29,7 +29,9 @@
 
 ### Group Members and Work Breakdown
 
+ - Muhammad Amray: Frontend lead
  - Avery Berry: Frontend 
  - Muhammad Amray: Frontend lead
  - Alex Brown: Backend Lead
  - Zi Tian Tan: Lead
+
