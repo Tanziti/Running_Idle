@@ -4,6 +4,7 @@ import { RECEIVE_USER_LOGOUT } from './session';
 
 const RECEIVE_USER_CHARACTERS = "characters/RECEIVE_USER_CHARACTERS";
 const RECEIVE_NEW_CHARACTER = "characters/RECEIVE_NEW_CHARACTER";
+const RECEIVE_DELETE_CHARACTER = 'DELETE_CHARACTER';
 // const RECEIVE_UPDATED_CHARACTER = "characters/RECEIVE_UPDATED_CHARACTER";
 const RECEIVE_CHARACTER_ERRORS = "characters/RECEIVE_CHARACTER_ERRORS";
 const CLEAR_CHARACTER_ERRORS = "characters/CLEAR_CHARACTER_ERRORS";
@@ -20,8 +21,13 @@ const receiveNewCharacter = character => ({
   character
 });
 
+const receiveDeletedCharacter = (characterId) => ({
+  type: RECEIVE_DELETE_CHARACTER,
+  characterId,
+});
+
 // const receiveUpdatedCharacter = character => ({
-//   type: RECEIVE_NEW_CHARACTER,
+//   type: RECEIVE_UPDATED_CHARACTER,
 //   character
 // });
 
@@ -69,6 +75,22 @@ export const composeCharacter = data => async dispatch => {
 };
 
 
+export const deleteCharacter = (characterId) => async (dispatch) => {
+  try {
+    // Send a request to your API to delete the character with characterId
+    await jwtFetch(`/api/characters/${characterId}`, {
+      method: 'DELETE',
+    });
+
+    // Dispatch the DELETE_CHARACTER action to remove the character from the state
+    dispatch(receiveDeletedCharacter(characterId));
+  } catch (error) {
+    // Handle any errors here
+    console.error('Error deleting character:', error);
+  }
+};
+
+
 const nullErrors = null;
 
 export const characterErrorsReducer = (state = nullErrors, action) => {
@@ -90,6 +112,11 @@ const characterReducer = (state = { all: {}, user: {}, new: undefined }, action)
       return { ...state, user: action.characters, new: undefined};
     case RECEIVE_NEW_CHARACTER:
       return { ...state, new: action.character};
+    case RECEIVE_DELETE_CHARACTER:
+      const newState = { ...state };
+      console.log('*************',newState);
+      delete newState.user[action.characterId];
+      return newState;
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined }
     default:
