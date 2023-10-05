@@ -23,10 +23,25 @@ const character = useSelector(getCharacter(characterId));
     if (!character || !character.name) return null
     return (
         <>
-            Hello from the {character.name} show page
+            {/* Hello from the {character.name} show page */}
+            <div id="showPageContainer">
+                <div id='showPageNavBar'>
+                    <div id='CharacterName'>{character.name}</div>
+                    <div>¯\_(ツ)_/¯</div>
+                    <button className='navBarButtons' id='showPageRunsButton' onClick={() => history.push(`/runs/character/${characterId}`)}>Runs!</button>
+                    <button className='navBarButtons' id='profile'>Profile</button>
+                    <button className='navBarButtons' id='logout'>Logout</button>
+                </div>
+                <div id="charsStuffContainer">
+                    <div id="charStats">
+                        <button className='charStatsButtons' id='armsButton'>Arms +</button>
+                        <button className='charStatsButtons' id='legsButton'>Legs +</button>
+                        <button className='charStatsButtons' id='heartButton'>Heart +</button>
+                    </div>
+                    <div id="charSprite">
 
-            <div id='charactershow-runsbutton'>
-                <button id='charactershow-runspage' onClick={() => history.push(`/runs/character/${characterId}`)}></button>
+                    </div>
+                </div>
             </div>
         </>
     )
