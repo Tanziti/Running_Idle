@@ -1,0 +1,35 @@
+#characterrunspage-headercontainer {
+    border: 1px solid green;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#runsdata-container {
+    border: 1px solid red;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#characterrunspage-map {
+    border: 1px solid purple;
+    overflow: hidden;
+    margin: 30px;
+    height: 800px;
+    width: 800px;
+    display: flex;
+}
+
+#characterrunspage-map div {
+    /* height: 800px;
+    width: 800px; */
+    transform: scale(.);
+}
+
+
+#characterrunspage-startandindex {
+    border: 1px solid rgb(0, 53, 128);
+}
+

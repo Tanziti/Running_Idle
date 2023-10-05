@@ -1,0 +1,14 @@
+
+
+
+const RunsPage = ({chara}) => {
+
+    return (
+        <>
+            
+        
+        
+        </>
+    )
+
+}
