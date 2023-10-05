@@ -1,0 +1,25 @@
+#characterrunspage-headercontainer {
+    border: 1px solid green;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#runsdata-container {
+    border: 1px solid red;
+    display: flex;
+}
+
+#characterrunspage-map {
+    height: 100%;
+    border: 1px solid purple;
+    overflow: hidden;
+    margin: ;
+}
+
+#characterrunspage-startandindex {
+    border: 1px solid rgb(0, 53, 128);
+}
+
