@@ -56,11 +56,10 @@ export const RunsPage = (props) => {
 
   useEffect(() => {
     dispatch(fetchCharacter(characterId))
-    dispatch(runActions.fetchCharacterRuns(characterId))
+    
   }, [characterId,dispatch])
 
     const character = useSelector(getCharacter(characterId))
-    const runs = useSelector(runActions.getRuns)
 
 
   // console.log(character, "   ", characterId)
@@ -82,7 +81,7 @@ export const RunsPage = (props) => {
           <>
               <div id="characterrunspage-containre">
                   <div id='characterrunspage-headercontainer'>
-                    <div id='characterrunspage-header'>{character?.name}'s Runs</div>
+                    <div id='characterrunspage-header'>{character?.name}'s Run Page</div>
                     <div>Current Latitude: {currentLat} Current Longitude: {currentLng}</div>
                   </div>
                   <div id='runsdata-container'>
@@ -100,8 +99,7 @@ export const RunsPage = (props) => {
                               {toggleRunStart}
                           </div> 
                           <div id='characterrunspage-runindex'>
-                            {character?.name}'s Runs Index
-
+                                Runs Index
                           </div>     
                       </div>
                   </div>

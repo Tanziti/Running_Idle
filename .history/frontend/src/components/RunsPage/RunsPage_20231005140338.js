@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './RunsPage.css'
 import { useDispatch } from 'react-redux';
-import * as runActions from '../../store/runs'
+import {} from '../../store/runs'
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { fetchCharacter, getCharacter } from '../../store/characters'
@@ -56,11 +56,10 @@ export const RunsPage = (props) => {
 
   useEffect(() => {
     dispatch(fetchCharacter(characterId))
-    dispatch(runActions.fetchCharacterRuns(characterId))
+    dispatch(runActions.fetchCharacterRuns)
   }, [characterId,dispatch])
 
     const character = useSelector(getCharacter(characterId))
-    const runs = useSelector(runActions.getRuns)
 
 
   // console.log(character, "   ", characterId)

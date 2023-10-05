@@ -60,7 +60,7 @@ export const RunsPage = (props) => {
   }, [characterId,dispatch])
 
     const character = useSelector(getCharacter(characterId))
-    const runs = useSelector(runActions.getRuns)
+    const runs = use
 
 
   // console.log(character, "   ", characterId)

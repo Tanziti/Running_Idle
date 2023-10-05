@@ -1,10 +1,10 @@
 #characterrunspage-headercontainer {
-    height: 130px;
+    border: 1px solid green;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 25px;
 }
 
 #runsdata-container {
@@ -22,19 +22,12 @@
 }
 
 #characterrunspage-map div {
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 #characterrunspage-startandindex {
     border: 1px solid rgb(0, 53, 128);
     margin: 30px;
     width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#characterrunspage-togglebutton {
-    margin: 50px;
 }
 

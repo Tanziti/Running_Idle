@@ -56,11 +56,10 @@ export const RunsPage = (props) => {
 
   useEffect(() => {
     dispatch(fetchCharacter(characterId))
-    dispatch(runActions.fetchCharacterRuns(characterId))
+    
   }, [characterId,dispatch])
 
     const character = useSelector(getCharacter(characterId))
-    const runs = useSelector(runActions.getRuns)
 
 
   // console.log(character, "   ", characterId)
@@ -101,7 +100,6 @@ export const RunsPage = (props) => {
                           </div> 
                           <div id='characterrunspage-runindex'>
                             {character?.name}'s Runs Index
-
                           </div>     
                       </div>
                   </div>

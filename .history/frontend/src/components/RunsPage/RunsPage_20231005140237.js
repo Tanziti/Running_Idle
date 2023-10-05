@@ -56,11 +56,10 @@ export const RunsPage = (props) => {
 
   useEffect(() => {
     dispatch(fetchCharacter(characterId))
-    dispatch(runActions.fetchCharacterRuns(characterId))
+    dispatch
   }, [characterId,dispatch])
 
     const character = useSelector(getCharacter(characterId))
-    const runs = useSelector(runActions.getRuns)
 
 
   // console.log(character, "   ", characterId)
