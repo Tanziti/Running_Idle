@@ -3,8 +3,10 @@
 import { combineReducers } from 'redux';
 import { sessionErrorsReducer } from './session';
 import { characterErrorsReducer } from './characters'
+import { runErrorsReducer } from './runs';
 
 export default combineReducers({
   session: sessionErrorsReducer,
-  character: characterErrorsReducer
+  character: characterErrorsReducer,
+  run: runErrorsReducer
 });

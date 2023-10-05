@@ -31,6 +31,7 @@ const CharacterForm = () => {
         };
 
         await dispatch(composeCharacter(formData));
+        window.location.reload()
 
         // history.push('/user/characters'); // Replace '/success-page' with your desired URL
         } catch (error) {
