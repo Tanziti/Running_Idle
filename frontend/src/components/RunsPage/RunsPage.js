@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
+import './RunsPage.css'
+import { useDispatch } from 'react-redux';
+import * as runActions from '../../store/runs'
+import { useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { getCharacter } from '../../store/characters'
 import { Map, GoogleApiWrapper } from 'google-maps-react';
-import '../RunsPage.css'
 
-function RunsPage(props, character) {
+export const RunsPage = (props) => {
+  const dispatch = useDispatch();
+  const {characterId} = useParams();
     const [currentLat, setCurrentLat] = useState(40.7357);
     const [currentLng, setCurrentLng] = useState(-73.9929);
     const [runStarted, setRunStarted] = useState(false);
     const [currentTime, setCurrentTime] = useState();
+    const character = useSelector(getCharacter(characterId))
     // const [locationClicked, setLocationClicked] = useState(false);
 
   const getCurrentLocation = () => {
@@ -22,20 +30,20 @@ function RunsPage(props, character) {
   };
 
   const startRun = () => {
-    getCurrentLocation;
+    getCurrentLocation();
     setRunStarted(true);
     return dispatch(runActions.composeRun({
-      character: character.id,
+      character: characterId,
       startTime: currentTime,
       startPosition: [currentLat, currentLng] 
     }))
   }
 
   const endRun = () => {
-    getCurrentLocation;
+    getCurrentLocation();
     setRunStarted(false);
     return dispatch(runActions.updateRun({
-      character: character._id,
+      character: characterId,
       endTime: currentTime,
       endPosition: [currentLat, currentLng],
       duration: 10399429,
@@ -53,11 +61,14 @@ function RunsPage(props, character) {
       <input type="submit" onClick={endRun}>End Run</input>
     </div>)
   
-
+  console.log("stuck b4 the if",character)
+  if (!character || !character.name) return null
+  console.log("U made it past the if!", character)
   return (
           <>
+          <p>Hi*********************************** run page</p>
               <div id="characterrunspage-containre">
-                  <div id='characterrunspage-header'>{character}'s Run Page</div>
+                  <div id='characterrunspage-header'>{character.name}'s Run Page</div>
                     <p>
                       Current Latitude: {currentLat} Current Longitude: {currentLng}
                     </p>
