@@ -6,7 +6,7 @@ import { logout } from '../../store/session';
 import { useHistory } from "react-router-dom";
 import CharacterForm from '../Characters/CreateCharacterModal'//set this up
 import './Profile.css'
-import pic from './background1.png'
+// import pic from './background1.png'
 
 function Profile () {
     const dispatch = useDispatch();
