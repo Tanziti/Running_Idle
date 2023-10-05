@@ -34,7 +34,7 @@ function Profile () {
     };
     // console.log(userCharacters)
 
-    console.log(userCharacters)
+    console.log("in char index page",userCharacters)
     if (userCharacters.length === 0) {
         return (
             <div>

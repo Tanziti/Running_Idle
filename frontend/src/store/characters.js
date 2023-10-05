@@ -13,7 +13,7 @@ const CLEAR_CHARACTER_ERRORS = "characters/CLEAR_CHARACTER_ERRORS";
 
 export const getCharacter = characterId => state => {
   // console.log("this one", state)
-    return state.characters.new ? state.characters.new[characterId] : null;
+    return state.characters.new ? state.characters.new : null;
 }
 export const getCharacters = state => {
     return state.characters ? Object.values(state.characters) : [];
@@ -134,21 +134,23 @@ export const characterErrorsReducer = (state = nullErrors, action) => {
 
 
 const characterReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
+  const newState = {...state}
+
   switch(action.type) {
     case RECEIVE_USER_CHARACTERS:
-      return { ...state, user: action.characters, new: undefined};
+      return { ...newState, user: action.characters, new: undefined};
     case RECEIVE_NEW_CHARACTER:
-      return { ...state, new: action.character};
+      return { ...newState, new: action.character};
     case RECEIVE_DELETE_CHARACTER:
-      // const newState = { ...state };
+      // const newState = { ...newState };
+      console.log("***********reducer",newState)
+      delete newState.user[action.characterId];
       // console.log("***********",state)
-      delete state.user[action.characterId];
-      // console.log("***********",state)
-      return state;
+      return newState;
     case RECEIVE_USER_LOGOUT:
-      return { ...state, user: {}, new: undefined }
+      return { ...newState, user: {}, new: undefined }
     default:
-      return state;
+      return newState;
   }
 };
 

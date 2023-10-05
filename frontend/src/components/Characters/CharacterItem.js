@@ -16,7 +16,7 @@ function CharacterItem ({character}) {
     e.preventDefault();
     dispatch(deleteCharacter(character._id));
     // history.push('/user/characters');
-    window.location.reload()//needs to be fixed ....
+    // window.location.reload()//needs to be fixed ....
   };
 
   

@@ -61,9 +61,9 @@ export const RunsPage = (props) => {
       <input type="submit" onClick={endRun}>End Run</input>
     </div>)
   
-  console.log("stuck b4 the if",character)
+  // console.log("stuck b4 the if",character)
   if (!character || !character.name) return null
-  console.log("U made it past the if!", character)
+  // console.log("U made it past the if!", character)
   return (
           <>
           <p>Hi*********************************** run page</p>

@@ -18,12 +18,12 @@ const character = useSelector(getCharacter(characterId));
         dispatch(fetchCharacter(characterId))
     }, [dispatch,characterId])
 
-console.log(character)
+// console.log(character)
 
     if (!character || !character.name) return null
     return (
         <>
-            Hello from the {character.name}
+            Hello from the {character.name} show page
 
             <div id='charactershow-runsbutton'>
                 <button id='charactershow-runspage' onClick={() => history.push(`/runs/character/${characterId}`)}></button>
