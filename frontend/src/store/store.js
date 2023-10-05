@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 import errors from './errors'
 import session from './session';
 import characters from './characters'
+import runs from './runs'
 
 const rootReducer = combineReducers({
   session,
   characters,
+  runs,
   errors
 });
 

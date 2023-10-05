@@ -12,8 +12,7 @@ const CLEAR_CHARACTER_ERRORS = "characters/CLEAR_CHARACTER_ERRORS";
 
 
 export const getCharacter = characterId => state => {
-  // console.log("this one", state)
-    return state.characters.new ? state.characters.new : null;
+    return state.characters ? state.characters[characterId] : null;
 }
 export const getCharacters = state => {
     return state.characters ? Object.values(state.characters) : [];
@@ -74,6 +73,7 @@ export const fetchCharacter = id => async dispatch => {
   try {
     const res = await jwtFetch(`/api/characters/${id}`);
     const character = await res.json();
+    // debugger
     dispatch(receiveNewCharacter(character));
   } catch(err) {
     const resBody = await err.json();
@@ -132,7 +132,6 @@ export const characterErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
-
 const characterReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
   const newState = {...state}
 
@@ -140,10 +139,10 @@ const characterReducer = (state = { all: {}, user: {}, new: undefined }, action)
     case RECEIVE_USER_CHARACTERS:
       return { ...newState, user: action.characters, new: undefined};
     case RECEIVE_NEW_CHARACTER:
-      return { ...newState, new: action.character};
+      return { ...newState, [action.character._id]: action.character};
     case RECEIVE_DELETE_CHARACTER:
       // const newState = { ...newState };
-      console.log("***********reducer",newState)
+      // console.log("***********reducer",newState)
       delete newState.user[action.characterId];
       // console.log("***********",state)
       return newState;

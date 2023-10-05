@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './RunsPage.css'
 import { useDispatch } from 'react-redux';
 import * as runActions from '../../store/runs'
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { getCharacter } from '../../store/characters'
+import { fetchCharacter, getCharacter } from '../../store/characters'
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 export const RunsPage = (props) => {
@@ -14,8 +14,9 @@ export const RunsPage = (props) => {
     const [currentLng, setCurrentLng] = useState(-73.9929);
     const [runStarted, setRunStarted] = useState(false);
     const [currentTime, setCurrentTime] = useState();
-    const character = useSelector(getCharacter(characterId))
+
     // const [locationClicked, setLocationClicked] = useState(false);
+
 
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
@@ -53,6 +54,18 @@ export const RunsPage = (props) => {
   }
 
 
+  useEffect(() => {
+    dispatch(fetchCharacter(characterId))
+    
+  }, [characterId,dispatch])
+
+    const character = useSelector(getCharacter(characterId))
+
+
+  // console.log(character, "   ", characterId)
+
+
+
   const toggleRunStart = !runStarted ?
       (<div id='characterrunspage-startrun'>
         <input type="submit" onClick={startRun}>Start Run</input>
@@ -79,7 +92,6 @@ export const RunsPage = (props) => {
                           zoom={15}
                           initialCenter={{ lat: currentLat, lng: currentLng }}
                         >
-                          {/* Add map components, markers, or other elements here */}
                         </Map>
                       </div>
                       <div id='characterrunspage-startandindex'>
