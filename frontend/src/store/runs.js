@@ -11,7 +11,7 @@ const CLEAR_RUN_ERRORS = "runs/CLEAR_RUN_ERRORS";
 export const getRun = runId => state => {
     return state.runs ? state.runs[runId] : null;
 }
-export const getRuns = state => {
+export const getRuns = characterId => state => {
     return state.runs ? Object.values(state.runs) : [];
 }
 
@@ -22,9 +22,10 @@ const receiveCharacterRun = run => ({
   run
 });
 
-const receiveCharacterRuns = runs => ({
+const receiveCharacterRuns = (runs, character) => ({
   type: RECEIVE_CHARACTER_RUNS,
-  runs
+  runs,
+  character
 });
 
 
@@ -126,7 +127,7 @@ export const runErrorsReducer = (state = nullErrors, action) => {
 };
 
 
-const runReducer = (state = { all: {}, runs: {}, new: undefined }, action) => {
+const runReducer = (state = { all: {}, character: {}, new: undefined }, action) => {
   switch(action.type) {
     case RECEIVE_CHARACTER_RUNS:
       return { ...state, character: action.runs, new: undefined};

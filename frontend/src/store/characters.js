@@ -73,7 +73,6 @@ export const fetchCharacter = id => async dispatch => {
   try {
     const res = await jwtFetch(`/api/characters/${id}`);
     const character = await res.json();
-    //debugger
     dispatch(receiveNewCharacter(character));
   } catch(err) {
     console.log(err)
