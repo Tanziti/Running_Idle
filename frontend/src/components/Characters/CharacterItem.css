@@ -1,12 +1,66 @@
-.character {
-    border: 2px solid red;
-    padding: 20px;
+/* Character item styles */
+.character-container {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Start from the top */
+    height: 100vh; /* Vertically center on the screen */
+  }
+  
+  .character {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 10px;
-}
-
-#charStuff li {
-    border: 1px solid black;
-    padding: 5px;
-    margin: 5px;
-    list-style: none;
-}
+    box-sizing: border-box;
+    width: 300px; /* Set a fixed width for each character item */
+    display: flex;
+    flex-direction: column; /* Stack the content vertically */
+    align-items: center; /* Center horizontally within the container */
+    margin-top: 10px; /* Add some space between character items */
+  }
+  
+  .character a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .character ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .character li {
+    margin: 5px 0;
+  }
+  
+  .character button {
+    background-color: #f00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .character button:hover {
+    background-color: #d00;
+  }
+  
+  .form-cont {
+      position: absolute;
+      background-color: #d00;
+      top: 10vh; /* Position at the top of the viewport */
+      left: 0; /* Position at the left edge */
+      width: 100%; /* Occupy full width */
+      height: auto; /* Auto height to accommodate content */
+      display: flex; /* Use flexbox layout */
+      flex-direction: column; /* Stack forms vertically */
+      align-items: center; /* Center horizontally within the container */
+      justify-content: flex-start; /* Start rendering forms from the top */
+      padding-top: 20px; /* Add padding at the top for spacing */
+    }
