@@ -1,0 +1,48 @@
+/* Logout button */
+.log-btn,
+.new-btn {
+  /* Apply the shared styles from .special-button */
+  margin: 0 0.2rem;
+  padding: 0.5rem 1rem;
+  font-size: 2vh;
+  background-color: #007bff9c;
+  color: pink;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  top: 3vh;
+  position: absolute;
+}
+
+.log-btn:hover,
+.new-btn:hover {
+  background-color: #007bff; /* Change the color on hover */
+}
+
+.log-btn{
+    right: 5vw;
+}
+
+.new-btn{
+    left: 5vw;
+}
+
+  
+/* Header "All of demo-user's Characters" */
+.char-header {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+   
+}.char-header {
+    position: absolute;
+    font-style: arial;
+    font-size: 24px;
+    font-weight: bold;
+    top: 3vh; /* Position from the vertical center */
+    left: 50%; /* Position from the horizontal center */
+    transform: translate(-50%, -50%); /* Center the element */
+}

@@ -1,0 +1,11 @@
+#characterrunspage-headercontainer {
+    border: 1px solid green;
+    height: 100px;
+    display: ;
+    justify-content: center;
+}
+
+#runsdata-container {
+    border: 1px solid red;
+}
+
