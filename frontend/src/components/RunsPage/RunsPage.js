@@ -14,6 +14,7 @@ export const RunsPage = (props) => {
     const [currentLng, setCurrentLng] = useState(-73.9929);
     const [runStarted, setRunStarted] = useState(false);
     const [currentTime, setCurrentTime] = useState();
+    // const [runs, setRuns] = useState([]);
 
     // const [locationClicked, setLocationClicked] = useState(false);
 
@@ -24,8 +25,7 @@ export const RunsPage = (props) => {
         const { latitude, longitude } = position.coords;
         setCurrentLat(latitude);
         setCurrentLng(longitude);
-        setCurrentTime(new Date().getTime());
-        // setLocationClicked(true);
+          // setLocationClicked(true);
       });
     }
   };
@@ -33,6 +33,8 @@ export const RunsPage = (props) => {
   const startRun = () => {
     getCurrentLocation();
     setRunStarted(true);
+    setCurrentTime(new Date().getTime());
+    debugger
     return dispatch(runActions.composeRun({
       character: characterId,
       startTime: currentTime,
@@ -86,6 +88,7 @@ export const RunsPage = (props) => {
                   <div id='characterrunspage-headercontainer'>
                     <div id='characterrunspage-header'>{character?.name}'s Runs</div>
                     <div>Current Latitude: {currentLat} Current Longitude: {currentLng}</div>
+                    {toggleRunStart}
                   </div>
                   <div id='runsdata-container'>
                       <div id='characterrunspage-map'>
@@ -99,11 +102,15 @@ export const RunsPage = (props) => {
                       </div>
                       <div id='characterrunspage-startandindex'>
                           <div id='characterrunspage-togglebutton'>
-                              {toggleRunStart}
+                              Button
                           </div> 
                           <div id='characterrunspage-runindex'>
                             {character?.name}'s Runs Index
-
+                            <div id='runsindex'>
+                                {runs.map((run) => {
+                                  <div id='eachrun'> Starting Position: {run?.startPosition}</div>
+                                })}
+                            </div>
                           </div>     
                       </div>
                   </div>
