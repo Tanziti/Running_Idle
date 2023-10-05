@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserCharacter, clearCharacterErrors } from '../../store/characters';
+import { fetchUserCharacters, clearCharacterErrors } from '../../store/characters';
 import CharacterItem from '../Characters/CharacterItem';
 import { logout } from '../../store/session';
 import { useHistory } from "react-router-dom";
@@ -18,7 +18,7 @@ function Profile () {
 
     useEffect(() => {
         if (currentUser) {
-            dispatch(fetchUserCharacter(currentUser._id));
+            dispatch(fetchUserCharacters(currentUser._id));
         }
         return () => dispatch(clearCharacterErrors());
     }, [currentUser, dispatch]);
@@ -34,7 +34,7 @@ function Profile () {
     };
     // console.log(userCharacters)
 
-    console.log(userCharacters)
+    console.log("in char index page",userCharacters)
     if (userCharacters.length === 0) {
         return (
             <div>

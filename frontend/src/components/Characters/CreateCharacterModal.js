@@ -32,7 +32,7 @@ const CharacterForm = () => {
 
         await dispatch(composeCharacter(formData));
 
-        history.push('/character/show'); // Replace '/success-page' with your desired URL
+        // history.push('/user/characters'); // Replace '/success-page' with your desired URL
         } catch (error) {
         console.error('Error:', error);
         }

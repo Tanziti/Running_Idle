@@ -3,6 +3,7 @@ import { RECEIVE_USER_LOGOUT } from './session';
 
 
 const RECEIVE_USER_CHARACTERS = "characters/RECEIVE_USER_CHARACTERS";
+const RECEIVE_USER_CHARACTER = "characters/RECEIVE_USER_CHARACTER";
 const RECEIVE_NEW_CHARACTER = "characters/RECEIVE_NEW_CHARACTER";
 const RECEIVE_DELETE_CHARACTER = 'DELETE_CHARACTER';
 // const RECEIVE_UPDATED_CHARACTER = "characters/RECEIVE_UPDATED_CHARACTER";
@@ -10,10 +11,21 @@ const RECEIVE_CHARACTER_ERRORS = "characters/RECEIVE_CHARACTER_ERRORS";
 const CLEAR_CHARACTER_ERRORS = "characters/CLEAR_CHARACTER_ERRORS";
 
 
-const receiveUserCharacter = characters => ({
+export const getCharacter = characterId => state => {
+  // console.log("this one", state)
+    return state.characters.new ? state.characters.new : null;
+}
+export const getCharacters = state => {
+    return state.characters ? Object.values(state.characters) : [];
+}
+
+
+const receiveUserCharacters = characters => ({
   type: RECEIVE_USER_CHARACTERS,
   characters
 });
+
+
 
 
 const receiveNewCharacter = character => ({
@@ -44,11 +56,25 @@ export const clearCharacterErrors = errors => ({
 
 
 
-export const fetchUserCharacter = id => async dispatch => {
+export const fetchUserCharacters = id => async dispatch => {
   try {
     const res = await jwtFetch(`/api/characters/user/${id}`);
     const characters = await res.json();
-    dispatch(receiveUserCharacter(characters));
+    dispatch(receiveUserCharacters(characters));
+  } catch(err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
+
+export const fetchCharacter = id => async dispatch => {
+  try {
+    const res = await jwtFetch(`/api/characters/${id}`);
+    const character = await res.json();
+    dispatch(receiveNewCharacter(character));
   } catch(err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
@@ -108,21 +134,23 @@ export const characterErrorsReducer = (state = nullErrors, action) => {
 
 
 const characterReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
+  const newState = {...state}
+
   switch(action.type) {
     case RECEIVE_USER_CHARACTERS:
-      return { ...state, user: action.characters, new: undefined};
+      return { ...newState, user: action.characters, new: undefined};
     case RECEIVE_NEW_CHARACTER:
-      return { ...state, new: action.character};
+      return { ...newState, new: action.character};
     case RECEIVE_DELETE_CHARACTER:
-      // const newState = { ...state };
+      // const newState = { ...newState };
+      console.log("***********reducer",newState)
+      delete newState.user[action.characterId];
       // console.log("***********",state)
-      delete state.user[action.characterId];
-      // console.log("***********",state)
-      return state;
+      return newState;
     case RECEIVE_USER_LOGOUT:
-      return { ...state, user: {}, new: undefined }
+      return { ...newState, user: {}, new: undefined }
     default:
-      return state;
+      return newState;
   }
 };
 

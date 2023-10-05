@@ -55,7 +55,7 @@ function SignupForm() {
 
     if (success) {
       // Redirect to the desired URL after successful login
-      history.push("/user/characters");
+      history.push("/user/characters/");
     }
 
   }
