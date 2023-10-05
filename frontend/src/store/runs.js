@@ -130,7 +130,6 @@ export const runErrorsReducer = (state = nullErrors, action) => {
 const runReducer = (state = { all: {}, character: {}, new: undefined }, action) => {
   switch(action.type) {
     case RECEIVE_CHARACTER_RUNS:
-      debugger
       return { ...state, character: action.runs, new: undefined};
     case RECEIVE_CHARACTER_RUN:
         return {...state, character: action.run, new: undefined}
