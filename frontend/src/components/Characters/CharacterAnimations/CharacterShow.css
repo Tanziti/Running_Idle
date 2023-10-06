@@ -1,0 +1,118 @@
+#showPageContainer {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center;  */
+    width: 100vw;
+    height: 100vh;
+    /* border: 1px solid rgb(255, 0, 0); */
+}
+
+#showPageNavBar {
+    display: flex;
+    width: 100vw;
+    height: 20vh;
+    border: 1px solid blue;
+    align-items: center; 
+    justify-content: right; 
+    /* gap: 12%; */
+    /* padding-left: 13%; 
+    padding-right: 13%;  */
+}
+
+#showPageNavBar>* {
+    margin-left: 5%;
+    margin-right: 5%;
+    /* Adjust the margin value as needed */
+}
+
+#charsStuffContainer {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#charStats {
+    display: flex;
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    gap: 13.7%;
+}
+
+#charSprite {
+    display: flex;
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+} 
+
+.charShowButtons {
+    display: flex;
+    width: 20%;
+    height: 17%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin-left: 4%;
+    margin-top: 4%;
+    background-color: #0065d1d1;
+    color: pink;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s, color 0.2s;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(550, 0, 255, 0.5);
+    text-shadow: 2px 2px 3px rgba(550, 0, 255, 0.8);
+    cursor: pointer;
+    border-width: 4px;
+}
+
+.charShowButtons:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 12px rgba(550, 0, 255, 1);
+    /* background-color: #0055aadd; */
+}
+
+.charShowButtons:active {
+    transform: translateY(4px);
+    box-shadow: 0px 1px 2px rgba(0, 0, 255, 0.5);
+    color: white;
+}
+
+
+#charStaticImgIcon{
+    display: flex;
+    width: 5%;
+    height: 50%;
+}
+
+#CharacterName {
+    /* margin-left: 50px; */
+    font-size: 64px;
+    font-weight: bold;
+    color: pink;
+    text-shadow: 2px 2px 10px blue;
+    font-family: 'Amiga Forever', sans-serif;
+}
+
+#charShowNavButtons {
+padding: 20px 30px;
+font-size: 15px;
+/* padding-top: 30%; */
+    margin-left: 0;
+        margin-top: 0;
+}
+
+#CharacterIcon {
+    display: flex;
+    width: 30vw;
+    height: 60vh;
+}   
