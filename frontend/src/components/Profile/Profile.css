@@ -37,6 +37,12 @@
   transform: translate(-50%, -50%); /* Center the element */
 }
 
+.char-container {
+  position: absolute;
+  top: 10vh;
+  width: 100%;
+}
+
 .back-image{
   width: 100vw;
   height: 100vh;

@@ -1,0 +1,28 @@
+.new-char-form {
+    position: absolute;
+    top: 8vh;
+    left: 1vw;
+    padding: 2em 1em;
+    border-radius: 5px;
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
+    background-color: rgb(245, 227, 224);
+}
+
+#submit-btn{
+    margin: 0 0.2rem;
+    padding: 0.5rem 1rem;
+    font-size: 2vh;
+    background-color: #007bff9c;
+    color: pink;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    justify-self: center;
+}
+
+
+
+/* DO NOT PUSH TO MAIN */
+
+/* TEST TO SEE IF PUSHED CORRECTLY */

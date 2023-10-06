@@ -62,9 +62,11 @@ function Profile() {
         <button className="new-btn" onClick={toggleForm}>
           New Character
         </button>
-        {userCharacters.map((character, index) => (
-          <CharacterItem key={character._id} character={character} />
-        ))}
+        <div className="char-container">
+            {userCharacters.map((character, index) => (
+            <CharacterItem key={character._id} character={character} />
+            ))}
+        </div>
         {isFormOpen && <CharacterForm id="form-char" onClose={toggleForm} />}
         <img className="back-image" src={pic} alt="Backgr" />
       </div>
