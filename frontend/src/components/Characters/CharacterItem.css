@@ -8,12 +8,12 @@
   }
   
   .character {
-    background-color: #fff;
+    background-color: rgb(245, 227, 224);
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
     text-align: left;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.3);
     margin: 10px;
     box-sizing: border-box;
     width: 300px; /* Set a fixed width for each character item */
@@ -22,45 +22,61 @@
     align-items: center; /* Center horizontally within the container */
     margin-top: 10px; /* Add some space between character items */
   }
-  
-  .character a {
+
+  #linkss {
     text-decoration: none;
-    color: #333;
+  }
+
+  .character:hover {
+    box-shadow: 0px 5px 3px rgba(255, 255, 255, 1);
+  }
+
+  .char-name{
+    /* color: rgb(59, 121, 237); */
+    color: #551A8B;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+
+  .char-points{
+    color: rgb(59, 121, 237);
   }
   
-  .character ul {
+  /* .character a {
+    text-decoration: none;
+    color: #333;
+  } */
+  
+  /* .character ul {
     list-style-type: none;
     padding: 0;
   }
   
   .character li {
     margin: 5px 0;
-  }
+  } */
   
-  .character button {
-    background-color: #f00;
+  .del-btn {
+    background-color: #007bff9c;
     color: #fff;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
+    margin-top: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
   }
   
   .character button:hover {
-    background-color: #d00;
+    background-color: #0056b3;
   }
   
   .form-cont {
-      position: absolute;
-      background-color: #d00;
-      top: 10vh; /* Position at the top of the viewport */
-      left: 0; /* Position at the left edge */
       width: 100%; /* Occupy full width */
       height: auto; /* Auto height to accommodate content */
       display: flex; /* Use flexbox layout */
       flex-direction: column; /* Stack forms vertically */
       align-items: center; /* Center horizontally within the container */
       justify-content: flex-start; /* Start rendering forms from the top */
-      padding-top: 20px; /* Add padding at the top for spacing */
+      padding-top: 9vh;  /* Add padding at the top for spacing */
     }

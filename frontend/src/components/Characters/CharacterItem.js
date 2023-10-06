@@ -20,8 +20,8 @@ function CharacterItem({ character }) {
     <div className="form-cont">
       <Link id="linkss" to={`/character/${character._id}`}>
         <div className="character">
-          <div className="char-name">{character.name}</div>
-          <div className="char-points">Points:{character.points}</div>
+          <div className="char-name">{character.name.toUpperCase()}</div>
+          <div className="char-points">Points: {character.points}</div>
           <div>
             <button className="del-btn" onClick={handleDeleteCharacter}>
               Delete
