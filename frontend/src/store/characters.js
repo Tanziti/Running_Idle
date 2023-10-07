@@ -3,7 +3,6 @@ import { RECEIVE_USER_LOGOUT } from './session';
 
 
 const RECEIVE_USER_CHARACTERS = "characters/RECEIVE_USER_CHARACTERS";
-const RECEIVE_USER_CHARACTER = "characters/RECEIVE_USER_CHARACTER";
 const RECEIVE_NEW_CHARACTER = "characters/RECEIVE_NEW_CHARACTER";
 const RECEIVE_DELETE_CHARACTER = "characters/DELETE_CHARACTER";
 // const RECEIVE_UPDATED_CHARACTER = "characters/RECEIVE_UPDATED_CHARACTER";
@@ -15,9 +14,6 @@ export const getCharacter = characterId => state => {
     const character = state.characters.find((character) => character._id === characterId);
     return character
 }
-// export const getCharacters = state => {
-//     return state.characters ? Object.values(state.characters) : [];
-// }
 
 
 const receiveUserCharacters = characters => ({
@@ -103,9 +99,7 @@ export const composeCharacter = data => async dispatch => {
 export const deleteCharacter = (characterId) => async (dispatch) => {
   try {
     // Send a request to your API to delete the character with characterId
-    // await new Promise(function (resolve, reject) { 
-    //   setTimeout(resolve, 4000); 
-    // })
+
     await jwtFetch(`/api/characters/${characterId}`, {
       method: 'DELETE',
     });
