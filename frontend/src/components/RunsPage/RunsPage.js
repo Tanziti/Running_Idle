@@ -6,54 +6,95 @@ import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { fetchCharacter, getCharacter } from '../../store/characters'
 import { Map, GoogleApiWrapper } from 'google-maps-react';
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 export const RunsPage = (props) => {
   const dispatch = useDispatch();
   const {characterId} = useParams();
-    const [currentLat, setCurrentLat] = useState(40.7357);
-    const [currentLng, setCurrentLng] = useState(-73.9929);
-    const [runStarted, setRunStarted] = useState(false);
-    const [currentTime, setCurrentTime] = useState();
-    // const [runs, setRuns] = useState([]);
+  const [currentLat, setCurrentLat] = useState(40.73);
+  const [currentLng, setCurrentLng] = useState(-73.99);
+  const [endLat, setEndLat] = useState(10);
+  const [endLng, setEndLng] = useState(11); 
+  const [runStarted, setRunStarted] = useState(false);
+  const [currentTime, setCurrentTime] = useState();
+  const [endTime, setEndTime] = useState();
+  // const [runId, setRunId] = useState(null);
+  // const [runs, setRuns] = useState([]);
 
-    // const [locationClicked, setLocationClicked] = useState(false);
+  // const [locationClicked, setLocationClicked] = useState(false);
 
 
-  const getCurrentLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        setCurrentLat(latitude);
-        setCurrentLng(longitude);
-          // setLocationClicked(true);
-      });
-    }
+  const getStartLocation = () => {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          debugger
+          const { latitude, longitude } = position.coords;
+          setCurrentLat(latitude);
+          setCurrentLng(longitude);
+          debugger
+          resolve();
+        }, reject);
+      } else {
+        reject(new Error("Geolocation is not supported."));
+      }
+    });
   };
 
-  const startRun = () => {
-    getCurrentLocation();
+
+  const getEndLocation = () => {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          const { latitude, longitude } = position.coords;
+          setEndLat(latitude);
+          setEndLng(longitude);
+          resolve();
+        }, reject);
+      } else {
+        reject(new Error("Geolocation is not supported."));
+      }
+    });
+  };
+
+  const startRun = async () => {
+    await getStartLocation();
     setRunStarted(true);
     setCurrentTime(new Date().getTime());
     debugger
-    return dispatch(runActions.composeRun({
-      character: characterId,
-      startTime: currentTime,
-      startPosition: [currentLat, currentLng] 
-    }))
-  }
-
-  const endRun = () => {
-    getCurrentLocation();
+  };
+  const endRun = async () => {
+    await getEndLocation();
     setRunStarted(false);
-    return dispatch(runActions.updateRun({
-      character: characterId,
-      endTime: currentTime,
-      endPosition: [currentLat, currentLng],
-      duration: 10399429,
-      distance: 3.2345,
-      caption: "testing runs"
-    }))
-  }
+    setEndTime(new Date().getTime());
+    debugger
+    try {
+      if (
+        characterId &&
+        currentTime &&
+        currentLat !== undefined &&
+        currentLng !== undefined &&
+        endTime &&
+        endLat !== undefined &&
+        endLng !== undefined
+      ) {
+        return dispatch(runActions.composeRun({
+          character: characterId,
+          startTime: currentTime,
+          startPosition: [currentLat, currentLng],
+          endTime: endTime,
+          endPosition: [endLat, endLng],
+          duration: endTime - currentTime,
+          distance: 3.2345,
+          caption: "testing runs"
+        }));
+      } else {
+        console.error("Missing values for create run.");
+      }
+    } catch (error) {
+      console.error("Error in endRun:", error);
+    }
+  };
 
 
   useEffect(() => {
@@ -87,7 +128,7 @@ export const RunsPage = (props) => {
               <div id="characterrunspage-containre">
                   <div id='characterrunspage-headercontainer'>
                     <div id='characterrunspage-header'>{character?.name}'s Runs</div>
-                    <div>Current Latitude: {currentLat} Current Longitude: {currentLng}</div>
+                    <div>Current Lat: {currentLat} Current Long: {currentLng}</div>
                     {toggleRunStart}
                   </div>
                   <div id='runsdata-container'>
@@ -120,5 +161,5 @@ export const RunsPage = (props) => {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyD2GkzAfzUY-yjdhS9jXuOJZWCr1m-IgRM',
+  apiKey: apiKey,
 })(RunsPage);
