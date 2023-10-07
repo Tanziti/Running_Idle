@@ -25,7 +25,7 @@ const runSchema = new Schema({
         type: Number
     },
     distance: {
-        type: Number 
+        type: Number
     },
     caption: {
         type: String

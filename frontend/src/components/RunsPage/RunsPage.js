@@ -31,7 +31,6 @@ export const RunsPage = (props) => {
           const { latitude, longitude } = position.coords;
           setCurrentLat(latitude);
           setCurrentLng(longitude);
-          setCurrentTime(new Date().getTime());
           resolve();
         }, reject);
       } else {
@@ -49,7 +48,6 @@ const getEndLocation = () => {
           const { latitude, longitude } = position.coords;
           setEndLat(latitude);
           setEndLng(longitude);
-          setEndTime(new Date().getTime());
           resolve();
         },
         (error) => {
@@ -65,6 +63,7 @@ const getEndLocation = () => {
 
   const startRun = async () => {
     setRunStarted(true);
+    setCurrentTime(new Date().getTime());
     await getStartLocation();
   };
 
@@ -73,11 +72,14 @@ const getEndLocation = () => {
 
   const endRun = async () => {
     setRunStarted(false);
+    setEndTime(new Date().getTime());
     await getEndLocation();
   };
 
-  const createRun = async () => {
-    if (endLat !== undefined && endLng !== undefined) {
+  const createRun = () => {
+    setEndLat(endLat);
+    setEndLng(endLng);
+    if (endLat !== undefined && endLng !== undefined && endTime !== undefined) {
       return dispatch(runActions.composeRun({
         character: characterId,
         startTime: currentTime,
@@ -93,8 +95,7 @@ const getEndLocation = () => {
 
   useEffect(() => {
    createRun();
-    console.log(endLat, endLng);
-  }, [endTime]);
+  }, [endLng]);
 
   useEffect(() => {
     dispatch(fetchCharacter(characterId))
