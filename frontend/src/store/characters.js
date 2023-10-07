@@ -5,18 +5,19 @@ import { RECEIVE_USER_LOGOUT } from './session';
 const RECEIVE_USER_CHARACTERS = "characters/RECEIVE_USER_CHARACTERS";
 const RECEIVE_USER_CHARACTER = "characters/RECEIVE_USER_CHARACTER";
 const RECEIVE_NEW_CHARACTER = "characters/RECEIVE_NEW_CHARACTER";
-const RECEIVE_DELETE_CHARACTER = 'DELETE_CHARACTER';
+const RECEIVE_DELETE_CHARACTER = "characters/DELETE_CHARACTER";
 // const RECEIVE_UPDATED_CHARACTER = "characters/RECEIVE_UPDATED_CHARACTER";
 const RECEIVE_CHARACTER_ERRORS = "characters/RECEIVE_CHARACTER_ERRORS";
 const CLEAR_CHARACTER_ERRORS = "characters/CLEAR_CHARACTER_ERRORS";
 
 
 export const getCharacter = characterId => state => {
-    return state.characters ? state.characters[characterId] : null;
+    const character = state.characters.find((character) => character._id === characterId);
+    return character
 }
-export const getCharacters = state => {
-    return state.characters ? Object.values(state.characters) : [];
-}
+// export const getCharacters = state => {
+//     return state.characters ? Object.values(state.characters) : [];
+// }
 
 
 const receiveUserCharacters = characters => ({
@@ -102,6 +103,9 @@ export const composeCharacter = data => async dispatch => {
 export const deleteCharacter = (characterId) => async (dispatch) => {
   try {
     // Send a request to your API to delete the character with characterId
+    // await new Promise(function (resolve, reject) { 
+    //   setTimeout(resolve, 4000); 
+    // })
     await jwtFetch(`/api/characters/${characterId}`, {
       method: 'DELETE',
     });
@@ -129,24 +133,19 @@ export const characterErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
-const characterReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
-  const newState = {...state}
-
+const characterReducer = (state = [], action) => {
+  
   switch(action.type) {
     case RECEIVE_USER_CHARACTERS:
-      return { ...newState, user: action.characters, new: undefined};
+      return [...action.characters]
     case RECEIVE_NEW_CHARACTER:
-      return { ...newState, [action.character._id]: action.character};
+      return [...state, action.character]
     case RECEIVE_DELETE_CHARACTER:
-      // const newState = { ...newState };
-      // console.log("***********reducer",newState)
-      delete newState.user[action.characterId];
-      // console.log("***********",state)
-      return newState;
+      return state.filter(character => character._id !== action.characterId)
     case RECEIVE_USER_LOGOUT:
-      return { ...newState, user: {}, new: undefined }
+      return []
     default:
-      return newState;
+      return state;
   }
 };
 

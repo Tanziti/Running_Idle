@@ -14,9 +14,7 @@ import pic from "./back2.png";
 function Profile() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.session.user);
-  const userCharacters = useSelector((state) =>
-    Object.values(state.characters.user)
-  );
+  const userCharacters = useSelector((state) => state.characters);
   const history = useHistory();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
