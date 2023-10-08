@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { composeCharacter } from "../../store/characters";
 import "./CreateCharacterModal.css";
 
-const CharacterForm = ({onClose}) => {
+const CharacterForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,9 +30,8 @@ const CharacterForm = ({onClose}) => {
         shoes,
         ...initialFormData, // Include other fields with initial values
       };
-      onClose()
+      onClose();
       await dispatch(composeCharacter(formData));
-
     } catch (error) {
       console.error("Error:", error);
     }
@@ -40,8 +39,9 @@ const CharacterForm = ({onClose}) => {
 
   return (
     <form className="new-char-form" onSubmit={handleSubmit}>
-      <label htmlFor="name">Name:</label>
+      <label htmlFor="name"></label>
       <input
+        placeholder="Name"
         type="text"
         id="name"
         value={name}
@@ -55,6 +55,7 @@ const CharacterForm = ({onClose}) => {
         <label>Outfit Color:</label>
         <label>
           <input
+            id="radio-Red"
             type="radio"
             name="outfit"
             value="red"
@@ -65,6 +66,7 @@ const CharacterForm = ({onClose}) => {
         </label>
         <label>
           <input
+            id="radio-Yellow"
             type="radio"
             name="outfit"
             value="yellow"
@@ -75,6 +77,7 @@ const CharacterForm = ({onClose}) => {
         </label>
         <label>
           <input
+            id="radio-Green"
             type="radio"
             name="outfit"
             value="green"
@@ -90,6 +93,7 @@ const CharacterForm = ({onClose}) => {
         <label>Shoes Color:</label>
         <label>
           <input
+            id="radio-Red"
             type="radio"
             name="shoes"
             value="red"
@@ -100,6 +104,7 @@ const CharacterForm = ({onClose}) => {
         </label>
         <label>
           <input
+            id="radio-Yellow"
             type="radio"
             name="shoes"
             value="yellow"
@@ -110,6 +115,7 @@ const CharacterForm = ({onClose}) => {
         </label>
         <label>
           <input
+            id="radio-Green"
             type="radio"
             name="shoes"
             value="green"
@@ -121,7 +127,9 @@ const CharacterForm = ({onClose}) => {
       </div>
 
       {/* Other form fields can be added but won't be editable by the user */}
-      <button id="submit-btn" type="submit">Submit</button>
+      <button id="submit-btn" type="submit">
+        Submit
+      </button>
     </form>
   );
 };
