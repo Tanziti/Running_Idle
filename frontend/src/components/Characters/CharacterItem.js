@@ -6,14 +6,11 @@ import { useDispatch } from "react-redux";
 // import { useHistory } from 'react-router-dom';
 
 function CharacterItem({ character }) {
-  // const history = useHistory();
   const dispatch = useDispatch();
 
   const handleDeleteCharacter = (e) => {
     e.preventDefault();
     dispatch(deleteCharacter(character._id));
-    // history.push('/user/characters');
-    window.location.reload(); //needs to be fixed ....
   };
 
   return (

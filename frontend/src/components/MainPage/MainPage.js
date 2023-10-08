@@ -25,9 +25,9 @@ function MainPage() {
     setShowLoginForm(false);
   };
 
-  const toggleDemoLogin = () => {
+  const toggleDemoLogin = async () => {
     // Implement logic for demo login here if needed
-    dispatch(login({ email: "demo-user@appacademy.io", password: "password" }));
+    await dispatch(login({ email: "demo-user@appacademy.io", password: "password" }));
     history.push("/user/characters");
   };
 

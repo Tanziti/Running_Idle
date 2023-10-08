@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as runActions from '../../store/runs'
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { fetchCharacter, getCharacter } from '../../store/characters'
+import { fetchActiveCharacter } from '../../store/characters'
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -98,11 +98,11 @@ const getEndLocation = () => {
   }, [endLng]);
 
   useEffect(() => {
-    dispatch(fetchCharacter(characterId))
+    dispatch(fetchActiveCharacter(characterId))
     dispatch(runActions.fetchCharacterRuns(characterId))
   }, [characterId,dispatch])
 
-    const character = useSelector(getCharacter(characterId))
+    const character = useSelector(state => state.characters.activeCharacter)
     
     // const runs = useSelector(runActions.getRuns(characterId))
   
