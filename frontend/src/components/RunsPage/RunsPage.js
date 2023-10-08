@@ -6,17 +6,20 @@ import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { fetchActiveCharacter } from '../../store/characters'
 import { Map, GoogleApiWrapper } from 'google-maps-react';
+import lofipixel from './LoFi-Pixel.png'
+
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 
 export const RunsPage = (props) => {
   const dispatch = useDispatch();
   const {characterId} = useParams();
-  const [currentLat, setCurrentLat] = useState(40.73);
-  const [currentLng, setCurrentLng] = useState(-73.99);
+  const [startLat, setStartLat] = useState(40.73);
+  const [startLng, setStartLng] = useState(-73.99);
   const [endLat, setEndLat] = useState();
   const [endLng, setEndLng] = useState(); 
   const [runStarted, setRunStarted] = useState(false);
-  const [currentTime, setCurrentTime] = useState();
+  const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
   // const [runId, setRunId] = useState(null);
   // const [runs, setRuns] = useState([]);
@@ -29,8 +32,8 @@ export const RunsPage = (props) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
           const { latitude, longitude } = position.coords;
-          setCurrentLat(latitude);
-          setCurrentLng(longitude);
+          setStartLat(latitude);
+          setStartLng(longitude);
           resolve();
         }, reject);
       } else {
@@ -63,7 +66,7 @@ const getEndLocation = () => {
 
   const startRun = async () => {
     setRunStarted(true);
-    setCurrentTime(new Date().getTime());
+    setStartTime(new Date().getTime());
     await getStartLocation();
   };
 
@@ -82,11 +85,11 @@ const getEndLocation = () => {
     if (endLat !== undefined && endLng !== undefined && endTime !== undefined) {
       return dispatch(runActions.composeRun({
         character: characterId,
-        startTime: currentTime,
-        startPosition: [currentLat, currentLng],
+        startTime: startTime,
+        startPosition: [startLat, startLng],
         endTime: endTime,
         endPosition: [endLat, endLng],
-        duration: endTime - currentTime,
+        duration: endTime - startTime,
         distance: 3.2345,
         caption: "testing runs"
       }));
@@ -114,10 +117,10 @@ const getEndLocation = () => {
 
   const toggleRunStart = !runStarted ?
       (<div id='characterrunspage-startrun'>
-        <button type="submit" onClick={startRun}>Start Run</button>
+        <button type="submit" className='runstartstoptoggle' onClick={startRun}>Start Run</button>
       </div>) :
      (<div id='characterrunspage-endrun'>
-        <button type="submit" onClick={endRun}>End Run</button>
+        <button type="submit" className='runstartstoptoggle' onClick={endRun}>End Run</button>
       </div>)
   
 
@@ -125,36 +128,46 @@ const getEndLocation = () => {
   
   return (
           <>
-              <div id="characterrunspage-containre">
+              <div id="characterrunspage-container">
+              <img className="lofipixel" src={lofipixel} alt="lofi-pixel" />
                   <div id='characterrunspage-headercontainer'>
                     <div id='characterrunspage-header'>{character?.name}'s Runs</div>
-                    <div>Current Lat: {currentLat} Current Long: {currentLng}</div>
-                    <div>End Lat: {endLat} End Long: {endLng}</div>
-                    {toggleRunStart}
                   </div>
                   <div id='runsdata-container'>
                       <div id='characterrunspage-map'>
                         <Map
                           google={props.google}
                           zoom={15}
-                          initialCenter={{ lat: currentLat, lng: currentLng }}
+                          initialCenter={{ lat: startLat, lng: startLng }}
                           style={{ width: '1000px', height: '800px'}}
+                          center={{ lat: endLat, lng: endLng }}
                         >
                         </Map>
                       </div>
-                      <div id='characterrunspage-startandindex'>
+                      <div id='characterrunspage-currentrunandindex'>
+                        <div id='characterrunspage-currentruncontainer'>
+                        {/* <div id=''></div>
+                        <div id=''></div> */}
                           <div id='characterrunspage-togglebutton'>
-                              Button
-                          </div> 
-                          <div id='characterrunspage-runindex'>
+                            {toggleRunStart}
+                          </div>
+                          <div id='currentrun-data'>
+                            <div>Start Lat: {startLat} Start Lng: {startLng}</div>
+                            <div>End Lat: {endLat} End Lng: {endLng}</div>
+                          </div>
+
+                        
+                        </div>
+                        <div id='characterrunspage-runindexcontainer'>
                             {character?.name}'s Runs Index
                             <div id='runsindex'>
                                 {/* {runs.map((run) => {
                                   <div id='eachrun'> Starting Position: {run?.startPosition}</div>
                                 })} */}
-                            </div>
-                          </div>     
+                            </div>      
+                        </div> 
                       </div>
+                      
                   </div>
               </div>
           </>
