@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { composeCharacter } from "../../store/characters";
 import "./CreateCharacterModal.css";
 
-const CharacterForm = () => {
+const CharacterForm = ({onClose}) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,7 +30,7 @@ const CharacterForm = () => {
         shoes,
         ...initialFormData, // Include other fields with initial values
       };
-
+      onClose()
       await dispatch(composeCharacter(formData));
 
     } catch (error) {
@@ -47,6 +47,7 @@ const CharacterForm = () => {
         value={name}
         onChange={(e) => setName(e.target.value)} // Update the name input value
         required
+        maxLength={8}
       />
 
       {/* Radio buttons for outfit */}

@@ -5,7 +5,8 @@ import { RECEIVE_USER_LOGOUT } from './session';
 const RECEIVE_USER_CHARACTERS = "characters/RECEIVE_USER_CHARACTERS";
 const RECEIVE_NEW_CHARACTER = "characters/RECEIVE_NEW_CHARACTER";
 const RECEIVE_DELETE_CHARACTER = "characters/DELETE_CHARACTER";
-// const RECEIVE_UPDATED_CHARACTER = "characters/RECEIVE_UPDATED_CHARACTER";
+const RECEIVE_UPDATED_CHARACTER = "characters/RECEIVE_UPDATED_CHARACTER";
+const SELECT_CHARACTER = "characters/SELECT_CHARACTER"
 const RECEIVE_CHARACTER_ERRORS = "characters/RECEIVE_CHARACTER_ERRORS";
 const CLEAR_CHARACTER_ERRORS = "characters/CLEAR_CHARACTER_ERRORS";
 
@@ -14,6 +15,8 @@ export const getCharacter = characterId => state => {
     const character = state.characters.find((character) => character._id === characterId);
     return character
 }
+
+
 
 
 const receiveUserCharacters = characters => ({
@@ -29,15 +32,20 @@ const receiveNewCharacter = character => ({
   character
 });
 
-const receiveDeletedCharacter = (characterId) => ({
-  type: RECEIVE_DELETE_CHARACTER,
-  characterId,
+const selectCharacter = character => ({
+  type: SELECT_CHARACTER,
+  character
 });
 
-// const receiveUpdatedCharacter = character => ({
-//   type: RECEIVE_UPDATED_CHARACTER,
-//   character
-// });
+const receiveDeletedCharacter = (characterId) => ({
+  type: RECEIVE_DELETE_CHARACTER,
+  characterId
+});
+
+const receiveUpdatedCharacter = character => ({
+  type: RECEIVE_UPDATED_CHARACTER,
+  character
+});
 
 
 const receiveErrors = errors => ({
@@ -49,6 +57,25 @@ export const clearCharacterErrors = errors => ({
     type: CLEAR_CHARACTER_ERRORS,
     errors
 })
+
+
+export const updateCharacter = (character) =>  async dispatch =>{
+  const { _id, name, heart, legs, arms, outfit, shoes, points } = character;
+  const data = { name, heart, legs, arms, outfit, shoes, points }
+  try {
+    const res = await jwtFetch(`/api/characters/${_id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data)
+    })
+    const updatedCharacter = await res.json();
+    dispatch(receiveUpdatedCharacter(updatedCharacter));
+  } catch(err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveErrors(resBody.errors));
+    }
+  }
+}
 
 
 
@@ -66,11 +93,11 @@ export const fetchUserCharacters = id => async dispatch => {
 };
 
 
-export const fetchCharacter = id => async dispatch => {
+export const fetchActiveCharacter = id => async dispatch => {
   try {
     const res = await jwtFetch(`/api/characters/${id}`);
     const character = await res.json();
-    dispatch(receiveNewCharacter(character));
+    dispatch(selectCharacter(character));
   } catch(err) {
     console.log(err)
       return dispatch(receiveErrors(err));
@@ -127,17 +154,51 @@ export const characterErrorsReducer = (state = nullErrors, action) => {
   }
 };
 
-const characterReducer = (state = [], action) => {
+
+const initialCharacterState = () => ({
+  // The allCharacters of allCharacters characters at any given point in time. 
+  // This value will be `null` if the allCharacters hasn't been loaded yet.
+  allCharacters: null,
+  // The currently selected character, as used on the "view character" screen. 
+  // This value be will `null` if no character is selected.
+  activeCharacter: null
+})
+
+
+const characterReducer = (state = initialCharacterState(), action) => {
   
   switch(action.type) {
     case RECEIVE_USER_CHARACTERS:
-      return [...action.characters]
+      return {...state, allCharacters: [...action.characters]}
+
     case RECEIVE_NEW_CHARACTER:
-      return [...state, action.character]
+      return {...state, allCharacters: [...state.allCharacters, action.character]}
+      // return [...state, action.character]
+
     case RECEIVE_DELETE_CHARACTER:
-      return state.filter(character => character._id !== action.characterId)
+      const newCharacters = state.allCharacters.filter(character => character._id !== action.characterId);
+      return {...state, allCharacters: newCharacters}
+
+    case RECEIVE_UPDATED_CHARACTER:
+      const updatedCharacters = state.allCharacters.map(character => {
+        if (character._id === action.character._id){
+          return action.character
+        } else return character
+      });
+
+      if (state.allCharacters !== null) {
+          // We have characters loaded.
+        return { ...state, activeCharacter: action.character, allCharacters: updatedCharacters}
+      } else {
+        return { ...state, activeCharacter: action.character };
+      }
+
+    case SELECT_CHARACTER:
+      return { ...state, activeCharacter: action.character };
+
     case RECEIVE_USER_LOGOUT:
-      return []
+      return initialCharacterState();
+
     default:
       return state;
   }

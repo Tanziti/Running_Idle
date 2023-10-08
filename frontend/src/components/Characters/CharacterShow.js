@@ -2,8 +2,7 @@ import './CharacterAnimations/CharacterShow.css';
 import { useHistory, useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCharacter } from '../../store/characters';
-import { fetchCharacter } from "../../store/characters"
+import { fetchActiveCharacter } from "../../store/characters"
 import JumpingRopeAnimation from './CharacterAnimations/JumpingRopeAnimation'
 import { logout } from "../../store/session";
 import RunningAnimation from './CharacterAnimations/RunningAnimation'
@@ -11,23 +10,26 @@ import ArmsAnimation from './CharacterAnimations/ArmsAnimation'
 
 const CharacterShow = () => {
 
-const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-const history = useHistory();    
-const {characterId} = useParams();
-const character = useSelector(getCharacter(characterId));
+    const history = useHistory();    
+    const {characterId} = useParams();
+
+
+    const character = useSelector(state => state.characters.activeCharacter);
+
+    console.log(character)
 
     useEffect(() => {
-
-        dispatch(fetchCharacter(characterId))
+        dispatch(fetchActiveCharacter(characterId))
     }, [dispatch,characterId])
 
 // console.log(character.id)
 
-const goToChars = (e) => {
-    e.preventDefault();
-    history.push("/user/characters");
-}
+    const goToChars = (e) => {
+        e.preventDefault();
+        history.push("/user/characters");
+    }
 
     const logoutUser = (e) => {
         e.preventDefault();
