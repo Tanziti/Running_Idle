@@ -7,6 +7,9 @@ import JumpingRopeAnimation from './CharacterAnimations/JumpingRopeAnimation'
 import { logout } from "../../store/session";
 import RunningAnimation from './CharacterAnimations/RunningAnimation'
 import ArmsAnimation from './CharacterAnimations/ArmsAnimation'
+import ArmsIconAnimation from './CharacterAnimations/ArmIconAnimation'
+import LegsIconAnimation from './CharacterAnimations/LegIconAnimation'
+import HeartIconAnimation from './CharacterAnimations/HeartIconAnimation'
 
 const CharacterShow = () => {
 
@@ -152,6 +155,7 @@ const CharacterShow = () => {
                             </div>
                             <div id='xpPercent'>{armsXp%100}%</div>
                             <div id='xpLevel'>L{Math.floor(armsXp/100)}</div>
+                            {showArmsAnimation && <ArmsIconAnimation/>}
                         </div>
 
                         <div className='attributeBar'>
@@ -161,6 +165,7 @@ const CharacterShow = () => {
                             </div>
                             <div id='xpPercent'>{(legsXp%100)}%</div>
                             <div id='xpLevel'>L{Math.floor(legsXp/100)}</div>
+                            {showJumpingRopeAnimation && <LegsIconAnimation/>}
                         </div>
 
                         <div className='attributeBar'>
@@ -170,6 +175,7 @@ const CharacterShow = () => {
                             </div>
                             <div id='xpPercent'>{heartXp%100}%</div>
                             <div id='xpLevel'>L{Math.floor(heartXp/100)}</div>
+                            {showRunningAnimation && <HeartIconAnimation/>}
                         </div>
                     </div>
 
