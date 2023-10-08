@@ -23,7 +23,7 @@
 
 #showPageNavBar>* {
     /* margin-left: 4%; */
-    margin-right: 4.4%;
+    margin-right: 2.9%;
 }
 
 #charsStuffContainer {
@@ -79,12 +79,19 @@
 #xpPercent {
     padding-left: 20px;
     padding-right: 20px;
+    color: pink;
+    text-shadow: 2px 2px 10px blue;
+}
+
+#xpLevel {
+    color: pink;
+    text-shadow: 2px 2px 10px blue;
 }
 
 
 .charShowButtons {
     display: flex;
-    width: 20%;
+    width: 23%;
     height: 50%;
     display: flex;
     justify-content: center;
@@ -118,7 +125,6 @@
 
 #CharacterName {
     position: absolute;
-    /* margin-left: 50px; */
     font-size: 64px;
     font-weight: bold;
     color: pink;
@@ -139,7 +145,7 @@
     font-size: 26px;
     margin-left: 0;
     margin-top: 0;
-    width: 10vw;
+    width: 12vw;
     height: 40%;
 }
 
@@ -152,4 +158,10 @@
 
 #CharPoints  {
     font-size: 35px;
+        font-weight: bold;
+            color: pink;
+            text-shadow: 2px 2px 10px blue;
+            border: 2px solid blue;
+            padding-top: 20px;
+            padding-bottom: 20px;
 }
