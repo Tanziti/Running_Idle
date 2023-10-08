@@ -27,12 +27,12 @@
     margin-right: 5vw;
     position: absolute;
     top: 85%;
-    left: 20%;
+    left: 8%;
     color: pink;
 }
 
 #title{
-    font-size: 5vh;
+    font-size: 3.5vh;
     font-weight: bold;
     margin-bottom: .4rem;
     margin-right: 3vw;
@@ -41,7 +41,7 @@
 .special-button {
     margin: 0 .2rem; /* Adjust the 1rem value to control the spacing */
     padding: 0.5rem 1rem;
-    font-size: 2vh;
+    font-size: 1.5vh;
     background-color: #007bff9c;
     color: pink;
     border: none;
