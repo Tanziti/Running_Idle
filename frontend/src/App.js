@@ -7,8 +7,8 @@ import Profile from "./components/Profile/Profile.js"
 // import Map from "./components/Map/Map";
 import { getCurrentUser } from "./store/session";
 import CharacterShow from "./components/Characters/CharacterShow";
-import RunsPage from './components/RunsPage/RunsPage.js'
-
+import RunsPage from './components/RunsPage/RunsPage.js';
+import Theme from './components/Sounds/Theme.js';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function App() {
     loaded && (
       <>
       {/* <NavBar /> */}
-      
+      {<Theme/>}
         <Switch>
           <AuthRoute exact path="/" component={MainPage} />
           <Route exact path='/user/characters' component={Profile} />
