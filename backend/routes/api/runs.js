@@ -12,6 +12,11 @@ router.post('/', requireUser, validateRunInput, async (req, res, next) => {
             character: req.body.character,
             startTime: req.body.startTime,
             startPosition: req.body.startPosition,
+            endTime: req.body.endTime,
+            endPosition: req.body.endPosition,
+            duration: req.body.duration,
+            distance: req.body.distance,
+            caption: req.body.caption
         })
         let run = await newRun.save();
         return res.json(run);
@@ -67,11 +72,7 @@ router.put('/:id', requireUser, async (req, res, next) => {
         return next(error);
       }
   
-      run.endTime = req.body.endTime;
-      run.endPosition = req.body.endPosition;
-      run.duration = req.body.duration;
-      run.distance = req.body.distance;
-      run.caption = req.body.caption;
+   
 
 
       const updatedRun = await run.save();

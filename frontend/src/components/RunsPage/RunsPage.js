@@ -13,8 +13,8 @@ export const RunsPage = (props) => {
   const {characterId} = useParams();
   const [currentLat, setCurrentLat] = useState(40.73);
   const [currentLng, setCurrentLng] = useState(-73.99);
-  const [endLat, setEndLat] = useState(10);
-  const [endLng, setEndLng] = useState(11); 
+  const [endLat, setEndLat] = useState();
+  const [endLng, setEndLng] = useState(); 
   const [runStarted, setRunStarted] = useState(false);
   const [currentTime, setCurrentTime] = useState();
   const [endTime, setEndTime] = useState();
@@ -28,11 +28,9 @@ export const RunsPage = (props) => {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
-          debugger
           const { latitude, longitude } = position.coords;
           setCurrentLat(latitude);
           setCurrentLng(longitude);
-          debugger
           resolve();
         }, reject);
       } else {
@@ -40,62 +38,64 @@ export const RunsPage = (props) => {
       }
     });
   };
-
-
-  const getEndLocation = () => {
-    return new Promise((resolve, reject) => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
+  
+  
+const getEndLocation = () => {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
           const { latitude, longitude } = position.coords;
           setEndLat(latitude);
           setEndLng(longitude);
           resolve();
-        }, reject);
-      } else {
-        reject(new Error("Geolocation is not supported."));
-      }
-    });
-  };
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    } else {
+      reject(new Error("Geolocation is not supported."));
+    }
+  });
+};
+
 
   const startRun = async () => {
-    await getStartLocation();
     setRunStarted(true);
     setCurrentTime(new Date().getTime());
-    debugger
-  };
-  const endRun = async () => {
-    await getEndLocation();
-    setRunStarted(false);
-    setEndTime(new Date().getTime());
-    debugger
-    try {
-      if (
-        characterId &&
-        currentTime &&
-        currentLat !== undefined &&
-        currentLng !== undefined &&
-        endTime &&
-        endLat !== undefined &&
-        endLng !== undefined
-      ) {
-        return dispatch(runActions.composeRun({
-          character: characterId,
-          startTime: currentTime,
-          startPosition: [currentLat, currentLng],
-          endTime: endTime,
-          endPosition: [endLat, endLng],
-          duration: endTime - currentTime,
-          distance: 3.2345,
-          caption: "testing runs"
-        }));
-      } else {
-        console.error("Missing values for create run.");
-      }
-    } catch (error) {
-      console.error("Error in endRun:", error);
-    }
+    await getStartLocation();
   };
 
+  
+
+
+  const endRun = async () => {
+    setRunStarted(false);
+    setEndTime(new Date().getTime());
+    await getEndLocation();
+  };
+
+  const createRun = () => {
+    setEndLat(endLat);
+    setEndLng(endLng);
+    if (endLat !== undefined && endLng !== undefined && endTime !== undefined) {
+      return dispatch(runActions.composeRun({
+        character: characterId,
+        startTime: currentTime,
+        startPosition: [currentLat, currentLng],
+        endTime: endTime,
+        endPosition: [endLat, endLng],
+        duration: endTime - currentTime,
+        distance: 3.2345,
+        caption: "testing runs"
+      }));
+    }
+  }
+
+  useEffect(() => {
+   createRun();
+  }, [endLng]);
 
   useEffect(() => {
     dispatch(fetchCharacter(characterId))
@@ -104,7 +104,7 @@ export const RunsPage = (props) => {
 
     const character = useSelector(getCharacter(characterId))
     
-    const runs = useSelector(runActions.getRuns(characterId))
+    // const runs = useSelector(runActions.getRuns(characterId))
   
 
 
@@ -129,6 +129,7 @@ export const RunsPage = (props) => {
                   <div id='characterrunspage-headercontainer'>
                     <div id='characterrunspage-header'>{character?.name}'s Runs</div>
                     <div>Current Lat: {currentLat} Current Long: {currentLng}</div>
+                    <div>End Lat: {endLat} End Long: {endLng}</div>
                     {toggleRunStart}
                   </div>
                   <div id='runsdata-container'>
@@ -148,9 +149,9 @@ export const RunsPage = (props) => {
                           <div id='characterrunspage-runindex'>
                             {character?.name}'s Runs Index
                             <div id='runsindex'>
-                                {runs.map((run) => {
+                                {/* {runs.map((run) => {
                                   <div id='eachrun'> Starting Position: {run?.startPosition}</div>
-                                })}
+                                })} */}
                             </div>
                           </div>     
                       </div>
