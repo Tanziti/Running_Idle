@@ -40,10 +40,10 @@ const CharacterShow = () => {
     const [showJumpingRopeAnimation, setShowJumpingRopeAnimation] = useState(false);
     const [showRunningAnimation, setShowRunningAnimation] = useState(false);
 
-    const [armsXp, setArmsXp] = useState(0);
-    const [legsXp, setLegsXp] = useState(0);
-    const [heartXp, setHeartXp] = useState(0);
-    const [points, setPoints] = useState(0);
+    let [armsXp, setArmsXp] = useState(0);
+    let [legsXp, setLegsXp] = useState(0);
+    let [heartXp, setHeartXp] = useState(0);
+    let [points, setPoints] = useState(0);
 
     if (!character || !character.name) return null
 
@@ -53,8 +53,8 @@ const CharacterShow = () => {
         setShowJumpingRopeAnimation(false);
         
         if (character.points > 0) {
-            setArmsXp(armsXp + 10);
-            setPoints(points - 1)
+            armsXp = armsXp + 10;
+            points = points - 1;
             
             const updatedCharacter = { ...character, points: points, arms: armsXp };
             dispatch(updateCharacter(updatedCharacter))
@@ -67,8 +67,8 @@ const CharacterShow = () => {
         setShowArmsAnimation(false);
 
         if (character.points > 0) {
-            setLegsXp(legsXp + 10);
-            setPoints(points - 1)
+            legsXp =legsXp + 10;
+            points =points - 1;
             
             const updatedCharacter = { ...character, points: points, legs: legsXp };
             dispatch(updateCharacter(updatedCharacter))
@@ -81,8 +81,8 @@ const CharacterShow = () => {
         setShowArmsAnimation(false);
 
         if (character.points > 0) {
-            setHeartXp(heartXp + 10);
-            setPoints(points - 1)
+            heartXp = heartXp + 10;
+            points = points - 1;
             
             const updatedCharacter = { ...character, points: points, heart: heartXp };
             dispatch(updateCharacter(updatedCharacter))

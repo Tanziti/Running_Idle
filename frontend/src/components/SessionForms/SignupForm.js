@@ -53,7 +53,7 @@ function SignupForm() {
 
     const success = await dispatch(signup(user)); 
 
-    if (success) {
+    if (!success.errors) {
       // Redirect to the desired URL after successful login
       history.push("/user/characters/");
     }
