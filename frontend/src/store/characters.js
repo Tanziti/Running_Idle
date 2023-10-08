@@ -62,19 +62,19 @@ export const clearCharacterErrors = errors => ({
 export const updateCharacter = (character) =>  async dispatch =>{
   const { _id, name, heart, legs, arms, outfit, shoes, points } = character;
   const data = { name, heart, legs, arms, outfit, shoes, points }
-  try {
+  // try {
     const res = await jwtFetch(`/api/characters/${_id}`, {
       method: 'PUT',
       body: JSON.stringify(data)
     })
     const updatedCharacter = await res.json();
     dispatch(receiveUpdatedCharacter(updatedCharacter));
-  } catch(err) {
-    const resBody = await err.json();
-    if (resBody.statusCode === 400) {
-      return dispatch(receiveErrors(resBody.errors));
-    }
-  }
+  // } catch(err) {
+  //   const resBody = await err.json();
+  //   if (resBody.statusCode === 400) {
+  //     return dispatch(receiveErrors(resBody.errors));
+  //   }
+  // }
 }
 
 
@@ -180,10 +180,13 @@ const characterReducer = (state = initialCharacterState(), action) => {
       return {...state, allCharacters: newCharacters}
 
     case RECEIVE_UPDATED_CHARACTER:
+      if(state.allCharacters === null) return { ...state, activeCharacter: action.character }
       const updatedCharacters = state.allCharacters.map(character => {
         if (character._id === action.character._id){
           return action.character
-        } else return character
+        } else {
+          return character
+        }
       });
 
       if (state.allCharacters !== null) {

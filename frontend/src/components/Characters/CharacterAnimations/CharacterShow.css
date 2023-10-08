@@ -6,6 +6,7 @@
     width: 100vw;
     height: 100vh;
     /* border: 1px solid rgb(255, 0, 0); */
+    background-color: rgb(48, 48, 48);
 }
 
 #showPageNavBar {
@@ -21,28 +22,18 @@
 }
 
 #showPageNavBar>* {
-    margin-left: 5%;
-    margin-right: 5%;
-    /* Adjust the margin value as needed */
+    /* margin-left: 4%; */
+    margin-right: 4.4%;
 }
 
 #charsStuffContainer {
-    /* border: 1px solid black; */
+    /* border: 1px solid rgb(255, 255, 255); */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
-}
-
-#charStats {
-    display: flex;
-    /* border: 1px solid black; */
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    gap: 13.7%;
 }
 
 #charSprite {
@@ -55,16 +46,52 @@
 
 } 
 
+
+#charStats {
+    display: flex;
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    /* gap: 13.7%; */
+}
+
+.attributeBar {
+    display: flex;
+    height: 40%;
+    /* border: 2px solid rgb(255, 0, 0); */
+    align-items: center;
+    font-size: 40px;
+}
+
+.xpBar {
+    border: 2px solid rgb(255, 0, 0);
+    width: 30%;
+    height: 50%;
+    border-radius: 10px;
+}
+
+#xpFillBar {
+    height: 100%;
+    border: none;
+}
+
+#xpPercent {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
 .charShowButtons {
     display: flex;
     width: 20%;
-    height: 17%;
+    height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    margin-left: 4%;
-    margin-top: 4%;
+    font-size: 35px;
+    /* margin-left: 4%; */
+    /* margin-top: 4%; */
     background-color: #0065d1d1;
     color: pink;
     transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s, color 0.2s;
@@ -73,12 +100,12 @@
     text-shadow: 2px 2px 3px rgba(550, 0, 255, 0.8);
     cursor: pointer;
     border-width: 4px;
+    margin-left: 4%;
 }
 
 .charShowButtons:hover {
     background-color: #0056b3;
     box-shadow: 0px 4px 12px rgba(550, 0, 255, 1);
-    /* background-color: #0055aadd; */
 }
 
 .charShowButtons:active {
@@ -88,31 +115,41 @@
 }
 
 
-#charStaticImgIcon{
-    display: flex;
-    width: 5%;
-    height: 50%;
-}
 
 #CharacterName {
+    position: absolute;
     /* margin-left: 50px; */
     font-size: 64px;
     font-weight: bold;
     color: pink;
     text-shadow: 2px 2px 10px blue;
-    font-family: 'Amiga Forever', sans-serif;
+    margin: 0;
+    left: 4%; 
+}
+
+#charStaticImgIcon {
+    display: flex;
+    width: 5%;
+    height: 50%;
+    cursor: pointer;
 }
 
 #charShowNavButtons {
-padding: 20px 30px;
-font-size: 15px;
-/* padding-top: 30%; */
+    padding: 20px 30px;
+    font-size: 26px;
     margin-left: 0;
-        margin-top: 0;
+    margin-top: 0;
+    width: 10vw;
+    height: 40%;
 }
+
 
 #CharacterIcon {
     display: flex;
     width: 30vw;
     height: 60vh;
-}   
+}
+
+#CharPoints  {
+    font-size: 35px;
+}
