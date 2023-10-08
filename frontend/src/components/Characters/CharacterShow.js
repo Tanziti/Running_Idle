@@ -47,49 +47,56 @@ const CharacterShow = () => {
 
     if (!character || !character.name) return null
 
-    const handleShowArms = () => {
-        setShowArmsAnimation(true);
-        setShowRunningAnimation(false);
-        setShowJumpingRopeAnimation(false);
-        
+    const handleShowArms = () => {     
         if (character.points > 0) {
-            armsXp = armsXp + 10;
-            points = points - 1;
+
+            setShowArmsAnimation(true);
+            setShowRunningAnimation(false);
+            setShowJumpingRopeAnimation(false);
             
-            const updatedCharacter = { ...character, points: points, arms: armsXp };
-            dispatch(updateCharacter(updatedCharacter))
+            if (armsXp < 1000){
+                armsXp = armsXp + 10;
+                points = points - 1;
+                const updatedCharacter = { ...character, points: points, arms: armsXp };
+                dispatch(updateCharacter(updatedCharacter))
+            }
         }
     };
 
     const handleShowJumpingRope = () => {
-        setShowJumpingRopeAnimation(true);
-        setShowRunningAnimation(false); 
-        setShowArmsAnimation(false);
-
         if (character.points > 0) {
-            legsXp =legsXp + 10;
-            points =points - 1;
+
+            setShowJumpingRopeAnimation(true);
+            setShowRunningAnimation(false); 
+            setShowArmsAnimation(false);
             
-            const updatedCharacter = { ...character, points: points, legs: legsXp };
-            dispatch(updateCharacter(updatedCharacter))
+            if (legsXp < 1000){
+                legsXp =legsXp + 10;
+                points =points - 1;
+                const updatedCharacter = { ...character, points: points, legs: legsXp };
+                dispatch(updateCharacter(updatedCharacter))
+            }
         }
     };
 
     const handleShowRunning = () => {
-        setShowRunningAnimation(true);
-        setShowJumpingRopeAnimation(false); 
-        setShowArmsAnimation(false);
-
         if (character.points > 0) {
-            heartXp = heartXp + 10;
-            points = points - 1;
+
+            setShowRunningAnimation(true);
+            setShowJumpingRopeAnimation(false); 
+            setShowArmsAnimation(false);
             
-            const updatedCharacter = { ...character, points: points, heart: heartXp };
-            dispatch(updateCharacter(updatedCharacter))
+            if (heartXp < 1000){
+                heartXp = heartXp + 10;
+                points = points - 1;
+                const updatedCharacter = { ...character, points: points, heart: heartXp };
+                dispatch(updateCharacter(updatedCharacter))
+            }
         }
     };
 
     const getArmsColor = () => {
+        if (armsXp === 1000) return "#ff69b4"
         if ((armsXp%100) < 40) {
             return "#ff0000";
         } else if ((armsXp%100) < 70) {
@@ -99,6 +106,7 @@ const CharacterShow = () => {
     }
 
     const getLegsColor = () => {
+        if (legsXp === 1000) return "#ff69b4"
         if ((legsXp%100) < 40) {
             return "#ff0000";
         } else if ((legsXp%100) < 70) {
@@ -108,6 +116,7 @@ const CharacterShow = () => {
     }
 
     const getHeartColor = () => {
+        if (heartXp === 1000) return "#ff69b4"
         if ((heartXp%100) < 40) {
             return "#ff0000";
         } else if ((heartXp%100) < 70) {
