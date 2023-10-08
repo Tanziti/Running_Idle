@@ -29,7 +29,7 @@ function LoginForm() {
     e.preventDefault();
     const success = await dispatch(login({ email, password }));
 
-    if (success) {
+    if (!success.errors) {
       // Redirect to the desired URL after successful login
       history.push("/user/characters");
     }
