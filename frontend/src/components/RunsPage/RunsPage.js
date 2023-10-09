@@ -82,6 +82,7 @@ const getEndLocation = () => {
   const createRun = () => {
     setEndLat(endLat);
     setEndLng(endLng);
+    addPoints();
     if (endLat !== undefined && endLng !== undefined && endTime !== undefined) {
       return dispatch(runActions.composeRun({
         character: characterId,
@@ -90,7 +91,7 @@ const getEndLocation = () => {
         endTime: endTime,
         endPosition: [endLat, endLng],
         duration: endTime - startTime,
-        distance: 3.2345,
+        distance: calculateDistance(startLat, startLng, endLat, endLng),
         caption: "testing runs"
       }));
     }
