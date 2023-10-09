@@ -30,7 +30,7 @@
 ### Group Members and Work Breakdown
 
  - Muhammad Amray: Frontend lead
- - Avery Berry: Frontend 
+ - Avery Berry: Flex
  - Alex Brown: Backend Lead
  - Zi Tian Tan: Lead
 
