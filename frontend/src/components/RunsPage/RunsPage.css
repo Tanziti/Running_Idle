@@ -49,11 +49,13 @@
 }
 
 #characterrunspage-togglebutton {
-    margin: 50px;
+    margin-top: 50px;
     height: 50px;
 }
 
 #characterrunspage-currentruncontainer {
+    display: flex;
+    justify-content: space-evenly;
     background-color: rgb(250, 247, 64, .75);
     width: 100%;
     height: 300px;
@@ -72,4 +74,10 @@
     width: 100%;
     height: 300px;
     border-radius: 20px;
+}
+
+#currentrun-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
