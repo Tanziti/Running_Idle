@@ -18,13 +18,13 @@ const ArmsAnimation = ({character})  => {
         {isImage1Visible ? (
           <img
             id='CharacterIcon'
-            src={`/assets/${character.outfit}_Outfit/${character.outfit}_Outfit_${character.shoes}_Shoes1.png`}
+            src={`/assets/${character.outfit}_Outfit/${character.outfit}_Outfit_${character.shoes}_Shoes6.png`}
             alt="Character1"
           />
         ) : (
           <img
             id='CharacterIcon'
-            src={`/assets/${character.outfit}_Outfit/${character.outfit}_Outfit_${character.shoes}_Shoes1.png`}
+            src={`/assets/${character.outfit}_Outfit/${character.outfit}_Outfit_${character.shoes}_Shoes7.png`}
             alt="Character2"
           />
         )}
