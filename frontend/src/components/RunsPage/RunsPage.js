@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { fetchActiveCharacter } from '../../store/characters'
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import lofipixel from './LoFi-Pixel.png'
+import * as characterActions from '../../store/characters'
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -21,6 +22,8 @@ export const RunsPage = (props) => {
   const [runStarted, setRunStarted] = useState(false);
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
+  const character = useSelector(state => state.characters.activeCharacter)
+
   // const [runId, setRunId] = useState(null);
   // const [runs, setRuns] = useState([]);
 
@@ -43,25 +46,25 @@ export const RunsPage = (props) => {
   };
   
   
-const getEndLocation = () => {
-  return new Promise((resolve, reject) => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setEndLat(latitude);
-          setEndLng(longitude);
-          resolve();
-        },
-        (error) => {
-          reject(error);
-        }
-      );
-    } else {
-      reject(new Error("Geolocation is not supported."));
-    }
-  });
-};
+  const getEndLocation = () => {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setEndLat(latitude);
+            setEndLng(longitude);
+            resolve();
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      } else {
+        reject(new Error("Geolocation is not supported."));
+      }
+    });
+  };
 
 
   const startRun = async () => {
@@ -126,9 +129,12 @@ const getEndLocation = () => {
     return deg * (Math.PI / 180);
   }
 
-  const getPace = () => {
-    
-  }
+  const addPoints = () => {   
+      console.log('**', character)
+      // 15 * calculateDistance(startLat, startLng, endLat, endLng)
+      const updatedCharacter = { ...character, points: (5 + character.points)};
+      dispatch(characterActions.updateCharacter(updatedCharacter))
+};
 
   useEffect(() => {
    createRun();
@@ -139,7 +145,7 @@ const getEndLocation = () => {
     dispatch(runActions.fetchCharacterRuns(characterId))
   }, [characterId,dispatch])
 
-    const character = useSelector(state => state.characters.activeCharacter)
+   
     
     // const runs = useSelector(runActions.getRuns(characterId))
   
