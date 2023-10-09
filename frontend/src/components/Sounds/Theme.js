@@ -7,7 +7,7 @@ function Theme() {
   const audioRef = React.createRef();
   const location = useLocation();
 
-  const originalVolume = 0.15;
+  const originalVolume = 0.05;
 
   const toggleMute = () => {
     const audio = audioRef.current;

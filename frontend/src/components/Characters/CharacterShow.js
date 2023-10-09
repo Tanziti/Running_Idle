@@ -27,7 +27,12 @@ const CharacterShow = () => {
     }, [dispatch, characterId, character?.heart, character?.legs, character?.arms, character?.points])
 
 // console.log("hey***********",character?.arms)
-
+const playLevelUpSound = () => {
+    const levelUpAudio = new Audio();
+    levelUpAudio.src = "/assets/sounds/level_up.mp3"
+    levelUpAudio.volume = 0.15; // Adjust the volume as needed
+    levelUpAudio.play();
+  };
     const goToChars = (e) => {
         e.preventDefault();
         history.push("/user/characters");
@@ -64,6 +69,9 @@ const CharacterShow = () => {
                 dispatch(updateCharacter(updatedCharacter))
             }
         }
+        if (armsXp % 100 === 0 && armsXp !== 100) {
+            playLevelUpSound(); // Play the level-up sound
+          } 
     };
 
     const handleShowJumpingRope = () => {
@@ -79,6 +87,9 @@ const CharacterShow = () => {
                 const updatedCharacter = { ...character, points: points, legs: legsXp };
                 dispatch(updateCharacter(updatedCharacter))
             }
+            if (legsXp % 100 === 0 && legsXp !== 100) {
+                playLevelUpSound(); // Play the level-up sound
+              } 
         }
     };
 
@@ -95,6 +106,9 @@ const CharacterShow = () => {
                 const updatedCharacter = { ...character, points: points, heart: heartXp };
                 dispatch(updateCharacter(updatedCharacter))
             }
+            if (heartXp % 100 === 0 && heartXp !== 100) {
+                playLevelUpSound(); // Play the level-up sound
+              } 
         }
     };
 
