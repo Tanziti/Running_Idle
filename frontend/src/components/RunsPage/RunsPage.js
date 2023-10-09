@@ -23,11 +23,15 @@ export const RunsPage = (props) => {
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
   const character = useSelector(state => state.characters.activeCharacter)
+  // const [myRuns, setMyRuns] = useState([]);
+
 
   // const [runId, setRunId] = useState(null);
   // const [runs, setRuns] = useState([]);
 
   // const [locationClicked, setLocationClicked] = useState(false);
+  const runs = useSelector(state => state.runs.character)
+  console.log(runs[0])
 
 
   const getStartLocation = () => {
@@ -130,10 +134,12 @@ export const RunsPage = (props) => {
   }
 
   const addPoints = () => {   
-      console.log('**', character)
       // 15 * calculateDistance(startLat, startLng, endLat, endLng)
-      const updatedCharacter = { ...character, points: (5 + character.points)};
-      dispatch(characterActions.updateCharacter(updatedCharacter))
+      if (character) {
+        const updatedCharacter = { ...character, points: (5 + character.points)};
+        dispatch(characterActions.updateCharacter(updatedCharacter))
+      }
+      
   };
 
   useEffect(() => {
@@ -143,16 +149,27 @@ export const RunsPage = (props) => {
   useEffect(() => {
     dispatch(fetchActiveCharacter(characterId))
     dispatch(runActions.fetchCharacterRuns(characterId))
-  }, [characterId,dispatch])
-
     
-    // const runs = useSelector(runActions.getRuns(characterId))
+    // setMyRuns(runs)
+  }, [characterId, dispatch])
+
+
   
 
 
   // console.log(character, "   ", characterId)
 
-
+  // const runsIndex = runs ? 
+  // (
+  //   {runs.map((run) => {      
+  //             <div>
+  //               <div id='eachrun'> Time: {run.duration}</div>
+  //               <div id='eachrun'> Distance: {run.distance}</div>
+  //               <div id='eachrun'> Pace: </div>
+  //               <div id='eachrun'> Points: {run.distance * 15} pts</div>
+  //             </div>
+  //           })}
+  // ) : (<div>No runs yet!</div>)
 
   const toggleRunStart = !runStarted ?
       (<div id='characterrunspage-startrun'>
@@ -178,7 +195,7 @@ export const RunsPage = (props) => {
                           google={props.google}
                           zoom={15}
                           initialCenter={{ lat: startLat, lng: startLng }}
-                          style={{ width: '1000px', height: '800px'}}
+                          style={{ width: '800px', height: '800px'}}
                           center={{ lat: endLat, lng: endLng }}
                         >
                         </Map>
@@ -202,11 +219,7 @@ export const RunsPage = (props) => {
                         <div id='characterrunspage-runindexcontainer'>
                             <div id='runsindexheader'>{character?.name}'s Runs</div>
                             <div id='runsindex'>
-                                Run1
-                                {/* {runs.map((run) => {
-                                  <div id='eachrun'> Starting Position: {run?.startPosition}</div>
-                                  time, pace, distance, pts, date 
-                                })} */}
+                              {/* {runsIndex} */}
                             </div>      
                         </div> 
                       </div>
