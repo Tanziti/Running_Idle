@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const RunningAnimation = ({character})  => {
   const [isImage1Visible, setIsImage1Visible] = useState(true);
 
-  console.log(character.outfit)
+  // console.log(character.outfit)
   useEffect(() => {
     const interval = setInterval(() => {
       setIsImage1Visible((prevIsImage1Visible) => !prevIsImage1Visible);

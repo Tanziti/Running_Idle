@@ -87,7 +87,7 @@ export const composeRun = data => async dispatch => {
     });
     const run = await res.json();
     dispatch(receiveCharacterRun(run));
-    console.log(run);
+    // console.log(run);
   } catch(err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
