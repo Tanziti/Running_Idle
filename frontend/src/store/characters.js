@@ -99,7 +99,7 @@ export const fetchActiveCharacter = id => async dispatch => {
     const character = await res.json();
     dispatch(selectCharacter(character));
   } catch(err) {
-    console.log(err)
+    // console.log(err)
       return dispatch(receiveErrors(err));
   }
 };

@@ -31,7 +31,7 @@ export const RunsPage = (props) => {
 
   // const [locationClicked, setLocationClicked] = useState(false);
   const runs = useSelector(state => state.runs.character)
-  console.log(runs[0])
+  // console.log(runs[0])
 
 
   const getStartLocation = () => {
