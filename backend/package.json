@@ -6,7 +6,6 @@
     "start": "node ./bin/www",
     "dev": "dotenv nodemon ./bin/www --inspect"
   },
-  
   "dependencies": {
     "@faker-js/faker": "^8.1.0",
     "bcryptjs": "^2.4.3",
@@ -17,15 +16,15 @@
     "express": "~4.16.1",
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
+    "google-maps-api": "^2.0.1",
+    "google-maps-react": "^2.0.6",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.1.0",
     "mongoose": "^7.5.3",
     "morgan": "~1.9.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0",
-    "google-maps-react": "^2.0.6",
-    "google-maps-api": "^2.0.1"
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "dotenv-cli": "^7.3.0",
