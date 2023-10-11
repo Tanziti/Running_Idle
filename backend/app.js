@@ -25,33 +25,33 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 // Security Middleware
-if (!isProduction) {
-  // Enable CORS only in development because React will be on the React
-  // development server (http://localhost:3000). (In production, React files
-  // will be served statically on the Express server.)
-  app.use(cors());
-}
-if (isProduction) {
-  const path = require('path');
-  // Serve the frontend's index.html file at the root route
-  app.get('/', (req, res) => {
-    res.cookie('CSRF-TOKEN', req.csrfToken());
-    res.sendFile(
-      path.resolve(__dirname, '../frontend', 'build', 'index.html')
-    );
-  });
+// if (!isProduction) {
+//   // Enable CORS only in development because React will be on the React
+//   // development server (http://localhost:3000). (In production, React files
+//   // will be served statically on the Express server.)
+//   app.use(cors());
+// }
+// if (isProduction) {
+//   const path = require('path');
+//   // Serve the frontend's index.html file at the root route
+//   app.get('/', (req, res) => {
+//     res.cookie('CSRF-TOKEN', req.csrfToken());
+//     res.sendFile(
+//       path.resolve(__dirname, '../frontend', 'build', 'index.html')
+//     );
+//   });
 
-  // Serve the static assets in the frontend's build folder
-  app.use(express.static(path.resolve("../frontend/build")));
+//   // Serve the static assets in the frontend's build folder
+//   app.use(express.static(path.resolve("../frontend/build")));
 
-  // Serve the frontend's index.html file at all other routes NOT starting with /api
-  app.get(/^(?!\/?api).*/, (req, res) => {
-    res.cookie('CSRF-TOKEN', req.csrfToken());
-    res.sendFile(
-      path.resolve(__dirname, '../frontend', 'build', 'index.html')
-    );
-  });
-}
+//   // Serve the frontend's index.html file at all other routes NOT starting with /api
+//   app.get(/^(?!\/?api).*/, (req, res) => {
+//     res.cookie('CSRF-TOKEN', req.csrfToken());
+//     res.sendFile(
+//       path.resolve(__dirname, '../frontend', 'build', 'index.html')
+//     );
+//   });
+// }
 app.use(
   session({
     name: '_Running_Idle_session', // Cookie name
