@@ -5,7 +5,7 @@ import * as runActions from '../../store/runs'
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { fetchActiveCharacter } from '../../store/characters'
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import lofipixel from './LoFi-Pixel.png'
 import * as characterActions from '../../store/characters'
 
@@ -197,7 +197,13 @@ export const RunsPage = (props) => {
                           initialCenter={{ lat: startLat, lng: startLng }}
                           style={{ width: '800px', height: '800px'}}
                           center={{ lat: endLat, lng: endLng }}
-                        >
+                          >
+                          <Marker
+                            position={{
+                              lat: endLat, 
+                              lng: endLng,
+                            }}
+                          />
                         </Map>
                       </div>
                       <div id='characterrunspage-currentrunandindex'>

@@ -22,7 +22,7 @@ function App() {
       {/* <NavBar /> */}
       {<Theme/>}
         <Switch>
-          <AuthRoute exact path="/" component={MainPage} />
+          <Route exact path="/" component={MainPage} />
           <Route exact path='/user/characters' component={Profile} />
           <Route exact path='/character/:characterId' component={CharacterShow} />
           <Route exact path='/runs/character/:characterId' component={RunsPage} />
