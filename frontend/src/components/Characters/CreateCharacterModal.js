@@ -127,9 +127,9 @@ const CharacterForm = ({ onClose }) => {
       </div>
 
       {/* Other form fields can be added but won't be editable by the user */}
-      <button id="submit-btn" type="submit">
+      {name && <button id="submit-btn" type="submit">
         Submit
-      </button>
+      </button>}
     </form>
   );
 };
