@@ -4,6 +4,7 @@
     background-color: rgba(255, 255, 255, 0.465);
     padding: 0.2vh;
     width: 80%; /* Reduce the width to make the boxes smaller */
+    overflow: hidden;
 }
   
   /* Updated styles for input fields */
@@ -15,6 +16,7 @@
     border-radius: 5px;
     color: rgb(164, 125, 132);
     margin: 2px 0; /* Adjust the margin as needed */
+    overflow: hidden;
 }
   
   /* Styles for the login form */
