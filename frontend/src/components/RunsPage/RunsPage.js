@@ -156,19 +156,22 @@ const RunsPage = (props) => {
   
 
 
-  // console.log(character, "   ", characterId)
+  console.log(Object.values(runs))
 
-  // const runsIndex = runs ? 
-  // (
-  //   {runs.map((run) => {      
-  //             <div>
-  //               <div id='eachrun'> Time: {run.duration}</div>
-  //               <div id='eachrun'> Distance: {run.distance}</div>
-  //               <div id='eachrun'> Pace: </div>
-  //               <div id='eachrun'> Points: {run.distance * 15} pts</div>
-  //             </div>
-  //           })}
-  // ) : (<div>No runs yet!</div>)
+  const runsIndex = runs.length > 0 ? (
+    <div>
+      {runs.map((run) => (
+        <div id='runindexitem'>
+          <div id='eachrun'> Time: {formatTime(run.duration)}</div>
+          <div id='eachrun'> Distance: {(run.distance).toFixed(4)} mi</div>
+          <div id='eachrun'> Pace: {formatTime((run.duration)/(run.distance))} time/mile</div>
+          <div id='eachrun'> Points: {(run.distance).toFixed(4) * 15} pts</div>
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div>No runs yet!</div>
+  );
 
   const toggleRunStart = !runStarted ?
       (<div id='characterrunspage-startrun'>
@@ -197,13 +200,10 @@ const RunsPage = (props) => {
                           style={{ width: '800px', height: '800px'}}
                           center={{ lat: endLat, lng: endLng }}
                           >
-                          <Marker
-                            position={{
+                          <Marker position={{
                               lat: endLat, 
-                              lng: endLng,
-                            }}
-                          />
-                        </Map>
+                              lng: endLng}}/>
+                          </Map>
                       </div>
                       <div id='characterrunspage-currentrunandindex'>
                         <div id='characterrunspage-currentruncontainer'>
@@ -224,7 +224,7 @@ const RunsPage = (props) => {
                         <div id='characterrunspage-runindexcontainer'>
                             <div id='runsindexheader'>{character?.name}'s Runs</div>
                             <div id='runsindex'>
-                              {/* {runsIndex} */}
+                              {runsIndex}
                             </div>      
                         </div> 
                       </div>
