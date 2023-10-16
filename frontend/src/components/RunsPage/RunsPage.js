@@ -11,8 +11,7 @@ import * as characterActions from '../../store/characters'
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-
-export const RunsPage = (props) => {
+const RunsPage = (props) => {
   const dispatch = useDispatch();
   const {characterId} = useParams();
   const [startLat, setStartLat] = useState(40.73);
