@@ -1,3 +1,4 @@
+require('dotenv').config();
 require('./models/User');
 require('./models/Character');
 require('./models/Run');
@@ -97,7 +98,7 @@ if (isProduction) {
   app.use(express.static(path.resolve("../frontend/build")));
 
   // Serve the frontend's index.html file at all other routes NOT starting with /api
-  app.get(/^(?!\/?api).*/, (req, res) => {
+  app.get(/^(?!\/?(api)).*/, (req, res) => {
     res.cookie('CSRF-TOKEN', req.csrfToken());
     res.sendFile(
       path.resolve(__dirname, '../frontend', 'build', 'index.html')
