@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import './RunsPage.css'
 import { useDispatch } from 'react-redux';
 import * as runActions from '../../store/runs'
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { fetchActiveCharacter } from '../../store/characters'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import lofipixel from './LoFi-Pixel.png'
 import * as characterActions from '../../store/characters'
 
+
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const RunsPage = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const {characterId} = useParams();
   const [startLat, setStartLat] = useState(40.73);
   const [startLng, setStartLng] = useState(-73.99);
@@ -141,6 +143,11 @@ const RunsPage = (props) => {
       
   };
 
+  const markerIcon = {
+    url: lofipixel,
+    scaledSize: new props.google.maps.Size(50, 50),
+  };
+
   useEffect(() => {
    createRun();
   }, [endLng]);
@@ -189,7 +196,15 @@ const RunsPage = (props) => {
               <div id="characterrunspage-container">
               <img className="lofipixel" src={lofipixel} alt="lofi-pixel" />
                   <div id='characterrunspage-headercontainer'>
-                    <div id='characterrunspage-header'>{character?.name}'s Runs</div>
+                    <div id='runspage-charpagebutton'>
+                      <button onClick={() => (history.push(`/character/${characterId}`))} className='charShowButtons' id='charShowNavButtons'>Back</button>
+                    </div>
+                    <div id='characterrunspage-header'>
+                      <div>Running Hub</div>
+                    </div>
+                    <div id='characterrunspage-characterheader'>
+                      <div>Character: {character?.name}</div>
+                    </div>
                   </div>
                   <div id='runsdata-container'>
                       <div id='characterrunspage-map'>
@@ -198,11 +213,11 @@ const RunsPage = (props) => {
                           zoom={15}
                           initialCenter={{ lat: startLat, lng: startLng }}
                           style={{ width: '800px', height: '800px'}}
-                          center={{ lat: endLat, lng: endLng }}
+                          center={{ lat: startLat, lng: startLng }}
                           >
                           <Marker position={{
-                              lat: endLat, 
-                              lng: endLng}}/>
+                              lat: startLat, 
+                              lng: startLng}} icon={markerIcon}/>
                           </Map>
                       </div>
                       <div id='characterrunspage-currentrunandindex'>
@@ -214,7 +229,7 @@ const RunsPage = (props) => {
                             <div>Start Position: {startLng ? `[${Number(startLat.toFixed(4))}, ${Number(startLng.toFixed(4))}]` : ''}</div>
                             <div>End Position: {endLng ? `[${Number(endLat.toFixed(4))}, ${Number(endLng.toFixed(4))}]` : ''}</div>
                             <div>Time: {endTime ? formatTime(endTime - startTime) : ''}</div>
-                            <div>Distance: {endLng ? calculateDistance(startLat, startLng, endLat, endLng) : ''}mi</div>
+                            <div>Distance: {endLng ? calculateDistance(startLat, startLng, endLat, endLng).toFixed(3) : ''}mi</div>
                             <div>Pace: {endLng ? formatTime(Math.floor((endTime - startTime)/calculateDistance(startLat, startLng, endLat, endLng))) : ''} time/mile</div>
                             <div>Points: {endLng ? Number((15 * calculateDistance(startLat, startLng, endLat, endLng)).toFixed(3)) : ''} pts</div>
                           </div>
@@ -222,7 +237,7 @@ const RunsPage = (props) => {
                         
                         </div>
                         <div id='characterrunspage-runindexcontainer'>
-                            <div id='runsindexheader'>{character?.name}'s Runs</div>
+                            <div id='runsindexheader'>{character?.name}'s Past Runs</div>
                             <div id='runsindex'>
                               {runsIndex}
                             </div>      
