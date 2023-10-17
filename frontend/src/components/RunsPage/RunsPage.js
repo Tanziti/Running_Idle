@@ -91,12 +91,12 @@ const RunsPage = (props) => {
     setRunStarted(false);
     setEndTime(new Date().getTime());
     await getEndLocation();
+    addPoints();
   };
 
   const createRun = () => {
     setEndLat(endLat);
     setEndLng(endLng);
-    addPoints();
     if (endLat !== undefined && endLng !== undefined && endTime !== undefined) {
       return dispatch(runActions.composeRun({
         character: characterId,
@@ -182,7 +182,7 @@ const RunsPage = (props) => {
         <div id='runindexitem' onClick={() => viewRun(run.endPosition)}>
           <div id='eachrun'> Time: {formatTime(run.duration)}</div>
           <div id='eachrun'> Distance: {(run.distance).toFixed(4)} mi</div>
-          <div id='eachrun'> Pace: {formatTime((run.duration)/(run.distance))} time/mile</div>
+          <div id='eachrun'> Pace: {run.distance > 0 ? formatTime((run.duration)/(run.distance)): 0} time/mile</div>
           <div id='eachrun'> Points: {(run.distance).toFixed(4) * 15} pts</div>
         </div>
       ))}
