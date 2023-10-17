@@ -6,12 +6,14 @@ import errors from './errors'
 import session from './session';
 import characters from './characters'
 import runs from './runs'
+import audio from './UI'
 
 const rootReducer = combineReducers({
   session,
   characters,
   runs,
-  errors
+  errors,
+  audio
 });
 
 let enhancer;

@@ -1,6 +1,6 @@
 import './CharacterAnimations/CharacterShow.css';
 import { useHistory, useParams } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchActiveCharacter, updateCharacter } from "../../store/characters"
 import JumpingRopeAnimation from './CharacterAnimations/JumpingRopeAnimation'
@@ -11,12 +11,15 @@ import ArmsIconAnimation from './CharacterAnimations/ArmIconAnimation'
 import LegsIconAnimation from './CharacterAnimations/LegIconAnimation'
 import HeartIconAnimation from './CharacterAnimations/HeartIconAnimation'
 
+
 const CharacterShow = () => {
 
+    // const [newAudioSource, setNewAudioSource] = useState('/assets/sounds/level_up.mp3');
     const dispatch = useDispatch();
     const history = useHistory();    
     const {characterId} = useParams();
     const character = useSelector(state => state.characters.activeCharacter);
+    const isAudioMuted = useSelector(state => state.audio.isPlaying)
 
     useEffect(() => {
         dispatch(fetchActiveCharacter(characterId))
@@ -32,8 +35,9 @@ const playLevelUpSound = () => {
       const levelUpAudio = new Audio();
       levelUpAudio.src = "/assets/sounds/level_up.mp3";
       levelUpAudio.volume = 0.15;
+      if (isAudioMuted){
       levelUpAudio.play();
-  
+      } 
   };
     const goToChars = (e) => {
         e.preventDefault();
