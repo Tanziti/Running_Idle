@@ -16,13 +16,15 @@ const RunsPage = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const {characterId} = useParams();
-  const [startLat, setStartLat] = useState(40.73);
-  const [startLng, setStartLng] = useState(-73.99);
+  const [startLat, setStartLat] = useState();
+  const [startLng, setStartLng] = useState();
   const [endLat, setEndLat] = useState();
   const [endLng, setEndLng] = useState(); 
   const [runStarted, setRunStarted] = useState(false);
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
+  const [currLat, setCurrLat] = useState(40.73);
+  const [currLng, setCurrLng] = useState(-73.99);
   const character = useSelector(state => state.characters.activeCharacter)
   // const [myRuns, setMyRuns] = useState([]);
 
@@ -42,6 +44,8 @@ const RunsPage = (props) => {
           const { latitude, longitude } = position.coords;
           setStartLat(latitude);
           setStartLng(longitude);
+          setCurrLat(latitude);
+          setCurrLng(longitude);
           resolve();
         }, reject);
       } else {
@@ -59,6 +63,8 @@ const RunsPage = (props) => {
             const { latitude, longitude } = position.coords;
             setEndLat(latitude);
             setEndLng(longitude);
+            setCurrLat(latitude);
+            setCurrLng(longitude);
             resolve();
           },
           (error) => {
@@ -143,6 +149,11 @@ const RunsPage = (props) => {
       
   };
 
+  const viewRun = (endPosition) => {
+    setCurrLat(endPosition[0]);
+    setCurrLng(endPosition[1]);
+  }
+
   const markerIcon = {
     url: lofipixel,
     scaledSize: new props.google.maps.Size(50, 50),
@@ -168,7 +179,7 @@ const RunsPage = (props) => {
   const runsIndex = runs.length > 0 ? (
     <div>
       {runs.map((run) => (
-        <div id='runindexitem'>
+        <div id='runindexitem' onClick={() => viewRun(run.endPosition)}>
           <div id='eachrun'> Time: {formatTime(run.duration)}</div>
           <div id='eachrun'> Distance: {(run.distance).toFixed(4)} mi</div>
           <div id='eachrun'> Pace: {formatTime((run.duration)/(run.distance))} time/mile</div>
@@ -211,13 +222,13 @@ const RunsPage = (props) => {
                         <Map
                           google={props.google}
                           zoom={15}
-                          initialCenter={{ lat: startLat, lng: startLng }}
+                          initialCenter={{ lat: currLat, lng: currLng }}
                           style={{ width: '800px', height: '800px'}}
-                          center={{ lat: startLat, lng: startLng }}
+                          center={{ lat: currLat, lng: currLng }}
                           >
                           <Marker position={{
-                              lat: startLat, 
-                              lng: startLng}} icon={markerIcon}/>
+                              lat: currLat, 
+                              lng: currLng}} icon={markerIcon}/>
                           </Map>
                       </div>
                       <div id='characterrunspage-currentrunandindex'>
@@ -229,7 +240,7 @@ const RunsPage = (props) => {
                             <div>Start Position: {startLng ? `[${Number(startLat.toFixed(4))}, ${Number(startLng.toFixed(4))}]` : ''}</div>
                             <div>End Position: {endLng ? `[${Number(endLat.toFixed(4))}, ${Number(endLng.toFixed(4))}]` : ''}</div>
                             <div>Time: {endTime ? formatTime(endTime - startTime) : ''}</div>
-                            <div>Distance: {endLng ? calculateDistance(startLat, startLng, endLat, endLng).toFixed(3) : ''}mi</div>
+                            <div>Distance: {endLng ? calculateDistance(startLat, startLng, endLat, endLng).toFixed(3) : ''} mi</div>
                             <div>Pace: {endLng ? formatTime(Math.floor((endTime - startTime)/calculateDistance(startLat, startLng, endLat, endLng))) : ''} time/mile</div>
                             <div>Points: {endLng ? Number((15 * calculateDistance(startLat, startLng, endLat, endLng)).toFixed(3)) : ''} pts</div>
                           </div>
