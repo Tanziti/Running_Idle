@@ -1,10 +1,15 @@
+#all-runs-index-container{
+    background: url('../Profile/back2.png') no-repeat center center;
+    background-size: cover;
+}
+
 #all-runs {
     width: 33%;
     margin: 0 auto;
     padding-top: 20px;
-    margin-top: 0;
 }
 
 #runs-index-home-button {
-    margin-top: 40px;
+    position: relative;
+    top: 90px;
 }
