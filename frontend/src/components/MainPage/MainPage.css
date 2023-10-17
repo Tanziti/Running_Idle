@@ -2,8 +2,32 @@
   display: flex; /* Use flexbox */
     justify-content: right; /* Center horizontally */
     align-items: flex-start; 
+    padding-right: 10px;
     
 }
+
+#actual-links {
+  padding-top: 10px;
+  align-items: center;
+  display: flex;
+  
+}
+
+.links a:nth-child(2n) {
+  margin-right: 30px;
+  
+  /* Add spacing to the right of every 3rd <a> */
+}
+
+#char-pic-container>* {
+  margin-right: 30px;
+  /* Add spacing to the right of all children */
+}
+
+
+
+
+
 .leaderboard-button {
   position: absolute;
   bottom: 17vh;
