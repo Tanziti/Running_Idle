@@ -36,7 +36,7 @@ return (
     <div id="all-runs-index-container">
 
         <button id='runs-index-home-button' className="charShowButtons" onClick={(e) => (history.push('/'))}>Home Page</button>
-    
+       
         <ul id="all-runs">
             {runs.map((run, index) => (
             <li id='runindexitem'>

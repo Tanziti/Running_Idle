@@ -33,6 +33,7 @@ function MainPage() {
 
   return (
     <div className="main-page">
+      
       <img
         className="img-cont"
         src="https://wallpapers.com/images/hd/cute-aesthetic-tree-8-bit-aqw5erehju889dx6.jpg"
@@ -80,6 +81,9 @@ function MainPage() {
       <img id="bio-pic1"src='/assets/Red_Outfit/Red_Outfit_Red_Shoes7.png'/>
       <img id="bio-pic2"src='/assets/Yellow_Outfit/Yellow_Outfit_Red_Shoes5.png'/>
       <img id="bio-pic"src='/assets/Red_Outfit/Red_Outfit_Green_Shoes2.png'/>
+      </div>
+      <div className="leaderboard-button">
+      <button id='runs-index-home-button' className="charShowButtons" onClick={(e) => (history.push('/runs/'))}>Leaderboard</button>
       </div>
       <div id="forms">
         {/* Show login form if showLoginForm is true */}
