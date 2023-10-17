@@ -1,6 +1,6 @@
 import './CharacterAnimations/CharacterShow.css';
 import { useHistory, useParams } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchActiveCharacter, updateCharacter } from "../../store/characters"
 import JumpingRopeAnimation from './CharacterAnimations/JumpingRopeAnimation'
@@ -11,12 +11,15 @@ import ArmsIconAnimation from './CharacterAnimations/ArmIconAnimation'
 import LegsIconAnimation from './CharacterAnimations/LegIconAnimation'
 import HeartIconAnimation from './CharacterAnimations/HeartIconAnimation'
 
+
 const CharacterShow = () => {
 
+    // const [newAudioSource, setNewAudioSource] = useState('/assets/sounds/level_up.mp3');
     const dispatch = useDispatch();
     const history = useHistory();    
     const {characterId} = useParams();
     const character = useSelector(state => state.characters.activeCharacter);
+    const isAudioMuted = useSelector(state => state.audio.isPlaying)
 
     useEffect(() => {
         dispatch(fetchActiveCharacter(characterId))
@@ -28,10 +31,13 @@ const CharacterShow = () => {
 
 // console.log("hey***********",character?.arms)
 const playLevelUpSound = () => {
-    const levelUpAudio = new Audio();
-    levelUpAudio.src = "/assets/sounds/level_up.mp3"
-    levelUpAudio.volume = 0.15; // Adjust the volume as needed
-    levelUpAudio.play();
+
+      const levelUpAudio = new Audio();
+      levelUpAudio.src = "/assets/sounds/level_up.mp3";
+      levelUpAudio.volume = 0.15;
+      if (isAudioMuted){
+      levelUpAudio.play();
+      } 
   };
     const goToChars = (e) => {
         e.preventDefault();
@@ -69,7 +75,7 @@ const playLevelUpSound = () => {
                 dispatch(updateCharacter(updatedCharacter))
             }
         }
-        if (armsXp % 100 === 0 && armsXp !== 100) {
+        if (armsXp % 100 === 0 && armsXp !== 0) {
             playLevelUpSound(); // Play the level-up sound
           } 
     };
@@ -87,7 +93,7 @@ const playLevelUpSound = () => {
                 const updatedCharacter = { ...character, points: points, legs: legsXp };
                 dispatch(updateCharacter(updatedCharacter))
             }
-            if (legsXp % 100 === 0 && legsXp !== 100) {
+            if (legsXp % 100 === 0 && legsXp !== 0) {
                 playLevelUpSound(); // Play the level-up sound
               } 
         }
@@ -106,7 +112,7 @@ const playLevelUpSound = () => {
                 const updatedCharacter = { ...character, points: points, heart: heartXp };
                 dispatch(updateCharacter(updatedCharacter))
             }
-            if (heartXp % 100 === 0 && heartXp !== 100) {
+            if (heartXp % 100 === 0 && heartXp !== 0) {
                 playLevelUpSound(); // Play the level-up sound
               } 
         }

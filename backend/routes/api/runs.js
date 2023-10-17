@@ -85,4 +85,21 @@ router.put('/:id', requireUser, async (req, res, next) => {
     }
   });
 
+  router.get('/', async (req, res, next) => {
+    try {
+        const runs = await Run.find()
+            .sort({ distance: -1 }) 
+            .limit(10) 
+            .populate("character", "_id name");
+
+        return res.json(runs);
+    } catch (err) {
+        const error = new Error('Runs not found');
+        error.statusCode = 404;
+        error.errors = { message: "No runs found" };
+        return next(error);
+    }
+});
+
+
   module.exports = router;

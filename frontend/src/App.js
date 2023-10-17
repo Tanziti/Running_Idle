@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { AuthRoute } from "./components/Routes/Routes";
@@ -9,9 +9,10 @@ import { getCurrentUser } from "./store/session";
 import CharacterShow from "./components/Characters/CharacterShow";
 import RunsPage from './components/RunsPage/RunsPage';
 import Theme from './components/Sounds/Theme.js';
-import Leaderboard from './components/Leaderboard/Leaderboard'
+
 
 function App() {
+ 
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,14 +23,16 @@ function App() {
     loaded && (
       <>
       {/* <NavBar /> */}
+     
         <Theme/>
+      
         <Switch>
           <Route exact path="/" component={MainPage} />
           <Route exact path='/user/characters' component={Profile} />
-          <Route exact path='/character/:characterId' component={CharacterShow} />
-          <Route exact path='/runs' component={Leaderboard} />
+          <Route exact path='/character/:characterId' component={CharacterShow } />
           <Route exact path='/runs/character/:characterId' component={RunsPage} />
         </Switch>
+      
       </>
     )
   );
