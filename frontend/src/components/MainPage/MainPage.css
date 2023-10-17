@@ -3,6 +3,17 @@
     justify-content: right; /* Center horizontally */
     align-items: flex-start; 
 }
+.leaderboard-button{
+  display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: flex-start; 
+}
+.leaderboard-button button {
+  font-size:20px;
+  white-space: nowrap; /* Prevent line breaks */
+ 
+  text-overflow: ellipsis;
+}
 .links a img {
   height: 35px;
   width:35px;
