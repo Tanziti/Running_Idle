@@ -11,7 +11,6 @@ import RunsPage from './components/RunsPage/RunsPage';
 import Theme from './components/Sounds/Theme.js';
 
 
-
 function App() {
  
   const [loaded, setLoaded] = useState(false);
