@@ -2,11 +2,14 @@
   display: flex; /* Use flexbox */
     justify-content: right; /* Center horizontally */
     align-items: flex-start; 
+    
 }
-.leaderboard-button{
-  display: flex; /* Use flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: flex-start; 
+.leaderboard-button {
+  position: absolute;
+  bottom: 40px;
+  left: 35.5%;
+ 
+  width: 100%;
 }
 .leaderboard-button button {
   font-size:20px;
@@ -17,11 +20,12 @@
 .links a img {
   height: 35px;
   width:35px;
+  padding-left: 5px;
 }
 #bio-pic{
 height: 100px;
 width:100px;
-padding-left: 35px;
+padding-left: 40px;
 }
 #bio-pic1{
   height: 90px;

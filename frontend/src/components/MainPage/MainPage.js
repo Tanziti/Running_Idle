@@ -83,7 +83,7 @@ function MainPage() {
       <img id="bio-pic"src='/assets/Red_Outfit/Red_Outfit_Green_Shoes2.png'/>
       </div>
       <div className="leaderboard-button">
-      <button id='runs-index-home-button' className="charShowButtons" onClick={(e) => (history.push('/runs/'))}>Leaderboard</button>
+      <button id='runs-index-home-button' className="special-button" onClick={(e) => (history.push('/runs/'))}>Leaderboard</button>
       </div>
       <div id="forms">
         {/* Show login form if showLoginForm is true */}
