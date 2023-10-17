@@ -23,6 +23,7 @@ Running Idle redefines the concept of a traditional workout app, transforming ev
 ## Application Demo
 
 ### Splash Page & Demo Login
+![Demo Login](public/assets/readmeimages/demologin.gif)
 
 ### Demo Run & Character Upgrade
 
