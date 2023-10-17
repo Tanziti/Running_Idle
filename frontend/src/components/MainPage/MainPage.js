@@ -33,6 +33,7 @@ function MainPage() {
 
   return (
     <div className="main-page">
+      
       <img
         className="img-cont"
         src="https://wallpapers.com/images/hd/cute-aesthetic-tree-8-bit-aqw5erehju889dx6.jpg"
@@ -53,8 +54,36 @@ function MainPage() {
             <button onClick={toggleSignupForm} className="special-button">
               Sign Up
             </button>
+           
           </div>
         </div>
+      </div>
+      <div className="links">
+         Zi<a href="https://www.linkedin.com/in/tanzitian/"><img id='links1' src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/>
+      </a>
+      <a href="https://github.com/Tanziti"><img id='links1' src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"/>
+      </a>
+      Mo<a  href="https://www.linkedin.com/in/muhammad-amray-b94983207/"><img id='links2' src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/>
+      </a>
+      <a href="https://github.com/muhammadamray"><img id='links2' src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"/>
+      </a>
+      Avery<a href="https://www.linkedin.com/in/avery-berry-6a562a253/"><img id='links3'  src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/>
+      </a>
+      <a  href="https://github.com/AveryRBerry"><img id='links3'  src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"/>
+      </a>
+      Alex<a href="https://www.linkedin.com/in/alex-brown-85a330198/"><img id='links4' src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/>
+      </a>
+      <a href="https://github.com/ajb-4"><img id='links4' src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"/>
+      </a>
+      </div>
+      <div className="links">
+      <img id="bio-pic"src='/assets/Green_Outfit/Green_Outfit_Yellow_Shoes3.png'/>
+      <img id="bio-pic1"src='/assets/Red_Outfit/Red_Outfit_Red_Shoes7.png'/>
+      <img id="bio-pic2"src='/assets/Yellow_Outfit/Yellow_Outfit_Red_Shoes5.png'/>
+      <img id="bio-pic"src='/assets/Red_Outfit/Red_Outfit_Green_Shoes2.png'/>
+      </div>
+      <div className="leaderboard-button">
+      <button id='runs-index-home-button' className="special-button" onClick={(e) => (history.push('/runs/'))}>Leaderboard</button>
       </div>
       <div id="forms">
         {/* Show login form if showLoginForm is true */}

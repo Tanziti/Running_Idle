@@ -5,7 +5,7 @@ import * as runActions from '../../store/runs'
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { fetchActiveCharacter } from '../../store/characters'
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, Polyline } from 'google-maps-react';
 import lofipixel from './LoFi-Pixel.png'
 import * as characterActions from '../../store/characters'
 
@@ -25,6 +25,8 @@ const RunsPage = (props) => {
   const [endTime, setEndTime] = useState();
   const [currLat, setCurrLat] = useState(40.73);
   const [currLng, setCurrLng] = useState(-73.99);
+  const [currLat2, setCurrLat2] = useState();
+  const [currLng2, setCurrLng2] = useState();
   const character = useSelector(state => state.characters.activeCharacter)
   // const [myRuns, setMyRuns] = useState([]);
 
@@ -63,8 +65,8 @@ const RunsPage = (props) => {
             const { latitude, longitude } = position.coords;
             setEndLat(latitude);
             setEndLng(longitude);
-            setCurrLat(latitude);
-            setCurrLng(longitude);
+            setCurrLat2(latitude);
+            setCurrLng2(longitude);
             resolve();
           },
           (error) => {
@@ -149,9 +151,11 @@ const RunsPage = (props) => {
       
   };
 
-  const viewRun = (endPosition) => {
-    setCurrLat(endPosition[0]);
-    setCurrLng(endPosition[1]);
+  const viewRun = (startPosition, endPosition) => {
+    setCurrLat(startPosition[0]);
+    setCurrLng(startPosition[1]);
+    setCurrLat2(endPosition[0]);
+    setCurrLng2(endPosition[1]);
   }
 
   const markerIcon = {
@@ -179,7 +183,7 @@ const RunsPage = (props) => {
   const runsIndex = runs.length > 0 ? (
     <div>
       {runs.map((run) => (
-        <div id='runindexitem' onClick={() => viewRun(run.endPosition)}>
+        <div id='runindexitem' onClick={() => viewRun(run.startPosition, run.endPosition)}>
           <div id='eachrun'> Time: {formatTime(run.duration)}</div>
           <div id='eachrun'> Distance: {(run.distance).toFixed(4)} mi</div>
           <div id='eachrun'> Pace: {run.distance > 0 ? formatTime((run.duration)/(run.distance)) : '00:00'} time/mile</div>
@@ -229,6 +233,16 @@ const RunsPage = (props) => {
                           <Marker position={{
                               lat: currLat, 
                               lng: currLng}} icon={markerIcon}/>
+                          <Marker position={{
+                              lat: currLat2, 
+                              lng: currLng2}} icon={markerIcon}/>
+                          <Polyline
+                            path={[
+                              { lat: currLat, lng: currLng },
+                              { lat: currLat2, lng: currLng2 },
+                            ]}
+                            options={{ strokeColor: '#FF0000', strokeWeight: 2 }}
+                          />
                           </Map>
                       </div>
                       <div id='characterrunspage-currentrunandindex'>
