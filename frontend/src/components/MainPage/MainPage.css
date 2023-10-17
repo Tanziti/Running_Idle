@@ -6,10 +6,9 @@
 }
 .leaderboard-button {
   position: absolute;
-  bottom: 40px;
-  left: 35.5%;
- 
-  width: 100%;
+  bottom: 17vh;
+  left: 35vw;
+  width: 50%;
 }
 .leaderboard-button button {
   font-size:20px;
