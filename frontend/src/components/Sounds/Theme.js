@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import './Theme.css';
+import { setAudioSource } from '../../store/UI';
+import { playAudio } from '../../store/UI';
+import { muteAudio } from '../../store/UI';
 
 function Theme() {
   const [audioMuted, setAudioMuted] = useState(true);
   const audioRef = React.createRef();
   const location = useLocation();
-
+  const dispatch = useDispatch();
   const originalVolume = 0.05;
 
   const toggleMute = () => {
@@ -14,7 +18,14 @@ function Theme() {
     audio.muted = !audioMuted;
     setAudioMuted(!audioMuted);
     audio.volume = originalVolume;
+    if (audio.muted){
+       dispatch(muteAudio());
+    } else {
+      dispatch(playAudio())
+    }
+   
   };
+
 
   // Define a function to compute the audio source based on the current route
   const getAudioSource = () => {
