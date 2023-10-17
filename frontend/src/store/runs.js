@@ -1,7 +1,7 @@
 import jwtFetch from './jwt';
 import { RECEIVE_USER_LOGOUT } from './session';
 
-
+const RECEIVE_ALL_RUNS = "runs/RECEIVE_ALL_RUNS"
 const RECEIVE_CHARACTER_RUNS = "runs/RECEIVE_CHARACTER_RUNS";
 const RECEIVE_CHARACTER_RUN = "runs/RECEIVE_CHARACTER_RUN";
 const RECEIVE_RUN_ERRORS = "run/RECEIVE_RUN_ERRORS";
@@ -26,6 +26,12 @@ const receiveCharacterRuns = (runs, character) => ({
   type: RECEIVE_CHARACTER_RUNS,
   runs,
   character
+});
+
+
+const receiveAllRuns = (runs) => ({
+  type: RECEIVE_ALL_RUNS,
+  runs
 });
 
 
@@ -69,6 +75,20 @@ export const fetchCharacterRuns = id => async dispatch => {
     const res = await jwtFetch(`/api/runs/character/${id}`);
     const runs = await res.json();
     dispatch(receiveCharacterRuns(runs));
+  } catch(err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveErrors(resBody.errors));
+    }
+  }
+};
+
+
+export const fetchAllRuns = () => async dispatch => {
+  try {
+    const res = await jwtFetch(`/api/runs/`);
+    const runs = await res.json();
+    dispatch(receiveAllRuns(runs));
   } catch(err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
@@ -136,6 +156,8 @@ const runReducer = (state = { all: {}, character: {}, new: undefined }, action) 
         return {...state, character: action.run, new: undefined}
     case RECEIVE_USER_LOGOUT:
       return { ...state, user: {}, new: undefined }
+    case RECEIVE_ALL_RUNS:
+      return { ...state, all: action.runs, new: undefined};
     default:
       return state;
   }
