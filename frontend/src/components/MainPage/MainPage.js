@@ -77,10 +77,10 @@ function MainPage() {
       </a>
       </div>
       <div className="links" id="char-pic-container">
-      <img id="bio-pic"src='/assets/Green_Outfit/Green_Outfit_Yellow_Shoes3.png'/>
-      <img id="bio-pic1"src='/assets/Red_Outfit/Red_Outfit_Red_Shoes7.png'/>
-      <img id="bio-pic2"src='/assets/Yellow_Outfit/Yellow_Outfit_Red_Shoes5.png'/>
-      <img id="bio-pic"src='/assets/Red_Outfit/Red_Outfit_Green_Shoes2.png'/>
+      <img id="bio-pic"src='/assets/green_Outfit/green_Outfit_yellow_Shoes3.png'/>
+      <img id="bio-pic1"src='/assets/red_Outfit/red_Outfit_red_Shoes7.png'/>
+      <img id="bio-pic2"src='/assets/yellow_Outfit/yellow_Outfit_red_Shoes5.png'/>
+      <img id="bio-pic"src='/assets/red_Outfit/red_Outfit_green_Shoes2.png'/>
       </div>
       <div className="leaderboard-button">
       <button id='runs-index-home-button' className="special-button" onClick={(e) => (history.push('/runs/'))}>Leaderboard</button>
