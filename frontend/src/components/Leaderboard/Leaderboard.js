@@ -37,7 +37,8 @@ return (
 
         <button id='runs-index-home-button' className="charShowButtons" onClick={(e) => (history.push('/'))}>Home Page</button>
     
-        <ul id="all-runs">
+        <div id="all-runs" className='leaderboard-title'>LeaderBoard!</div>
+        <ul id="all-runs"> 
             {runs.map((run, index) => (
             <li id='runindexitem'>
                 <div>Place #{index+1}</div>
