@@ -58,7 +58,7 @@ function MainPage() {
           </div>
         </div>
       </div>
-      <div className="links">
+      <div className="links" id='actual-links'>
          Zi<a href="https://www.linkedin.com/in/tanzitian/"><img id='links1' src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"/>
       </a>
       <a href="https://github.com/Tanziti"><img id='links1' src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"/>
@@ -76,7 +76,7 @@ function MainPage() {
       <a href="https://github.com/ajb-4"><img id='links4' src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"/>
       </a>
       </div>
-      <div className="links">
+      <div className="links" id="char-pic-container">
       <img id="bio-pic"src='/assets/Green_Outfit/Green_Outfit_Yellow_Shoes3.png'/>
       <img id="bio-pic1"src='/assets/Red_Outfit/Red_Outfit_Red_Shoes7.png'/>
       <img id="bio-pic2"src='/assets/Yellow_Outfit/Yellow_Outfit_Red_Shoes5.png'/>
