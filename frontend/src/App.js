@@ -9,6 +9,7 @@ import { getCurrentUser } from "./store/session";
 import CharacterShow from "./components/Characters/CharacterShow";
 import RunsPage from './components/RunsPage/RunsPage';
 import Theme from './components/Sounds/Theme.js';
+import Leaderboard from './components/Leaderboard/Leaderboard'
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/" component={MainPage} />
           <Route exact path='/user/characters' component={Profile} />
           <Route exact path='/character/:characterId' component={CharacterShow } />
+          <Route exact path='/runs/' component={Leaderboard} />
           <Route exact path='/runs/character/:characterId' component={RunsPage} />
         </Switch>
       
