@@ -8,6 +8,7 @@ import { fetchActiveCharacter } from '../../store/characters'
 import { Map, GoogleApiWrapper, Marker, Polyline } from 'google-maps-react';
 import lofipixel from './LoFi-Pixel.png'
 import * as characterActions from '../../store/characters'
+import charimage from './green_Outfit_green_Shoes1.png'
 
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
@@ -94,7 +95,6 @@ const RunsPage = (props) => {
     setEndTime(new Date().getTime());
     await getEndLocation();
     addPoints();
-    window.location.reload(true);//needs to be fixed 
   };
 
   const createRun = () => {
@@ -166,6 +166,8 @@ const RunsPage = (props) => {
 
   useEffect(() => {
    createRun();
+   dispatch(fetchActiveCharacter(characterId))
+   dispatch(runActions.fetchCharacterRuns(characterId))
   }, [endLng]);
 
   useEffect(() => {
@@ -233,16 +235,16 @@ const RunsPage = (props) => {
                           >
                           <Marker position={{
                               lat: currLat, 
-                              lng: currLng}} icon={markerIcon}/>
+                              lng: currLng}} icon={charimage}/>
                           <Marker position={{
                               lat: currLat2, 
-                              lng: currLng2}} icon={markerIcon}/>
+                              lng: currLng2}} icon={charimage}/>
                           <Polyline
                             path={[
                               { lat: currLat, lng: currLng },
                               { lat: currLat2, lng: currLng2 },
                             ]}
-                            options={{ strokeColor: '#FF0000', strokeWeight: 2 }}
+                            options={{ strokeColor: '#800080', strokeWeight: 3 }}
                           />
                           </Map>
                       </div>
@@ -256,7 +258,7 @@ const RunsPage = (props) => {
                             <div>End Position: {endLng ? `[${Number(endLat.toFixed(4))}, ${Number(endLng.toFixed(4))}]` : ''}</div>
                             <div>Time: {endTime ? formatTime(endTime - startTime) : ''}</div>
                             <div>Distance: {endLng ? calculateDistance(startLat, startLng, endLat, endLng).toFixed(3) : ''} mi</div>
-                            <div>Pace: {endLng ? formatTime(Math.floor((endTime - startTime)/calculateDistance(startLat, startLng, endLat, endLng))) : ''} time/mile</div>
+                            <div>Pace: {calculateDistance(startLat, startLng, endLat, endLng) > 0 ? formatTime(Math.floor((endTime - startTime)/calculateDistance(startLat, startLng, endLat, endLng))) : ''} time/mile</div>
                             <div>Points: {endLng ? Number((15 * calculateDistance(startLat, startLng, endLat, endLng)).toFixed(3)) : ''} pts</div>
                           </div>
 
