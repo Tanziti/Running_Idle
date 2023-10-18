@@ -94,6 +94,7 @@ const RunsPage = (props) => {
     setEndTime(new Date().getTime());
     await getEndLocation();
     addPoints();
+    window.location.reload(true);//needs to be fixed 
   };
 
   const createRun = () => {
