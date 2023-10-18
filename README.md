@@ -31,7 +31,7 @@ Running Idle redefines the concept of a traditional workout app, transforming ev
 ### Demo Run
 ![run](frontend/public/assets/readmeimages/run.gif)
 
-## Code Snippets
+## Code
 
 ## Technologies Used
 
