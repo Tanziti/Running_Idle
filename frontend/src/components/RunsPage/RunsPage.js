@@ -159,8 +159,8 @@ const RunsPage = (props) => {
     setCurrLng2(endPosition[1]);
   }
 
-  const markerIcon = {
-    url: lofipixel,
+  const charIcon = {
+    url: charimage,
     scaledSize: new props.google.maps.Size(50, 50),
   };
 
@@ -235,10 +235,10 @@ const RunsPage = (props) => {
                           >
                           <Marker position={{
                               lat: currLat, 
-                              lng: currLng}} icon={charimage}/>
+                              lng: currLng}} icon={charIcon}/>
                           <Marker position={{
                               lat: currLat2, 
-                              lng: currLng2}} icon={charimage}/>
+                              lng: currLng2}} icon={charIcon}/>
                           <Polyline
                             path={[
                               { lat: currLat, lng: currLng },
