@@ -1,6 +1,6 @@
 import './CharacterAnimations/CharacterShow.css';
 import { useHistory, useParams } from "react-router-dom";
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchActiveCharacter, updateCharacter } from "../../store/characters"
 import JumpingRopeAnimation from './CharacterAnimations/JumpingRopeAnimation'
@@ -14,12 +14,12 @@ import HeartIconAnimation from './CharacterAnimations/HeartIconAnimation'
 
 const CharacterShow = () => {
 
-    // const [newAudioSource, setNewAudioSource] = useState('/assets/sounds/level_up.mp3');
     const dispatch = useDispatch();
     const history = useHistory();    
     const {characterId} = useParams();
     const character = useSelector(state => state.characters.activeCharacter);
     const isAudioMuted = useSelector(state => state.audio.isPlaying)
+    const [showInfoModal, setShowInfoModal] = useState(false);
 
     useEffect(() => {
         dispatch(fetchActiveCharacter(characterId))
@@ -29,15 +29,15 @@ const CharacterShow = () => {
         setPoints(character?.points)
     }, [dispatch, characterId, character?.heart, character?.legs, character?.arms, character?.points])
 
-const playLevelUpSound = () => {
+    const playLevelUpSound = () => {
 
-      const levelUpAudio = new Audio();
-      levelUpAudio.src = "/assets/sounds/level_up.mp3";
-      levelUpAudio.volume = 0.15;
-      if (isAudioMuted){
-      levelUpAudio.play();
-      } 
-  };
+        const levelUpAudio = new Audio();
+        levelUpAudio.src = "/assets/sounds/level_up.mp3";
+        levelUpAudio.volume = 0.15;
+        if (isAudioMuted){
+        levelUpAudio.play();
+        } 
+    };
     const goToChars = (e) => {
         e.preventDefault();
         history.push("/user/characters");
@@ -76,7 +76,7 @@ const playLevelUpSound = () => {
         }
         if (armsXp % 100 === 0 && armsXp !== 0) {
             playLevelUpSound(); // Play the level-up sound
-          } 
+        } 
     };
 
     const handleShowJumpingRope = () => {
@@ -94,7 +94,7 @@ const playLevelUpSound = () => {
             }
             if (legsXp % 100 === 0 && legsXp !== 0) {
                 playLevelUpSound(); // Play the level-up sound
-              } 
+            } 
         }
     };
 
@@ -113,7 +113,7 @@ const playLevelUpSound = () => {
             }
             if (heartXp % 100 === 0 && heartXp !== 0) {
                 playLevelUpSound(); // Play the level-up sound
-              } 
+            } 
         }
     };
 
@@ -152,15 +152,23 @@ const playLevelUpSound = () => {
         dispatch(updateCharacter(updatedCharacter))
     }
 
+    const toggleInfoModal  = () => {
+        setShowInfoModal(!showInfoModal);
+    }
+
 
     return (
         <>
             <div id="showPageContainer">
                 <div id='showPageNavBar'>
+                    <button id='info-button' onClick={toggleInfoModal}>
+                        <i class="fas fa-circle-info"></i>
+                    </button>
                     <div id='CharacterName'>{character.name}</div>
                     <div id='CharPoints'>${character.points}</div>
-                    <img onClick={cheat} alt="CharImg" src={`/assets/${character.outfit}_Outfit/${character.outfit}_Outfit_${character.shoes}_Shoes1.png`} id="charStaticImgIcon" />
-                    <button className='charShowButtons' id='charShowNavButtons' onClick={() => history.push(`/runs/character/${characterId}`)}>Runs!</button>
+                    <div id='cheat-button-text'>Cheat&rarr;</div>
+                    <img onClick={cheat} alt="CharImg" src={`/assets/${character.outfit}_Outfit/${character.outfit}_Outfit_${character.shoes}_Shoes1.png`} id="charStaticImgIcon"/>
+                    <button className='charShowButtons' id='charShowNavButtons' onClick={() => history.push(`/runs/character/${characterId}`)}>Runs! </button>
                     <button onClick={goToChars} className='charShowButtons' id='charShowNavButtons'>Profile</button>
                     <button onClick={logoutUser} className='charShowButtons' id='charShowNavButtons'>Logout</button>
                 </div>
@@ -205,6 +213,31 @@ const playLevelUpSound = () => {
                     </div>
                 </div>
             </div>
+            {/* Info Modal */}
+            {showInfoModal && (
+                <div id="info-modal">
+                <div id="info-modal-content">
+                    {/* Your modal content here */}
+                    <button onClick={toggleInfoModal}>X</button>
+                    <p className='modal-text'>
+                    Character Page<br/><br/>
+                    -- This is where you can play with the character you created
+                    <br/><br/><br/><br/>
+                    Points<br/><br/>
+                    -- This is the currency for leveling up<br/><br/>
+                    -- Points are obtained by actually running on the runs page<br/><br/>
+                    -- You will be rewarded points based on the distance you ran<br/><br/>
+                    -- There is a cheat button for demo purposes<br/><br/>
+                    <br/><br/><br/><br/>
+                    Arms/Legs/Heart<br/><br/>
+                    -- You can spend points on leveling up your character<br/><br/>
+                    -- Click these buttons to spend points in the corresponding stat<br/><br/>
+                    -- Requires 100% filled bar to lvl up and can reach a max lvl of 10<br/><br/>
+                    <br/>
+                    </p>
+                </div>
+                </div>
+            )}
         </>
     )
 }

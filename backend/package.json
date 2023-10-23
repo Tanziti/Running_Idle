@@ -16,6 +16,7 @@
     "express": "~4.16.1",
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
+    "font-awesome": "^4.7.0",
     "google-maps-api": "^2.0.1",
     "google-maps-react": "^2.0.6",
     "jsonwebtoken": "^9.0.2",
