@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 const ArmsIconAnimation = ({character})  => {
     const [isImage1Visible, setIsImage1Visible] = useState(true);
 
-    // console.log(character.outfit)
     useEffect(() => {
         const interval = setInterval(() => {
         setIsImage1Visible((prevIsImage1Visible) => !prevIsImage1Visible);

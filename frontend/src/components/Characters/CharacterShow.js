@@ -29,7 +29,6 @@ const CharacterShow = () => {
         setPoints(character?.points)
     }, [dispatch, characterId, character?.heart, character?.legs, character?.arms, character?.points])
 
-// console.log("hey***********",character?.arms)
 const playLevelUpSound = () => {
 
       const levelUpAudio = new Audio();

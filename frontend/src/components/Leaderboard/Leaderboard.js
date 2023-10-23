@@ -29,7 +29,6 @@ const Leaderboard = () => {
 
 
 
-// console.log(runs)
 if (Object.keys(runs).length === 0) return null
 return (
 
