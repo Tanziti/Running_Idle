@@ -61,9 +61,9 @@ function Profile() {
 
 
       <div className="char-container">
-                                <button id='info-button' onClick={toggleInfoModal}>
-                        <i class="fas fa-circle-info"></i>
-                    </button>
+        <button id='info-button' onClick={toggleInfoModal}>
+          <i class="fas fa-circle-info"></i>
+        </button>
           {userCharacters.map((character, index) => (
           <CharacterItem key={character._id} character={character} />
           ))}

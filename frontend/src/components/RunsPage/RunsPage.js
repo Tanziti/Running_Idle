@@ -29,6 +29,7 @@ const RunsPage = (props) => {
   const [currLat2, setCurrLat2] = useState();
   const [currLng2, setCurrLng2] = useState();
   const character = useSelector(state => state.characters.activeCharacter)
+  const [showInfoModal, setShowInfoModal] = useState(false);
   // const [myRuns, setMyRuns] = useState([]);
 
 
@@ -177,7 +178,9 @@ const RunsPage = (props) => {
   }, [characterId, dispatch])
 
 
-  
+  const toggleInfoModal  = () => {
+    setShowInfoModal(!showInfoModal);
+  }
 
 
 
@@ -212,8 +215,12 @@ const RunsPage = (props) => {
               <div id="characterrunspage-container">
               <img className="lofipixel" src={lofipixel} alt="lofi-pixel" />
                   <div id='characterrunspage-headercontainer'>
+                    <button id='info-button' onClick={toggleInfoModal}>
+                      <i class="fas fa-circle-info"></i>
+                    </button>
                     <div id='runspage-charpagebutton'>
                       <button onClick={() => (history.push(`/character/${characterId}`))} className='charShowButtons' id='charShowNavButtons'>Back</button>
+                      
                     </div>
                     <div id='characterrunspage-header'>
                       <div>Running Hub</div>
@@ -222,6 +229,7 @@ const RunsPage = (props) => {
                       <div>Character: {character?.name}</div>
                     </div>
                   </div>
+                  
                   <div id='runsdata-container'>
                       <div id='characterrunspage-map'>
                         <Map
@@ -272,6 +280,29 @@ const RunsPage = (props) => {
                       
                   </div>
               </div>
+              {showInfoModal && (
+                <div id="info-modal">
+                  <div id="info-modal-content">
+                      <button onClick={toggleInfoModal}>X</button>
+                      <p className='modal-text'>
+                      Character Runs Page<br/><br/>
+                      -- This is where you can create a run for character points
+                      <br/><br/><br/><br/>
+                      Runs<br/><br/>
+                      -- You can start a run, logging your current position<br/><br/>
+                      -- The end button completes your run logging finale position<br/><br/>
+                      -- Your rewarded points based distance traveled<br/><br/>
+                      -- The character is updated with the new points<br/><br/>
+                      -- A log of all runs are displayed for this character<br/><br/>
+                      <br/><br/><br/><br/>
+                      Google Maps Information<br/><br/>
+                      -- When starting a run your position is shown on the map<br/><br/>
+                      -- When ending a run your new position is shown<br/><br/>
+                      -- Completing a run logs and displays the details of that run<br/><br/>
+                      </p>
+                  </div>
+                </div>
+              )}
           </>
   );
 }
