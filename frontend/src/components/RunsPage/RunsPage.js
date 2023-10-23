@@ -37,7 +37,6 @@ const RunsPage = (props) => {
 
   // const [locationClicked, setLocationClicked] = useState(false);
   const runs = useSelector(state => state.runs.character)
-  // console.log(runs[0])
 
 
   const getStartLocation = () => {
@@ -181,7 +180,6 @@ const RunsPage = (props) => {
   
 
 
-  console.log(Object.values(runs))
 
   const runsIndex = runs.length > 0 ? (
     <div>
