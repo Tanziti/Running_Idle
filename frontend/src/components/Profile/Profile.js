@@ -46,9 +46,19 @@ function Profile() {
       <h2 className="char-header">
         All of {currentUser.username}'s Characters
       </h2>
+
+      {userCharacters.length < 3 &&
       <button className="new-btn" onClick={toggleForm}>
-        New Character
+        New Characters!
       </button>
+      }
+
+      {userCharacters.length >= 3 &&
+      <button className="new-btn">
+        3 Max Characters!
+      </button>
+      }
+
 
       <div className="char-container">
                                 <button id='info-button' onClick={toggleInfoModal}>
