@@ -41,16 +41,26 @@ function Profile() {
       <h2 className="char-header">
         All of {currentUser.username}'s Characters
       </h2>
+
+      {userCharacters.length < 3 &&
       <button className="new-btn" onClick={toggleForm}>
-        New Character
+        New Characters!
       </button>
+      }
+
+      {userCharacters.length >= 3 &&
+      <button className="new-btn">
+        3 Max Characters!
+      </button>
+      }
+
       <div className="char-container">
           {userCharacters.map((character, index) => (
           <CharacterItem key={character._id} character={character} />
           ))}
       </div>
       {isFormOpen && <CharacterForm id="form-char" onClose={() => setIsFormOpen(false)} />}
-      <img className="back-image" src={pic} alt="Backgr" />
+      <img className="back-image" src={pic} alt="Background" />
     </div>
   );
 }
