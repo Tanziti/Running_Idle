@@ -154,14 +154,14 @@ button:hover {
 
   .inst-button {
     position: absolute;
-    bottom: 6vh;
-    left: 53.2vw; /* Position the button in the middle */
+    bottom: 2.5vh;
+    left: 48.5vw; /* Position the button in the middle */
     transform: translateX(-50%); /* Center the button horizontally */
     margin: 0 .2rem;
     padding: 0.5rem 1rem;
     font-size: 1.5vh;
-    background-color: #007bff9c;
-    color: pink;
+    /* background-color: #007bff9c; */
+    /* color: pink; */
     border: none;
     border-radius: 5px;
     cursor: pointer;

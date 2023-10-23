@@ -154,8 +154,8 @@ function MainPage() {
           Leaderboard
         </button>
       </div>
-      <button onClick={toggleInstructions} className="inst-button">
-        Instructions
+      <button onClick={toggleInstructions} className="inst-button" id='info-button'>
+        <i class="fas fa-circle-info"></i>
       </button>
       <div id="forms">
         {/* Show login form if showLoginForm is true */}

@@ -39,9 +39,9 @@ return (
     <div id="all-runs-index-container">
 
         <button id='runs-index-home-button' className="charShowButtons" onClick={(e) => (history.push('/'))}>Home Page</button>
-                        <button id='info-button' onClick={toggleInfoModal}>
-                        <i class="fas fa-circle-info"></i>
-                    </button>
+        <button id='info-button' onClick={toggleInfoModal}>
+            <i class="fas fa-circle-info"></i>
+        </button>
         <div id="all-runs" className='leaderboard-title'>LeaderBoard!</div>
         <ul id="all-runs"> 
             {runs.map((run, index) => (
