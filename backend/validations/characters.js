@@ -7,8 +7,8 @@ const handleValidationErrors = require('./handleValidationErrors');
 const validateCharacterInput = [
   check('name')
     .exists({ checkFalsy: true })
-    .isLength({ min: 2, max: 15 })
-    .withMessage('Character must have a name with at least 2 letters'),
+    .isLength({ min: 1, max: 15 })
+    .withMessage('Character must have a name with at least 1 letters'),
  
   check('outfit')
    .exists({ checkFalsy: true })
