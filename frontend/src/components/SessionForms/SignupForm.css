@@ -42,4 +42,5 @@
     color: rgba(110, 82, 86, 0.87);
     padding: 6px;
     font-weight: bold;
+    cursor: pointer;
 }
