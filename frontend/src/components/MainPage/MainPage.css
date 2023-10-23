@@ -34,12 +34,15 @@
   left: 35vw;
   width: 50%;
 }
+
 .leaderboard-button button {
-  font-size:20px;
+  font-size: 1.5vh;
   white-space: nowrap; /* Prevent line breaks */
  
   text-overflow: ellipsis;
 }
+
+
 .links a img {
   height: 35px;
   width:35px;
@@ -147,3 +150,39 @@ button:hover {
     animation: slideIn 2s ease forwards; /* Apply the animation */
   }
   
+
+
+  .inst-button {
+    position: absolute;
+    bottom: 6vh;
+    left: 53.2vw; /* Position the button in the middle */
+    transform: translateX(-50%); /* Center the button horizontally */
+    margin: 0 .2rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.5vh;
+    background-color: #007bff9c;
+    color: pink;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+.mod-content {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 8px;
+  bottom: 25vh;
+  right: 4.5vw;
+  width: 30%;
+  height: 38%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10;
+}
+
+
+#mod-text {
+  color: #a5c8ff;
+  font-size: 12px;
+}
