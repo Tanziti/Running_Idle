@@ -49,3 +49,18 @@
   position: absolute;
   z-index: -2;
 }
+.profile-page-links {
+  position: relative; /* Set the parent to a relative position */
+}
+
+#profile-actual-links {
+  position: absolute; /* Set the links to an absolute position */
+  bottom: 10px; /* Align to the bottom */
+  right: 0; /* Align to the right */
+  display: flex;
+}
+
+.profile-page-links a:nth-child(2n) {
+  margin-right: 30px;
+  /* Add spacing to the right of every 3rd <a> */
+}
