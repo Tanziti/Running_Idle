@@ -28,3 +28,25 @@
     font-size: 16px;
     /* Adjust the font size for all child <div> elements */
 }
+
+.leaderboard-page-links {
+    position: relative; /* Set the parent to a relative position */
+    height: 100vh; /* Ensure the parent takes the full viewport height */
+  }
+  
+  #leaderboard-actual-links {
+    position: absolute; /* Set the links to an absolute position */
+    bottom: -20vh; /* Align to the bottom */
+    right: 0; /* Align to the right */
+    display: flex;
+    flex-direction: column; /* Display the links vertically */
+  }
+  
+  .leaderboard-page-links a {
+    margin-bottom: 10px; /* Add vertical spacing between the links */
+  }
+  
+  .leaderboard-page-links a:nth-child(2n) {
+    margin-right: 30px;
+  }
+  

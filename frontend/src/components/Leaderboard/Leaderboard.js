@@ -73,6 +73,69 @@ return (
                 </div>
                 </div>
             )}
+             <div className="leaderboard-page-links" id="leaderboard-actual-links">
+        Zi
+        <a target="_blank" href="https://www.linkedin.com/in/tanzitian/">
+          <img
+            id="links1"
+            src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"
+          />
+        </a>
+        <a target="_blank" href="https://github.com/Tanziti">
+          <img
+            id="links1"
+            src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"
+          />
+        </a>
+        Mo
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/muhammad-amray-b94983207/"
+        >
+          <img
+            id="links2"
+            src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"
+          />
+        </a>
+        <a target="_blank" href="https://github.com/muhammadamray">
+          <img
+            id="links2"
+            src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"
+          />
+        </a>
+        Avery
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/avery-berry-6a562a253/"
+        >
+          <img
+            id="links3"
+            src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"
+          />
+        </a>
+        <a target="_blank" href="https://github.com/AveryRBerry">
+          <img
+            id="links3"
+            src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"
+          />
+        </a>
+        Alex
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/alex-brown-85a330198/"
+        >
+          <img
+            id="links4"
+            src="https://img.icons8.com/ios-filled/50/000000/linkedin.png"
+          />
+        </a>
+        <a target="_blank" href="https://github.com/ajb-4">
+          <img
+            id="links4"
+            src=" https://img.icons8.com/sf-ultralight/52/000000/github.png"
+          />
+        </a>
+      </div>
     </div>
 
 );
