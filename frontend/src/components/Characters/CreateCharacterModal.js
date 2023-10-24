@@ -47,7 +47,7 @@ const CharacterForm = ({ onClose }) => {
         value={name}
         onChange={(e) => setName(e.target.value)} // Update the name input value
         required
-        maxLength={7}
+        maxLength={8}
       />
 
       {/* Radio buttons for outfit */}

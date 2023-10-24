@@ -14,6 +14,7 @@ function Profile() {
   const userCharacters = useSelector((state) => state.characters.allCharacters ?? []);
   const history = useHistory();
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(false);
 
   useEffect(() => {
     if (currentUser) {
@@ -31,6 +32,10 @@ function Profile() {
   const toggleForm = () => {
     setIsFormOpen(!isFormOpen);
   };
+
+      const toggleInfoModal  = () => {
+        setShowInfoModal(!showInfoModal);
+    }
 
 
   return (
@@ -54,13 +59,36 @@ function Profile() {
       </button>
       }
 
+
       <div className="char-container">
+        <button id='info-button' onClick={toggleInfoModal}>
+          <i class="fas fa-circle-info"></i>
+        </button>
           {userCharacters.map((character, index) => (
           <CharacterItem key={character._id} character={character} />
           ))}
       </div>
       {isFormOpen && <CharacterForm id="form-char" onClose={() => setIsFormOpen(false)} />}
-      <img className="back-image" src={pic} alt="Background" />
+      <img className="back-image" src={pic} alt="Backgr" />
+              {showInfoModal && (
+          <div id="info-modal">
+          <div id="info-modal-content">
+              {/* Your modal content here */}
+              <button onClick={toggleInfoModal}>X</button>
+              <p className='modal-text'>
+              Character Save File Page<br/><br/>
+              -- This is where you can create your characters
+              <br/><br/><br/><br/>
+              Character File<br/><br/>
+              -- Create a new character with your choice of color and name<br/><br/>
+              -- Click on file to see there game page and start working on them<br/><br/>
+              -- Hit the delete button to delete the character<br/><br/>
+              -- Use the log out button to return to the home page<br/><br/>
+
+              </p>
+          </div>
+          </div>
+      )}
     </div>
   );
 }

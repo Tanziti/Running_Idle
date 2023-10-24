@@ -130,12 +130,13 @@
 
 #CharacterName {
     position: absolute;
-    font-size: 64px;
+    font-size: 54px;
     font-weight: bold;
     color: pink;
     text-shadow: 2px 2px 10px blue;
     margin: 0;
-    left: 4%; 
+    /* padding-left: 0; */
+    left: 0; 
 }
 
 #charStaticImgIcon {
@@ -172,6 +173,7 @@
             padding-top: 20px;
             padding-bottom: 20px;
             border-radius: 10px;
+            margin-right: 0;
 }
 
 
@@ -186,4 +188,88 @@
     width: 20%;
     /* float: left; */
     flex: 1;
+}
+
+
+#info-button {
+        padding: 0;
+        margin: 0;
+        border: none;
+        cursor: pointer;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 48px;
+    border-radius: 30px;
+    color: pink;
+    background-color: rgb(58, 144, 230);
+    margin: 10px
+}
+
+#info-button:hover {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px pink;
+}
+
+#cheat-button-text {
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+#charStaticImgIcon {
+    transition: all 0.3s;
+}
+
+#charStaticImgIcon:hover {
+    filter: brightness(2);
+    transform: scale(1.1);
+        cursor: pointer;
+}
+
+
+#charStaticImgIcon:active {
+    transform: scale(0.8);
+    /* Scale the image down to 80% of its original size */
+}
+
+
+
+
+
+#info-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#info-modal-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    height: 85%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#info-modal-content button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-text {
+    padding: 40px;
+    color: #a5c8ff;
+    font-size: 19px;
 }
