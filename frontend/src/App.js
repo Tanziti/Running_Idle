@@ -10,22 +10,32 @@ import CharacterShow from "./components/Characters/CharacterShow";
 import RunsPage from './components/RunsPage/RunsPage';
 import Theme from './components/Sounds/Theme.js';
 import Leaderboard from './components/Leaderboard/Leaderboard'
+import Modal from "./components/MainPage/Modal";
 
 
 function App() {
  
   const [loaded, setLoaded] = useState(false);
+  const [showInitialModal, setShowInitialModal] = useState(true); // Control the initial modal
+  const [showSubsequentComponent, setShowSubsequentComponent] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentUser()).then(() => setLoaded(true));
   }, [dispatch]);
-
+  const closeModal = () => {
+    setShowInitialModal(false);
+    setShowSubsequentComponent(true);
+  };
   return (
     loaded && (
       <>
-      {/* <NavBar /> */}
+         {showInitialModal && (
+        <Modal onClose={closeModal} />
+      )}
      
-        <Theme/>
+     {showSubsequentComponent && (
+        <Theme /> // Render the subsequent component
+      )}
       
         <Switch>
           <Route exact path="/" component={MainPage} />
