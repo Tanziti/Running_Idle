@@ -44,19 +44,24 @@ function Theme() {
       audio.load();
     }
   }, [getAudioSource()]);
-
+  useEffect(()=>{
+    const audio = audioRef.current
+    debugger
+    audio.src = getAudioSource();
+    audio.load();
+  },[])
   return (
     <div id='audio-player-top-level-div'>
-      <audio
-        ref={audioRef}
-        controls
-        muted={audioMuted}
-        autoPlay
-        style={{ display: 'none' }}
-        loop
-      >
-        Your browser does not support the audio element.
-      </audio>
+    <audio
+  ref={audioRef}
+  controls
+  autoPlay
+  muted={audioMuted}
+  style={{ display: 'none' }}
+  loop
+>
+  Your browser does not support the audio element.
+</audio>
 
       <button onClick={toggleMute} className='audio-player-mute-button'>
         {audioMuted ? 'Unmute' : 'Mute'}

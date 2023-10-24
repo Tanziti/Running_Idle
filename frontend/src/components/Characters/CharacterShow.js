@@ -29,6 +29,28 @@ const CharacterShow = () => {
         setPoints(character?.points)
     }, [dispatch, characterId, character?.heart, character?.legs, character?.arms, character?.points])
 
+
+    const levelUpAudio = new Audio();
+    levelUpAudio.src = "/assets/sounds/level_up.mp3";
+    const playLevelUpSound = () => {
+        if (!isAudioMuted){
+            levelUpAudio.volume = 0.00
+            levelUpAudio.play();
+     } else{
+       levelUpAudio.volume = 0.15; 
+       levelUpAudio.play();
+     }
+}   ;
+// useEffect(() => {
+//  if (!isAudioMuted){
+//      levelUpAudio.volume = 0.00;
+//      console.log(levelUpAudio.volume)
+//  } else {
+//      levelUpAudio.volume = 0.15;
+//      console.log(levelUpAudio.volume)
+//  }
+// },[isAudioMuted])
+
     const playLevelUpSound = () => {
 
         const levelUpAudio = new Audio();
@@ -38,6 +60,7 @@ const CharacterShow = () => {
         levelUpAudio.play();
         } 
     };
+
     const goToChars = (e) => {
         e.preventDefault();
         history.push("/user/characters");
