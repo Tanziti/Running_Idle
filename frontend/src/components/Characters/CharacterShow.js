@@ -51,15 +51,15 @@ const CharacterShow = () => {
 //  }
 // },[isAudioMuted])
 
-    const playLevelUpSound = () => {
+    // const playLevelUpSound = () => {
 
-        const levelUpAudio = new Audio();
-        levelUpAudio.src = "/assets/sounds/level_up.mp3";
-        levelUpAudio.volume = 0.15;
-        if (isAudioMuted){
-        levelUpAudio.play();
-        } 
-    };
+    //     const levelUpAudio = new Audio();
+    //     levelUpAudio.src = "/assets/sounds/level_up.mp3";
+    //     levelUpAudio.volume = 0.15;
+    //     if (isAudioMuted){
+    //     levelUpAudio.play();
+    //     } 
+    // };
 
     const goToChars = (e) => {
         e.preventDefault();
