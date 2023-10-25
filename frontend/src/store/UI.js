@@ -2,6 +2,7 @@
 const SET_SOURCE = 'UI/SET_SOURCE'
 const PLAY_AUDIO = 'UI/PLAY_AUDIO'
 const PAUSE_AUDIO = 'UI/PAUSE_AUDIO'
+const RESUME_AUDIO = 'UI/RESUME_AUDIO'
 const SET_AUDIO_MUTE = 'UI/SET_AUDIO_MUTE'
 
 export const setAudioSource = (source) => ({
@@ -20,8 +21,9 @@ export const setAudioSource = (source) => ({
   });
   
   // Stop the audio
-  export const muteAudio = () => ({
+  export const muteAudio = (audioTime) => ({
     type: SET_AUDIO_MUTE,
+    audioTime: audioTime
   });
 
   const initialState = {
@@ -50,7 +52,7 @@ export const setAudioSource = (source) => ({
         return {
           ...state,
           isPlaying: false,
-          currentTime: 0,  // Resetting the current time
+          currentTime: action.audioTime,  // Setting the current time
         };
   
       // ... other cases ...
