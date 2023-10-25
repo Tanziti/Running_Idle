@@ -159,6 +159,25 @@ const RunsPage = (props) => {
     setCurrLng2(endPosition[1]);
   }
 
+  const demoRun = () => {
+    setCurrLat(40.7128);
+    setCurrLng(-74.0137);
+    setCurrLat2(40.7641);
+    setCurrLng2(-73.9782);
+    dispatch(runActions.composeRun({
+        character: characterId,
+        startTime: 1,
+        startPosition: [40.7128, -74.0137],
+        endTime: 900001,
+        endPosition: [40.7641, -73.9782],
+        duration: 900000,
+        distance: calculateDistance(40.7128, -74.0137, 40.7641, -73.9782),
+        caption: "This is a demo run"
+      }));
+    dispatch(fetchActiveCharacter(characterId))
+    dispatch(runActions.fetchCharacterRuns(characterId))
+  }
+
   const charIcon = {
     url: charimage,
     scaledSize: new props.google.maps.Size(50, 50),
@@ -168,7 +187,7 @@ const RunsPage = (props) => {
    createRun();
    dispatch(fetchActiveCharacter(characterId))
    dispatch(runActions.fetchCharacterRuns(characterId))
-  }, [endLng]);
+  }, [endLng, dispatch]);
 
   useEffect(() => {
     dispatch(fetchActiveCharacter(characterId))
@@ -258,6 +277,9 @@ const RunsPage = (props) => {
                         <div id='characterrunspage-currentruncontainer'>
                           <div id='characterrunspage-togglebutton'>
                             {toggleRunStart}
+                            <div id='characterrunspage-demorun'>
+                              <button type="submit" className='runstartstoptoggle' onClick={demoRun}>Demo Run</button>
+                            </div>
                           </div>
                           <div id='currentrun-data'>
                             <div>Start Position: {startLng ? `[${Number(startLat.toFixed(4))}, ${Number(startLng.toFixed(4))}]` : ''}</div>
