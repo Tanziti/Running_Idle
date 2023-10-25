@@ -115,13 +115,15 @@ const RunsPage = (props) => {
   }
 
   const formatTime = (millisec) => {
-    const minutes = Math.floor((millisec / (1000 * 60 * 60)) / (1000 * 60))
-    const seconds = Math.floor((millisec % (1000 * 60)) / 1000);
-
+    const totalSeconds = Math.floor(millisec / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+  
     const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-
-    return `${minutes}:${formattedSeconds}`
+  
+    return `${minutes}:${formattedSeconds}`;
   }
+  
 
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const R = 3958.8;
@@ -160,20 +162,21 @@ const RunsPage = (props) => {
   }
 
   const demoRun = () => {
+
+    let demoDuration = Math.random() * (2.4e6 - 1.2e6) + 1.2e6;
+
     setCurrLat(40.7128);
     setCurrLng(-74.0137);
     setCurrLat2(40.7641);
     setCurrLng2(-73.9782);
-    dispatch(runActions.composeRun({
-        character: characterId,
-        startTime: 1,
-        startPosition: [40.7128, -74.0137],
-        endTime: 900001,
-        endPosition: [40.7641, -73.9782],
-        duration: 900000,
-        distance: calculateDistance(40.7128, -74.0137, 40.7641, -73.9782),
-        caption: "This is a demo run"
-      }));
+    
+    setStartTime(1);
+    setStartLat(40.7128);
+    setStartLng(-74.0137);
+    setEndTime(demoDuration);
+    setEndLat(40.7641);
+    setEndLng(-73.9782);
+
     dispatch(fetchActiveCharacter(characterId))
     dispatch(runActions.fetchCharacterRuns(characterId))
   }
