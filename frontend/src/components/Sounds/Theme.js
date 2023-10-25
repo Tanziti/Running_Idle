@@ -13,8 +13,11 @@ function Theme() {
   const dispatch = useDispatch();
   const originalVolume = 0.05;
 
+
+
+  let audio = 'no audio';
   const toggleMute = () => {
-    const audio = audioRef.current;
+    audio = audioRef.current;
     audio.muted = !audioMuted;
     setAudioMuted(!audioMuted);
     audio.volume = originalVolume;
@@ -26,7 +29,7 @@ function Theme() {
    
   };
 
-
+  
   // Define a function to compute the audio source based on the current route
   const getAudioSource = () => {
     const { pathname } = location;
@@ -38,12 +41,14 @@ function Theme() {
   };
 
   useEffect(() => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.src = getAudioSource();
-      audio.load();
+    if (audio === 'no audio') { 
+      audio = audioRef.current;
+      if (audio) {
+        audio.src = getAudioSource();
+        audio.load();
+      }
     }
-  }, [getAudioSource()]);
+  }, [getAudioSource(), audioMuted]);
   useEffect(()=>{
     const audio = audioRef.current
     debugger
