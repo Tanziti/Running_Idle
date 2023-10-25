@@ -165,6 +165,8 @@ const RunsPage = (props) => {
 
     let demoDuration = Math.random() * (2.4e6 - 1.2e6) + 1.2e6;
 
+    let demoEndLng = Math.random() * (-73.978200 - (-73.978299)) + (-73.978299)
+
     setCurrLat(40.7128);
     setCurrLng(-74.0137);
     setCurrLat2(40.7641);
@@ -175,7 +177,7 @@ const RunsPage = (props) => {
     setStartLng(-74.0137);
     setEndTime(demoDuration);
     setEndLat(40.7641);
-    setEndLng(-73.9782);
+    setEndLng(demoEndLng);
 
     dispatch(fetchActiveCharacter(characterId))
     dispatch(runActions.fetchCharacterRuns(characterId))
