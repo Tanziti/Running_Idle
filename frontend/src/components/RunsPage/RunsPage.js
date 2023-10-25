@@ -164,6 +164,18 @@ const RunsPage = (props) => {
     setCurrLng(-74.0137);
     setCurrLat2(40.7641);
     setCurrLng2(-73.9782);
+    dispatch(runActions.composeRun({
+        character: characterId,
+        startTime: 1,
+        startPosition: [40.7128, -74.0137],
+        endTime: 900001,
+        endPosition: [40.7641, -73.9782],
+        duration: 900000,
+        distance: calculateDistance(40.7128, -74.0137, 40.7641, -73.9782),
+        caption: "This is a demo run"
+      }));
+    dispatch(fetchActiveCharacter(characterId))
+    dispatch(runActions.fetchCharacterRuns(characterId))
   }
 
   const charIcon = {
