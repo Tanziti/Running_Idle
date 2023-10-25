@@ -17,7 +17,7 @@ function App() {
  
   const [loaded, setLoaded] = useState(false);
   const [showInitialModal, setShowInitialModal] = useState(true); // Control the initial modal
-  const [showSubsequentComponent, setShowSubsequentComponent] = useState(false);
+  const [showSubsequentComponent, setShowSubsequentComponent] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentUser()).then(() => setLoaded(true));
@@ -29,9 +29,9 @@ function App() {
   return (
     loaded && (
       <>
-         {showInitialModal && (
+         {/* {showInitialModal && (
         <Modal onClose={closeModal} />
-      )}
+      )}  */}
      
      {showSubsequentComponent && (
         <Theme /> // Render the subsequent component
