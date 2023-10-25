@@ -13,23 +13,20 @@ function Theme() {
   const dispatch = useDispatch();
   const originalVolume = 0.05;
 
-
-
-  let audio = 'no audio';
   const toggleMute = () => {
-    audio = audioRef.current;
+    const audio = audioRef.current;
     audio.muted = !audioMuted;
     setAudioMuted(!audioMuted);
     audio.volume = originalVolume;
     if (audio.muted){
-       dispatch(muteAudio());
+       dispatch(muteAudio(audio.currentTime));
     } else {
       dispatch(playAudio())
     }
    
   };
 
-  
+
   // Define a function to compute the audio source based on the current route
   const getAudioSource = () => {
     const { pathname } = location;
@@ -41,20 +38,18 @@ function Theme() {
   };
 
   useEffect(() => {
-    if (audio === 'no audio') { 
-      audio = audioRef.current;
-      if (audio) {
-        audio.src = getAudioSource();
-        audio.load();
-      }
+    const audio = audioRef.current;
+    if (audio) {
+      audio.src = getAudioSource();
+      audio.load();
     }
-  }, [getAudioSource(), audioMuted]);
+  }, [getAudioSource()]);
   useEffect(()=>{
     const audio = audioRef.current
     debugger
     audio.src = getAudioSource();
     audio.load();
-  },[])
+  },[dispatch])
   return (
     <div id='audio-player-top-level-div'>
     <audio
