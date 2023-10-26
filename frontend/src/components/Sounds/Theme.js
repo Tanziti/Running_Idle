@@ -43,13 +43,13 @@ function Theme() {
       audio.src = getAudioSource();
       audio.load();
     }
-  }, [getAudioSource()]);
-  useEffect(()=>{
-    const audio = audioRef.current
-    debugger
-    audio.src = getAudioSource();
-    audio.load();
-  },[dispatch])
+  }, [getAudioSource(), audioMuted]);
+  // useEffect(()=>{
+  //   const audio = audioRef.current
+  //   debugger
+  //   audio.src = getAudioSource();
+  //   audio.load();
+  // },[dispatch])
   return (
     <div id='audio-player-top-level-div'>
     <audio
