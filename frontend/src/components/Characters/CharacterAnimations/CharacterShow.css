@@ -15,7 +15,7 @@
     display: flex;
     width: 100vw;
     height: 20vh;
-    border: 1px solid blue;
+    border-bottom: 2.5px solid blue;
     align-items: center; 
     justify-content: right; 
     /* gap: 12%; */
@@ -129,14 +129,14 @@
 
 
 #CharacterName {
-    position: absolute;
-    font-size: 54px;
+    /* position: absolute; */
+    font-size: 2vw;
     font-weight: bold;
     color: pink;
     text-shadow: 2px 2px 10px blue;
-    margin: 0;
-    /* padding-left: 0; */
-    left: 0; 
+    /* margin: 0; */
+    margin-left: 50px;
+    /* left: 50px;  */
 }
 
 #charStaticImgIcon {
@@ -165,15 +165,14 @@
 }
 
 #CharPoints  {
-    font-size: 35px;
-        font-weight: bold;
-            color: rgb(255, 217, 102);
-            text-shadow: 2px 2px 10px blue;
-            border: 2px solid blue;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            border-radius: 10px;
-            margin-right: 0;
+    font-size: 1.5vw;
+    /* font-weight: bold; */
+    color: rgb(255, 217, 102);
+    text-shadow: 2px 2px 10px blue;
+    border: 2px solid blue;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
 }
 
 
@@ -212,7 +211,7 @@
 }
 
 #cheat-button-text {
-    font-size: 10px;
+    font-size: 16px;
     padding: 0;
     margin: 0;
 }
@@ -273,5 +272,9 @@
     padding: 40px;
     color: #e5edf8;
     font-size: 19px;
+}
+
+.attributeBar > button {
+    margin-right: 2%;
 }
 
