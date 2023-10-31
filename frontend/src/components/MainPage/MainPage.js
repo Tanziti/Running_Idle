@@ -12,7 +12,7 @@ import sakura from "./sakuraGif.gif";
 function MainPage() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
-  const [showInstructions, setShowInstructions] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(true);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -167,21 +167,12 @@ function MainPage() {
       {showInstructions && (
         <div className="mod-content">
           <p id="mod-text">
-            Instructions:
-            <br />
-            <br />
             <br />
             Welcome to Running Idle, a captivating fitness application that
-            transforms your daily runs into a gamified adventure. Whether you're
-            exploring, starting anew, or simply striving for fitness excellence,
-            our app has you covered.
+            transforms your daily runs into a gamified adventure!
             <br />
             <br />
-            Sign up or log in to begin your journey, and explore the 'Demo
-            Login' option for a playful introduction. Create your character,
-            embark on runs, and accumulate points to boost your avatar's
-            attributes. Playful interactions, including character enhancements,
-            await your every step to motivate you on this fitness voyage.
+            Sign up or log in to begin your journey!
             <br />
             <br />
             Join us to set fresh daily goals and aim for the leaderboard's
