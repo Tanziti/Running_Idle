@@ -189,10 +189,12 @@ const CharacterShow = () => {
     <>
       <div id="showPageContainer">
         <div id="showPageNavBar">
-          <button id="info-button" onClick={toggleInfoModal}>
-            <i class="fas fa-circle-info"></i>
-          </button>
           <div id="CharacterName">{character.name}</div>
+          <div>
+            <button id="info-button" onClick={toggleInfoModal}>
+              <i class="fas fa-circle-info"></i>
+            </button>
+          </div>
           <div id="CharPoints">${character.points}</div>
           <div id="cheat-button-text">Cheat&rarr;</div>
           <img
@@ -231,7 +233,9 @@ const CharacterShow = () => {
                 className="charShowButtons"
                 id="armsButton"
               >
-                Arms +
+                Arms 
+                <br/>
+                +
               </button>
               <div className="xpBar">
                 <div
@@ -254,7 +258,9 @@ const CharacterShow = () => {
                 className="charShowButtons"
                 id="legsButton"
               >
-                Legs +
+                Legs
+                <br/>
+                +
               </button>
               <div className="xpBar">
                 <div
