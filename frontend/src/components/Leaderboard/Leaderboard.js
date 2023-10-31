@@ -32,13 +32,13 @@ const Leaderboard = () => {
   return (
     <div id="all-runs-index-container">
       <button
-        id="runs-index-home-button"
+        id="runs-index-home-button2"
         className="charShowButtons"
         onClick={(e) => history.push("/")}
       >
         Home Page
       </button>
-      <button id="info-button" onClick={toggleInfoModal}>
+      <button id="info-button" className="info-button" onClick={toggleInfoModal}>
         <i class="fas fa-circle-info"></i>
       </button>
       <div id="all-runs" className="leaderboard-title">
