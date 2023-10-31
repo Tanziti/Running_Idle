@@ -68,11 +68,15 @@
 
 .xpBar {
     border: 2px solid blue;
-    width: 30%;
+    /* width: 30%; */
     height: 50%;
     border-radius: 10px;
     /* position: absolute; */
     box-shadow: 0px 4px 6px rgba(550, 0, 255, 0.5);
+}
+
+#xpBarMinWidth {
+    min-width: 19vw;
 }
 
 #xpFillBar {

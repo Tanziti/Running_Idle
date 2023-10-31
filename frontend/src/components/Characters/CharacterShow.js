@@ -237,7 +237,7 @@ const CharacterShow = () => {
                 <br/>
                 +
               </button>
-              <div className="xpBar">
+              <div className="xpBar" id='xpBarMinWidth'>
                 <div
                   className="xpBar"
                   id="xpFillBar"
@@ -252,7 +252,7 @@ const CharacterShow = () => {
               {showArmsAnimation && <ArmsIconAnimation />}
             </div>
 
-            <div className="attributeBar">
+            <div className="attributeBar" >
               <button
                 onClick={handleShowJumpingRope}
                 className="charShowButtons"
@@ -262,7 +262,7 @@ const CharacterShow = () => {
                 <br/>
                 +
               </button>
-              <div className="xpBar">
+              <div className="xpBar" id='xpBarMinWidth'>
                 <div
                   className="xpBar"
                   id="xpFillBar"
@@ -285,7 +285,7 @@ const CharacterShow = () => {
               >
                 Heart +
               </button>
-              <div className="xpBar">
+              <div className="xpBar" id='xpBarMinWidth'>
                 <div
                   className="xpBar"
                   id="xpFillBar"
