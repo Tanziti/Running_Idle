@@ -10,6 +10,11 @@
     font-size: 40px;
 }
 
+.alex{
+  overflow: auto;
+  max-height: 100vh;
+}
+
 #runs-index-home-button {
     position: relative;
     top: 90px;

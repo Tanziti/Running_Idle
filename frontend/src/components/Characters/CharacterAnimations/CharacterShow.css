@@ -251,25 +251,27 @@
 }
 
 #info-modal-content {
-    background: rgba(0, 0, 0, 0.6);
+    background: #266686de;
     padding: 20px;
     border-radius: 5px;
     width: 90%;
     height: 85%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
 }
 
 #info-modal-content button {
-    background: #333;
+    /* background: #333; */
     color: #fff;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    color: black;
 }
 
 .modal-text {
     padding: 40px;
-    color: #a5c8ff;
+    color: #e5edf8;
     font-size: 19px;
 }
+
