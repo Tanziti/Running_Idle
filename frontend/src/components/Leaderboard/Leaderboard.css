@@ -18,6 +18,13 @@
 #runs-index-home-button {
     position: relative;
     top: 90px;
+   
+}
+#runs-index-home-button2 {
+  position: relative;
+  top: 90px;
+  left: 70%;
+ 
 }
 
 .leaderboard-title {
@@ -41,8 +48,8 @@
   
   #leaderboard-actual-links {
     position: absolute; /* Set the links to an absolute position */
-    bottom: -20vh; /* Align to the bottom */
-    right: 0; /* Align to the right */
+    bottom: -25vh; /* Align to the bottom */
+    left: 5px; /* Align to the right */
     display: flex;
     flex-direction: column; /* Display the links vertically */
   }
@@ -54,4 +61,3 @@
   .leaderboard-page-links a:nth-child(2n) {
     margin-right: 30px;
   }
-  
